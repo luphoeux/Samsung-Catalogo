@@ -3,8 +3,149 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('search-input');
     const filterButtons = document.querySelectorAll('.filter-btn');
 
-    // Initial Render
-    renderProducts(products);
+    // Google Sheets CSV URL
+    const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTuLe28pznqPjc7LrqZiDee4yxlO2w1KMhjuxP6-nd-FVM6_V6RrTCOHtnowZsjiOKE9H6YeZ4ycUOH/pub?gid=0&single=true&output=csv';
+
+    // Initial Render - Show static data first (fastest)
+    if (typeof products !== 'undefined') {
+        renderProducts(products);
+    }
+
+    // Try to fetch updates
+    fetchProducts();
+
+    // Update every 60 minutes
+    setInterval(fetchProducts, 60 * 60 * 1000);
+
+    function fetchProducts() {
+        console.log('Fetching product data...');
+        fetch(CSV_URL)
+            .then(response => response.text())
+            .then(csvText => {
+                const parsedProducts = parseCSV(csvText);
+                if (parsedProducts && parsedProducts.length > 0) {
+                    console.log('Products updated from Google Sheets');
+                    renderProducts(parsedProducts);
+                } else {
+                    console.warn('Fetched data was empty or invalid');
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching products:', error);
+            });
+    }
+
+    function parseCSV(csvText) {
+        const lines = csvText.split(/\r?\n/).filter(line => line.trim() !== '');
+        if (lines.length < 2) return [];
+
+        const headers = parseCSVLine(lines[0]);
+        const parsedProducts = [];
+
+        for (let i = 1; i < lines.length; i++) {
+            const values = parseCSVLine(lines[i]);
+            if (values.length !== headers.length) continue;
+
+            const product = {};
+            headers.forEach((header, index) => {
+                let value = values[index];
+
+                // Type conversion and JSON parsing
+                if (header === 'id' || header === 'price' || header === 'originalPrice') {
+                    value = Number(value);
+                } else if (['storage', 'colorCodes'].includes(header)) {
+                    try {
+                        value = (value && value.trim() !== '') ? JSON.parse(value) : (header === 'colorCodes' ? {} : []);
+                    } catch (e) {
+                        value = header === 'colorCodes' ? {} : [];
+                    }
+                }
+                product[header] = value;
+            });
+
+            // Build colors, variants, and colorCodes from individual columns
+            const colors = [];
+            const variants = {};
+            const colorCodes = {};
+            let defaultSku = '';
+            let defaultImage = '';
+
+            for (let variantNum = 1; variantNum <= 5; variantNum++) {
+                const skuKey = `SKU${variantNum}`;
+                const colorKey = `Color${variantNum}`;
+                const imagenKey = `Imagen${variantNum}`;
+                const hexKey = `Hex${variantNum}`;
+
+                const sku = product[skuKey];
+                const color = product[colorKey];
+                const imagen = product[imagenKey];
+                const hex = product[hexKey];
+
+                // Only add variant if SKU, Color, and Image are present
+                if (sku && sku.trim() !== '' && color && color.trim() !== '' && imagen && imagen.trim() !== '') {
+                    colors.push(color);
+                    variants[color] = {
+                        sku: sku,
+                        image: imagen
+                    };
+
+                    // Add hex code if provided
+                    if (hex && hex.trim() !== '') {
+                        colorCodes[color] = hex;
+                    }
+
+                    // First variant is the default
+                    if (variantNum === 1) {
+                        defaultSku = sku;
+                        defaultImage = imagen;
+                    }
+                }
+
+                // Remove the individual variant columns from the product object
+                delete product[skuKey];
+                delete product[colorKey];
+                delete product[imagenKey];
+                delete product[hexKey];
+            }
+
+            // Set the built arrays (Hex columns override colorCodes JSON)
+            product.colors = colors;
+            product.variants = variants;
+            product.sku = defaultSku;
+            product.image = defaultImage;
+
+            // Merge hex codes from columns with existing colorCodes (columns have priority)
+            product.colorCodes = { ...product.colorCodes, ...colorCodes };
+
+            parsedProducts.push(product);
+        }
+        return parsedProducts;
+    }
+
+    function parseCSVLine(line) {
+        const values = [];
+        let currentValue = '';
+        let insideQuotes = false;
+
+        for (let i = 0; i < line.length; i++) {
+            const char = line[i];
+            if (char === '"') {
+                if (insideQuotes && line[i + 1] === '"') {
+                    currentValue += '"';
+                    i++;
+                } else {
+                    insideQuotes = !insideQuotes;
+                }
+            } else if (char === ',' && !insideQuotes) {
+                values.push(currentValue);
+                currentValue = '';
+            } else {
+                currentValue += char;
+            }
+        }
+        values.push(currentValue);
+        return values;
+    }
 
     // Filter Functionality
     filterButtons.forEach(btn => {
@@ -191,9 +332,9 @@ function renderProducts(items) {
                 <img src="${product.image}" alt="${product.name}" class="product-image" id="img-${card.id}">
             </div>
             <div class="product-info">
+                <p class="product-sku">${product.sku || ''}</p>
                 <h3 class="product-name">${product.name}</h3>
                 <p class="product-description">${product.description || ''}</p>
-                <p class="product-sku">${product.sku || ''}</p>
                 
                 ${colorsHtml}
 
@@ -230,11 +371,41 @@ function changeProductColor(dot, cardId) {
     const colorLabel = card.querySelector('.selected-color-name');
     if (colorLabel) colorLabel.textContent = colorName;
 
-    // Update image
+    // Update image with loading state
     const newImageSrc = dot.getAttribute('data-image');
     const img = card.querySelector('.product-image');
-    if (img && newImageSrc) {
-        img.src = newImageSrc;
+    const imageContainer = card.querySelector('.product-image-container');
+
+    if (img && newImageSrc && img.src !== newImageSrc) {
+        // Create or get loading overlay
+        let loadingOverlay = imageContainer.querySelector('.product-image-loading');
+        if (!loadingOverlay) {
+            loadingOverlay = document.createElement('div');
+            loadingOverlay.className = 'product-image-loading';
+            loadingOverlay.innerHTML = '<div class="loading-spinner"></div>';
+            imageContainer.appendChild(loadingOverlay);
+        }
+
+        // Show loading state
+        img.classList.add('loading');
+        loadingOverlay.classList.add('active');
+
+        // Create new image to preload
+        const tempImg = new Image();
+        tempImg.onload = () => {
+            img.src = newImageSrc;
+            // Hide loading state after image loads
+            setTimeout(() => {
+                img.classList.remove('loading');
+                loadingOverlay.classList.remove('active');
+            }, 100);
+        };
+        tempImg.onerror = () => {
+            // Hide loading even on error
+            img.classList.remove('loading');
+            loadingOverlay.classList.remove('active');
+        };
+        tempImg.src = newImageSrc;
     }
 
     // Update SKU
