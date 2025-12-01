@@ -1,33 +1,32 @@
-const products = [
+var products = [
     {
         "id": 1,
         "name": "Galaxy Z Fold7",
         "category": "smartphones",
-        "price": 100,
-        "originalPrice": 500,
+        "price": 0,
+        "originalPrice": 0,
         "link": "https://shop.samsung.com.bo/smartphones/galaxy-z/galaxy-z-fold7-blue-shadow-512gb-sm-f966bdbkcho",
         "description": "Diseño ultra delgado 8.9mm, Cámara 200MP, Snapdragon 8 Elite y Galaxy AI.",
-        "badge": "1234",
+        "badge": "",
         "storage": [
             "512 GB"
         ],
-        "colors": [
-            "Azul Metálico",
-            "Negro"
-        ],
-        "variants": {
-            "Azul Metálico": {
+        "variants": [
+            {
+                "color": "1",
+                "hex": "#c41717ff",
                 "sku": "SM-F966BDBKCHO",
                 "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_REVFsxTyaj9XMYmDK7Qf.png"
             },
-            "Negro": {
+            {
+                "color": "2",
+                "hex": "#1b882dff",
                 "sku": "SM-F966BZKKCHO",
                 "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/original/product-family-item-image-image_x79DA312UjEYKePb50Xd.png"
             }
-        },
+        ],
         "sku": "SM-F966BDBKCHO",
-        "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_REVFsxTyaj9XMYmDK7Qf.png",
-        "colorCodes": {}
+        "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_REVFsxTyaj9XMYmDK7Qf.png"
     },
     {
         "id": 2,
@@ -42,38 +41,34 @@ const products = [
             "256 GB",
             "512 GB"
         ],
-        "colors": [
-            "Gris",
-            "Plata",
-            "Negro",
-            "Azul"
-        ],
-        "variants": {
-            "Gris": {
+        "variants": [
+            {
+                "color": "Gris",
+                "hex": "#6B6B6B",
                 "sku": "SM-S938BZSEBVO",
                 "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_qI9E4ZaOzVG1HFbrLPlf.png"
             },
-            "Plata": {
+            {
+                "color": "Plata",
+                "hex": "#C0C0C0",
                 "sku": "SM-S938BZSIBVO",
                 "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_H7u4C0FlEXPR3mdeGBtI.png"
             },
-            "Negro": {
+            {
+                "color": "Negro",
+                "hex": "#000000",
                 "sku": "SM-S938BZKEBVO",
                 "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_KQEqL0hw7JfIruXmcZsY.png"
             },
-            "Azul": {
+            {
+                "color": "Azul",
+                "hex": "#1C3A5C",
                 "sku": "SM-S938BZBKBVO",
                 "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_FsmUMnZIQiwYeCTXS7EN.png"
             }
-        },
+        ],
         "sku": "SM-S938BZSEBVO",
-        "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_qI9E4ZaOzVG1HFbrLPlf.png",
-        "colorCodes": {
-            "Gris": "#6B6B6B",
-            "Plata": "#C0C0C0",
-            "Negro": "#000000",
-            "Azul": "#1C3A5C"
-        }
+        "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_qI9E4ZaOzVG1HFbrLPlf.png"
     },
     {
         "id": 3,
@@ -88,32 +83,28 @@ const products = [
             "256 GB",
             "512 GB"
         ],
-        "colors": [
-            "Azul Sombra",
-            "Plata Sombra",
-            "Negro"
-        ],
-        "variants": {
-            "Azul Sombra": {
+        "variants": [
+            {
+                "color": "Azul Sombra",
+                "hex": "#111111",
                 "sku": "SM-F766BDBJCHO",
-                "image": "https://images.samsung.com/is/image/samsung/p6pim/bo/sm-f766bdbjcho/gallery/bo-galaxy-z-flip7-f766-sm-f766bdbjcho-545445449"
+                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
             },
-            "Plata Sombra": {
+            {
+                "color": "Plata Sombra",
+                "hex": "#111111",
                 "sku": "SM-F766BZSECHO",
-                "image": "https://images.samsung.com/is/image/samsung/p6pim/bo/sm-f766bzsecho/gallery/bo-galaxy-z-flip7-f766-sm-f766bzsecho-545445449"
+                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
             },
-            "Negro": {
+            {
+                "color": "Negro",
+                "hex": "#111111",
                 "sku": "SM-F766BZKECHO",
-                "image": "https://images.samsung.com/is/image/samsung/p6pim/bo/sm-f766bzkecho/gallery/bo-galaxy-z-flip7-f766-sm-f766bzkecho-545445449"
+                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
             }
-        },
+        ],
         "sku": "SM-F766BDBJCHO",
-        "image": "https://images.samsung.com/is/image/samsung/p6pim/bo/sm-f766bdbjcho/gallery/bo-galaxy-z-flip7-f766-sm-f766bdbjcho-545445449",
-        "colorCodes": {
-            "Azul Sombra": "#1C2E4A",
-            "Plata Sombra": "#C0C0C0",
-            "Negro": "#000000"
-        }
+        "image": "https://placehold.co/600x600/ffffff/ffffff.png"
     },
     {
         "id": 4,
@@ -128,32 +119,28 @@ const products = [
             "256 GB",
             "512 GB"
         ],
-        "colors": [
-            "Gris",
-            "Negro",
-            "Azul"
-        ],
-        "variants": {
-            "Gris": {
+        "variants": [
+            {
+                "color": "Gris",
+                "hex": "#111111",
                 "sku": "SM-S936BZSJBVO",
-                "image": "https://images.samsung.com/is/image/samsung/p6pim/bo/sm-s936bzsjbvo/gallery/bo-galaxy-s25-plus-s936-sm-s936bzsjbvo-545445449"
+                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
             },
-            "Negro": {
+            {
+                "color": "Negro",
+                "hex": "#111111",
                 "sku": "SM-S936BZKEBVO",
-                "image": "https://images.samsung.com/is/image/samsung/p6pim/bo/sm-s936bzkebvo/gallery/bo-galaxy-s25-plus-s936-sm-s936bzkebvo-545445449"
+                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
             },
-            "Azul": {
+            {
+                "color": "Azul",
+                "hex": "#111111",
                 "sku": "SM-S936BZBEBVO",
-                "image": "https://images.samsung.com/is/image/samsung/p6pim/bo/sm-s936bzbebvo/gallery/bo-galaxy-s25-plus-s936-sm-s936bzbebvo-545445449"
+                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
             }
-        },
+        ],
         "sku": "SM-S936BZSJBVO",
-        "image": "https://images.samsung.com/is/image/samsung/p6pim/bo/sm-s936bzsjbvo/gallery/bo-galaxy-s25-plus-s936-sm-s936bzsjbvo-545445449",
-        "colorCodes": {
-            "Gris": "#6B6B6B",
-            "Negro": "#000000",
-            "Azul": "#1C3A5C"
-        }
+        "image": "https://placehold.co/600x600/ffffff/ffffff.png"
     },
     {
         "id": 5,
@@ -168,32 +155,28 @@ const products = [
             "128 GB",
             "256 GB"
         ],
-        "colors": [
-            "Gris",
-            "Negro",
-            "Azul"
-        ],
-        "variants": {
-            "Gris": {
+        "variants": [
+            {
+                "color": "Gris",
+                "hex": "#111111",
                 "sku": "SM-S931BZSKBVO",
-                "image": "https://images.samsung.com/is/image/samsung/p6pim/bo/sm-s931bzskbvo/gallery/bo-galaxy-s25-s931-sm-s931bzskbvo-545445449"
+                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
             },
-            "Negro": {
+            {
+                "color": "Negro",
+                "hex": "#111111",
                 "sku": "SM-S931BZKEBVO",
-                "image": "https://images.samsung.com/is/image/samsung/p6pim/bo/sm-s931bzkebvo/gallery/bo-galaxy-s25-s931-sm-s931bzkebvo-545445449"
+                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
             },
-            "Azul": {
+            {
+                "color": "Azul",
+                "hex": "#111111",
                 "sku": "SM-S931BZBEBVO",
-                "image": "https://images.samsung.com/is/image/samsung/p6pim/bo/sm-s931bzbebvo/gallery/bo-galaxy-s25-s931-sm-s931bzbebvo-545445449"
+                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
             }
-        },
+        ],
         "sku": "SM-S931BZSKBVO",
-        "image": "https://images.samsung.com/is/image/samsung/p6pim/bo/sm-s931bzskbvo/gallery/bo-galaxy-s25-s931-sm-s931bzskbvo-545445449",
-        "colorCodes": {
-            "Gris": "#6B6B6B",
-            "Negro": "#000000",
-            "Azul": "#1C3A5C"
-        }
+        "image": "https://placehold.co/600x600/ffffff/ffffff.png"
     },
     {
         "id": 6,
@@ -208,32 +191,28 @@ const products = [
             "128 GB",
             "256 GB"
         ],
-        "colors": [
-            "Azul Marino",
-            "Menta",
-            "Grafito"
-        ],
-        "variants": {
-            "Azul Marino": {
+        "variants": [
+            {
+                "color": "Azul Marino",
+                "hex": "#111111",
                 "sku": "SM-S731BDBKBVO",
-                "image": "https://images.samsung.com/is/image/samsung/p6pim/bo/sm-s731bdbkbvo/gallery/bo-galaxy-s25-fe-s731-sm-s731bdbkbvo-545445449"
+                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
             },
-            "Menta": {
+            {
+                "color": "Menta",
+                "hex": "#111111",
                 "sku": "SM-S731BLGEBVO",
-                "image": "https://images.samsung.com/is/image/samsung/p6pim/bo/sm-s731blgebvo/gallery/bo-galaxy-s25-fe-s731-sm-s731blgebvo-545445449"
+                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
             },
-            "Grafito": {
+            {
+                "color": "Grafito",
+                "hex": "#111111",
                 "sku": "SM-S731BZAEBVO",
-                "image": "https://images.samsung.com/is/image/samsung/p6pim/bo/sm-s731bzaebvo/gallery/bo-galaxy-s25-fe-s731-sm-s731bzaebvo-545445449"
+                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
             }
-        },
+        ],
         "sku": "SM-S731BDBKBVO",
-        "image": "https://images.samsung.com/is/image/samsung/p6pim/bo/sm-s731bdbkbvo/gallery/bo-galaxy-s25-fe-s731-sm-s731bdbkbvo-545445449",
-        "colorCodes": {
-            "Azul Marino": "#1C3A5C",
-            "Menta": "#98FF98",
-            "Grafito": "#41424C"
-        }
+        "image": "https://placehold.co/600x600/ffffff/ffffff.png"
     },
     {
         "id": 7,
@@ -248,32 +227,28 @@ const products = [
             "128 GB",
             "256 GB"
         ],
-        "colors": [
-            "Grafito",
-            "Azul Claro",
-            "Violeta"
-        ],
-        "variants": {
-            "Grafito": {
+        "variants": [
+            {
+                "color": "Grafito",
+                "hex": "#111111",
                 "sku": "SM-A566EZKCBVO",
-                "image": "https://images.samsung.com/is/image/samsung/p6pim/bo/sm-a566ezkcbvo/gallery/bo-galaxy-a56-5g-a566-sm-a566ezkcbvo-545445449"
+                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
             },
-            "Azul Claro": {
+            {
+                "color": "Azul Claro",
+                "hex": "#111111",
                 "sku": "SM-A566EZBEBVO",
-                "image": "https://images.samsung.com/is/image/samsung/p6pim/bo/sm-a566ezbebvo/gallery/bo-galaxy-a56-5g-a566-sm-a566ezbebvo-545445449"
+                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
             },
-            "Violeta": {
+            {
+                "color": "Violeta",
+                "hex": "#111111",
                 "sku": "SM-A566ELVEBVO",
-                "image": "https://images.samsung.com/is/image/samsung/p6pim/bo/sm-a566elvebvo/gallery/bo-galaxy-a56-5g-a566-sm-a566elvebvo-545445449"
+                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
             }
-        },
+        ],
         "sku": "SM-A566EZKCBVO",
-        "image": "https://images.samsung.com/is/image/samsung/p6pim/bo/sm-a566ezkcbvo/gallery/bo-galaxy-a56-5g-a566-sm-a566ezkcbvo-545445449",
-        "colorCodes": {
-            "Grafito": "#41424C",
-            "Azul Claro": "#ADD8E6",
-            "Violeta": "#8A2BE2"
-        }
+        "image": "https://placehold.co/600x600/ffffff/ffffff.png"
     },
     {
         "id": 8,
@@ -288,32 +263,28 @@ const products = [
             "128 GB",
             "256 GB"
         ],
-        "colors": [
-            "Menta",
-            "Negro",
-            "Azul"
-        ],
-        "variants": {
-            "Menta": {
+        "variants": [
+            {
+                "color": "Menta",
+                "hex": "#111111",
                 "sku": "SM-A266MLGDBVO",
-                "image": "https://images.samsung.com/is/image/samsung/p6pim/bo/sm-a266mlgdbvo/gallery/bo-galaxy-a26-5g-a266-sm-a266mlgdbvo-545445449"
+                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
             },
-            "Negro": {
+            {
+                "color": "Negro",
+                "hex": "#111111",
                 "sku": "SM-A266MZKDBVO",
-                "image": "https://images.samsung.com/is/image/samsung/p6pim/bo/sm-a266mzkdbvo/gallery/bo-galaxy-a26-5g-a266-sm-a266mzkdbvo-545445449"
+                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
             },
-            "Azul": {
+            {
+                "color": "Azul",
+                "hex": "#111111",
                 "sku": "SM-A266MZBDBVO",
-                "image": "https://images.samsung.com/is/image/samsung/p6pim/bo/sm-a266mzbdbvo/gallery/bo-galaxy-a26-5g-a266-sm-a266mzbdbvo-545445449"
+                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
             }
-        },
+        ],
         "sku": "SM-A266MLGDBVO",
-        "image": "https://images.samsung.com/is/image/samsung/p6pim/bo/sm-a266mlgdbvo/gallery/bo-galaxy-a26-5g-a266-sm-a266mlgdbvo-545445449",
-        "colorCodes": {
-            "Menta": "#98FF98",
-            "Negro": "#000000",
-            "Azul": "#1C3A5C"
-        }
+        "image": "https://placehold.co/600x600/ffffff/ffffff.png"
     },
     {
         "id": 9,
@@ -328,32 +299,28 @@ const products = [
             "128 GB",
             "256 GB"
         ],
-        "colors": [
-            "Negro",
-            "Azul Claro",
-            "Menta"
-        ],
-        "variants": {
-            "Negro": {
+        "variants": [
+            {
+                "color": "Negro",
+                "hex": "#111111",
                 "sku": "SM-A366EZKGBVO",
-                "image": "https://images.samsung.com/is/image/samsung/p6pim/bo/sm-a366ezkgbvo/gallery/bo-galaxy-a36-5g-a366-sm-a366ezkgbvo-545445449"
+                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
             },
-            "Azul Claro": {
+            {
+                "color": "Azul Claro",
+                "hex": "#111111",
                 "sku": "SM-A366EZBGBVO",
-                "image": "https://images.samsung.com/is/image/samsung/p6pim/bo/sm-a366ezbgbvo/gallery/bo-galaxy-a36-5g-a366-sm-a366ezbgbvo-545445449"
+                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
             },
-            "Menta": {
+            {
+                "color": "Menta",
+                "hex": "#111111",
                 "sku": "SM-A366ELGGBVO",
-                "image": "https://images.samsung.com/is/image/samsung/p6pim/bo/sm-a366elggbvo/gallery/bo-galaxy-a36-5g-a366-sm-a366elggbvo-545445449"
+                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
             }
-        },
+        ],
         "sku": "SM-A366EZKGBVO",
-        "image": "https://images.samsung.com/is/image/samsung/p6pim/bo/sm-a366ezkgbvo/gallery/bo-galaxy-a36-5g-a366-sm-a366ezkgbvo-545445449",
-        "colorCodes": {
-            "Negro": "#000000",
-            "Azul Claro": "#ADD8E6",
-            "Menta": "#98FF98"
-        }
+        "image": "https://placehold.co/600x600/ffffff/ffffff.png"
     },
     {
         "id": 10,
@@ -368,32 +335,28 @@ const products = [
             "64 GB",
             "128 GB"
         ],
-        "colors": [
-            "Negro",
-            "Azul Claro",
-            "Menta"
-        ],
-        "variants": {
-            "Negro": {
+        "variants": [
+            {
+                "color": "Negro",
+                "hex": "#111111",
                 "sku": "SM-A175FZKGBVO",
-                "image": "https://images.samsung.com/is/image/samsung/p6pim/bo/sm-a175fzkgbvo/gallery/bo-galaxy-a17-a175-sm-a175fzkgbvo-545445449"
+                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
             },
-            "Azul Claro": {
+            {
+                "color": "Azul Claro",
+                "hex": "#111111",
                 "sku": "SM-A175FZBGBVO",
-                "image": "https://images.samsung.com/is/image/samsung/p6pim/bo/sm-a175fzbgbvo/gallery/bo-galaxy-a17-a175-sm-a175fzbgbvo-545445449"
+                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
             },
-            "Menta": {
+            {
+                "color": "Menta",
+                "hex": "#111111",
                 "sku": "SM-A175FLGGBVO",
-                "image": "https://images.samsung.com/is/image/samsung/p6pim/bo/sm-a175flggbvo/gallery/bo-galaxy-a17-a175-sm-a175flggbvo-545445449"
+                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
             }
-        },
+        ],
         "sku": "SM-A175FZKGBVO",
-        "image": "https://images.samsung.com/is/image/samsung/p6pim/bo/sm-a175fzkgbvo/gallery/bo-galaxy-a17-a175-sm-a175fzkgbvo-545445449",
-        "colorCodes": {
-            "Negro": "#000000",
-            "Azul Claro": "#ADD8E6",
-            "Menta": "#98FF98"
-        }
+        "image": "https://placehold.co/600x600/ffffff/ffffff.png"
     },
     {
         "id": 11,
@@ -408,32 +371,28 @@ const products = [
             "128 GB",
             "256 GB"
         ],
-        "colors": [
-            "Negro",
-            "Azul Claro",
-            "Dorado"
-        ],
-        "variants": {
-            "Negro": {
+        "variants": [
+            {
+                "color": "Negro",
+                "hex": "#111111",
                 "sku": "SM-A165MZKIBVO",
-                "image": "https://images.samsung.com/is/image/samsung/p6pim/bo/sm-a165mzkibvo/gallery/bo-galaxy-a16-a165-sm-a165mzkibvo-545445449"
+                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
             },
-            "Azul Claro": {
+            {
+                "color": "Azul Claro",
+                "hex": "#111111",
                 "sku": "SM-A165MZBIBVO",
-                "image": "https://images.samsung.com/is/image/samsung/p6pim/bo/sm-a165mzbibvo/gallery/bo-galaxy-a16-a165-sm-a165mzbibvo-545445449"
+                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
             },
-            "Dorado": {
+            {
+                "color": "Dorado",
+                "hex": "#111111",
                 "sku": "SM-A165MZDIBVO",
-                "image": "https://images.samsung.com/is/image/samsung/p6pim/bo/sm-a165mzdibvo/gallery/bo-galaxy-a16-a165-sm-a165mzdibvo-545445449"
+                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
             }
-        },
+        ],
         "sku": "SM-A165MZKIBVO",
-        "image": "https://images.samsung.com/is/image/samsung/p6pim/bo/sm-a165mzkibvo/gallery/bo-galaxy-a16-a165-sm-a165mzkibvo-545445449",
-        "colorCodes": {
-            "Negro": "#000000",
-            "Azul Claro": "#ADD8E6",
-            "Dorado": "#FFD700"
-        }
+        "image": "https://placehold.co/600x600/ffffff/ffffff.png"
     },
     {
         "id": 12,
@@ -448,26 +407,22 @@ const products = [
             "64 GB",
             "128 GB"
         ],
-        "colors": [
-            "Negro",
-            "Azul Claro"
-        ],
-        "variants": {
-            "Negro": {
+        "variants": [
+            {
+                "color": "Negro",
+                "hex": "#111111",
                 "sku": "SM-A075MZKDBVO",
-                "image": "https://images.samsung.com/is/image/samsung/p6pim/bo/sm-a075mzkdbvo/gallery/bo-galaxy-a07-a075-sm-a075mzkdbvo-545445449"
+                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
             },
-            "Azul Claro": {
+            {
+                "color": "Azul Claro",
+                "hex": "#111111",
                 "sku": "SM-A075MZBDBVO",
-                "image": "https://images.samsung.com/is/image/samsung/p6pim/bo/sm-a075mzbdbvo/gallery/bo-galaxy-a07-a075-sm-a075mzbdbvo-545445449"
+                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
             }
-        },
+        ],
         "sku": "SM-A075MZKDBVO",
-        "image": "https://images.samsung.com/is/image/samsung/p6pim/bo/sm-a075mzkdbvo/gallery/bo-galaxy-a07-a075-sm-a075mzkdbvo-545445449",
-        "colorCodes": {
-            "Negro": "#000000",
-            "Azul Claro": "#ADD8E6"
-        }
+        "image": "https://placehold.co/600x600/ffffff/ffffff.png"
     },
     {
         "id": 13,
@@ -482,32 +437,28 @@ const products = [
             "64 GB",
             "128 GB"
         ],
-        "colors": [
-            "Negro",
-            "Azul Claro",
-            "Dorado"
-        ],
-        "variants": {
-            "Negro": {
+        "variants": [
+            {
+                "color": "Negro",
+                "hex": "#111111",
                 "sku": "SM-A065MZKDBVO",
-                "image": "https://images.samsung.com/is/image/samsung/p6pim/bo/sm-a065mzkdbvo/gallery/bo-galaxy-a06-a065-sm-a065mzkdbvo-545445449"
+                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
             },
-            "Azul Claro": {
+            {
+                "color": "Azul Claro",
+                "hex": "#111111",
                 "sku": "SM-A065MZBDBVO",
-                "image": "https://images.samsung.com/is/image/samsung/p6pim/bo/sm-a065mzbdbvo/gallery/bo-galaxy-a06-a065-sm-a065mzbdbvo-545445449"
+                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
             },
-            "Dorado": {
+            {
+                "color": "Dorado",
+                "hex": "#111111",
                 "sku": "SM-A065MZDDBVO",
-                "image": "https://images.samsung.com/is/image/samsung/p6pim/bo/sm-a065mzddbvo/gallery/bo-galaxy-a06-a065-sm-a065mzddbvo-545445449"
+                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
             }
-        },
+        ],
         "sku": "SM-A065MZKDBVO",
-        "image": "https://images.samsung.com/is/image/samsung/p6pim/bo/sm-a065mzkdbvo/gallery/bo-galaxy-a06-a065-sm-a065mzkdbvo-545445449",
-        "colorCodes": {
-            "Negro": "#000000",
-            "Azul Claro": "#ADD8E6",
-            "Dorado": "#FFD700"
-        }
+        "image": "https://placehold.co/600x600/ffffff/ffffff.png"
     },
     {
         "id": 14,
@@ -522,11 +473,7 @@ const products = [
             "256 GB",
             "512 GB"
         ],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 15,
@@ -541,11 +488,7 @@ const products = [
             "256 GB",
             "512 GB"
         ],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 16,
@@ -560,11 +503,7 @@ const products = [
             "128 GB",
             "256 GB"
         ],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 17,
@@ -579,11 +518,7 @@ const products = [
             "256 GB",
             "512 GB"
         ],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 18,
@@ -598,11 +533,7 @@ const products = [
             "128 GB",
             "256 GB"
         ],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 19,
@@ -617,11 +548,7 @@ const products = [
             "256 GB",
             "512 GB"
         ],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 20,
@@ -636,11 +563,7 @@ const products = [
             "256 GB",
             "512 GB"
         ],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 21,
@@ -655,11 +578,7 @@ const products = [
             "128 GB",
             "256 GB"
         ],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 22,
@@ -674,11 +593,7 @@ const products = [
             "128 GB",
             "256 GB"
         ],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 23,
@@ -693,11 +608,7 @@ const products = [
             "128 GB",
             "256 GB"
         ],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 24,
@@ -712,11 +623,7 @@ const products = [
             "128 GB",
             "256 GB"
         ],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 25,
@@ -731,11 +638,7 @@ const products = [
             "64 GB",
             "128 GB"
         ],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 26,
@@ -750,11 +653,7 @@ const products = [
             "64 GB",
             "128 GB"
         ],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 27,
@@ -769,11 +668,7 @@ const products = [
             "64 GB",
             "128 GB"
         ],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 28,
@@ -785,11 +680,7 @@ const products = [
         "description": "Diseño ultra delgado, procesador de 3nm, sensor BioActive avanzado y GPS de doble frecuencia.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 29,
@@ -801,11 +692,7 @@ const products = [
         "description": "Diseño acolchado icónico, monitor de sueño con IA y pantalla más brillante.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 30,
@@ -817,11 +704,7 @@ const products = [
         "description": "Procesador de 3nm, GPS de doble frecuencia y monitoreo de salud con Galaxy AI.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 31,
@@ -833,11 +716,7 @@ const products = [
         "description": "Compacto y potente, control de gestos doble pellizco y batería de larga duración.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 32,
@@ -849,11 +728,7 @@ const products = [
         "description": "Bisel giratorio físico, pantalla de cristal de zafiro y diseño clásico de gran formato.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 33,
@@ -865,11 +740,7 @@ const products = [
         "description": "Elegancia atemporal con bisel giratorio, seguimiento de salud 24/7 y diseño refinado.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 34,
@@ -881,11 +752,7 @@ const products = [
         "description": "Pantalla AMOLED 1.6, batería de hasta 13 días y cuerpo de aluminio ligero.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 35,
@@ -897,11 +764,7 @@ const products = [
         "description": "Sonido Hi-Fi de 24 bits, diseño con Blade Lights, ANC adaptativo y traductor por IA.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 36,
@@ -913,11 +776,7 @@ const products = [
         "description": "Diseño Open Type, ecualizador adaptativo con IA y sonido de alta resolución.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 37,
@@ -929,11 +788,7 @@ const products = [
         "description": "Cancelación de ruido activa, ajuste ergonómico mejorado y bajos potentes.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 38,
@@ -945,11 +800,7 @@ const products = [
         "description": "Audio 360 inteligente, 24-bit Hi-Fi, diseño un 15% más pequeño y resistencia al agua IPX7.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 39,
@@ -961,11 +812,7 @@ const products = [
         "description": "Sonido equilibrado con parlantes duales, ANC y ajuste ligero de 5g.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 40,
@@ -977,11 +824,7 @@ const products = [
         "description": "Modelo esencial 2026: Sonido claro, diseño compacto y batería de larga duración para el día a día.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 41,
@@ -995,11 +838,7 @@ const products = [
         "storage": [
             "512 GB"
         ],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 42,
@@ -1013,11 +852,7 @@ const products = [
         "storage": [
             "1 TB"
         ],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 43,
@@ -1031,11 +866,7 @@ const products = [
         "storage": [
             "512 GB"
         ],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 44,
@@ -1049,11 +880,7 @@ const products = [
         "storage": [
             "512 GB"
         ],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 45,
@@ -1067,11 +894,7 @@ const products = [
         "storage": [
             "512 GB"
         ],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 46,
@@ -1085,11 +908,7 @@ const products = [
         "storage": [
             "512 GB"
         ],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 47,
@@ -1103,11 +922,7 @@ const products = [
         "storage": [
             "512 GB"
         ],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 48,
@@ -1121,11 +936,7 @@ const products = [
         "storage": [
             "256 GB"
         ],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 49,
@@ -1137,11 +948,7 @@ const products = [
         "description": "Cable Tipo C a Tipo C (1.8m), carga rápida hasta 60W y transferencia de datos USB 2.0.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 50,
@@ -1153,11 +960,7 @@ const products = [
         "description": "Cargador de pared Super Fast Charging (25W), compatible con PD 3.0.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 51,
@@ -1169,11 +972,7 @@ const products = [
         "description": "Adaptador de viaje 45W, Super Fast Charging 2.0 para modelos Ultra.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 52,
@@ -1185,11 +984,7 @@ const products = [
         "description": "Teclado Book Cover con trackpad, diseño magnético y modo DeX.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 53,
@@ -1201,11 +996,7 @@ const products = [
         "description": "Teclado delgado y ligero, compartimento para S Pen y conexión POGO.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 54,
@@ -1217,11 +1008,7 @@ const products = [
         "description": "Procesador Crystal 4K, Dynamic Crystal Color y diseño AirSlim.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 55,
@@ -1233,11 +1020,7 @@ const products = [
         "description": "Modelo 2025: Motion Xcelerator, HDR optimizado y SmartThings Hub integrado.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 56,
@@ -1249,11 +1032,7 @@ const products = [
         "description": "Escalado 4K, Gaming Hub y sonido OTS Lite.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 57,
@@ -1265,11 +1044,7 @@ const products = [
         "description": "Pantalla Mate antirreflejo, Marco personalizable y Modo Arte.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 58,
@@ -1281,11 +1056,7 @@ const products = [
         "description": "Pantalla giratoria (Móvil/Horizontal), Sonido 4.1ch y Pantalla Mate.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 59,
@@ -1297,11 +1068,7 @@ const products = [
         "description": "Pantalla gigante 98, Supersize Picture Enhancer y 120Hz nativos.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 60,
@@ -1313,11 +1080,7 @@ const products = [
         "description": "Quantum Processor 4K, Motion Xcelerator Turbo+ 120Hz y diseño AirSlim.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 61,
@@ -1329,11 +1092,7 @@ const products = [
         "description": "Nueva Serie 2025: Vision AI, Color Booster Pro y Diseño MetalStream.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 62,
@@ -1345,11 +1104,7 @@ const products = [
         "description": "Procesador Vision AI, Q-Symphony y Active Voice Amplifier Pro.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 63,
@@ -1361,11 +1116,7 @@ const products = [
         "description": "Pantalla inmersiva Vision AI, Escalado 4K Pro y Control SolarCell.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 64,
@@ -1377,11 +1128,7 @@ const products = [
         "description": "Vision AI, Motion Xcelerator 120Hz y SmartThings Hub.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 65,
@@ -1393,11 +1140,7 @@ const products = [
         "description": "Gran formato 85, AI Energy Mode y Diseño Infinity.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 66,
@@ -1409,11 +1152,7 @@ const products = [
         "description": "Tecnología OLED con negros profundos, Pantone Validated y diseño LaserSlim.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 67,
@@ -1425,11 +1164,7 @@ const products = [
         "description": "Panel IPS, frecuencia 75Hz, AMD FreeSync y diseño sin bordes.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 68,
@@ -1441,11 +1176,7 @@ const products = [
         "description": "Pantalla amplia 27, protección visual Eye Saver y panel IPS.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 69,
@@ -1457,11 +1188,7 @@ const products = [
         "description": "Tamaño estándar 24, Modo Juego y panel IPS vibrante.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 70,
@@ -1473,11 +1200,7 @@ const products = [
         "description": "Curvatura 1000R, QHD, 240Hz y Smart TV Apps integradas.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 71,
@@ -1489,11 +1212,7 @@ const products = [
         "description": "Pantalla grande 32, 1ms respuesta y AMD FreeSync Premium Pro.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 72,
@@ -1505,11 +1224,7 @@ const products = [
         "description": "Frecuencia 180Hz (Modelo 2025), 1ms y soporte ajustable.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 73,
@@ -1521,11 +1236,7 @@ const products = [
         "description": "Resolución 4K UHD, panel IPS, 144Hz y G-Sync Compatible.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 74,
@@ -1537,11 +1248,7 @@ const products = [
         "description": "Pantalla 32 inmersiva, 165Hz y diseño sin bordes en 3 lados.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 75,
@@ -1553,11 +1260,7 @@ const products = [
         "description": "Esencial Gaming: 24, 180Hz (G30D) y FreeSync.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 76,
@@ -1569,11 +1272,7 @@ const products = [
         "description": "Tecnología EcoBubble, Motor Digital Inverter y Tapa de cierre suave.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 77,
@@ -1585,11 +1284,7 @@ const products = [
         "description": "Tecnología Wobble anti-enredos, Motor DIT y diseño moderno.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 78,
@@ -1601,11 +1296,7 @@ const products = [
         "description": "Tecnología Wobble, Lavado Intenso y ahorro de energía.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 79,
@@ -1617,11 +1308,7 @@ const products = [
         "description": "Capacidad 15Kg, Pulsador Wobble y 20 años de garantía en motor.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 80,
@@ -1633,11 +1320,7 @@ const products = [
         "description": "Gran capacidad 17Kg, Deep Softener y Filtro Mágico.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 81,
@@ -1649,11 +1332,7 @@ const products = [
         "description": "EcoBubble con Dual Storm, Speed Spray (Lavado 31min) y SmartThings.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 82,
@@ -1665,11 +1344,7 @@ const products = [
         "description": "Capacidad familiar, tecnología Wobble y eficiencia energética A.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 83,
@@ -1681,11 +1356,7 @@ const products = [
         "description": "Heavy Duty+, BubbleStorm para lavado rápido y gran capacidad 22kg.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 84,
@@ -1697,11 +1368,7 @@ const products = [
         "description": "Lavado con IA (AI Control), EcoBubble y Dispensador Automático.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 85,
@@ -1713,11 +1380,7 @@ const products = [
         "description": "Modelo compacto, Wobble Technology y secado de aire turbo.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 86,
@@ -1729,11 +1392,7 @@ const products = [
         "description": "Motor Digital Inverter, Lavado Rápido 18min y Limpieza de Tambor.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 87,
@@ -1745,11 +1404,7 @@ const products = [
         "description": "Diseño duradero, tina de diamantes y panel de control trasero.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 88,
@@ -1761,11 +1416,7 @@ const products = [
         "description": "Lavaseca 2 en 1, EcoBubble, Air Wash (Desodorizar) y AI Control.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 89,
@@ -1777,11 +1428,7 @@ const products = [
         "description": "Sistema All-Around Cooling, Digital Inverter y compresor duradero (234L útil).",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 90,
@@ -1793,11 +1440,7 @@ const products = [
         "description": "Tecnología SpaceMax (paredes finas), All-Around Cooling y 301L efectivos.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 91,
@@ -1809,11 +1452,7 @@ const products = [
         "description": "Twin Cooling Plus (No mezcla olores), 5 modos de conversión y dispensador.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 92,
@@ -1825,11 +1464,7 @@ const products = [
         "description": "Diseño minimalista Side by Side, All-Around Cooling y compresor silencioso.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 93,
@@ -1841,11 +1476,7 @@ const products = [
         "description": "Puerta Francesa (Twin Cooling), dispensador de agua externo y caja de vegetales.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 94,
@@ -1857,11 +1488,7 @@ const products = [
         "description": "Edición Black Inox, Twin Cooling, Smart Conversion y Power Cool/Freeze.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 95,
@@ -1873,11 +1500,7 @@ const products = [
         "description": "Bespoke Design (Panel personalizable), WiFi SmartThings y SpaceMax.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 96,
@@ -1889,11 +1512,7 @@ const products = [
         "description": "Tecnología SpaceMax (602L), 3 puertas con FlexZone y Metal Cooling.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 97,
@@ -1905,11 +1524,7 @@ const products = [
         "description": "Controles táctiles deslizantes, indicadores de calor residual y bloqueo de seguridad.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 98,
@@ -1921,11 +1536,7 @@ const products = [
         "description": "Grill Fry (Freír sin aceite), Panel táctil Glass Touch y función de descongelado.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 99,
@@ -1937,11 +1548,7 @@ const products = [
         "description": "Dual Cook (Cocina 2 platos a temp. distinta), Riel telescópico y limpieza catalítica.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 100,
@@ -1953,11 +1560,7 @@ const products = [
         "description": "Alto poder de succión (668 m3/h), filtro lavable y luces LED.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 101,
@@ -1969,11 +1572,7 @@ const products = [
         "description": "Turbina Anti-Tangle (No se atasca con pelos), depósito Easy Dustbin y 1800W.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     },
     {
         "id": 102,
@@ -1985,10 +1584,8 @@ const products = [
         "description": "Potente 2000W, función de soplado de polvo y filtro de alérgenos.",
         "badge": "",
         "storage": [],
-        "colors": [],
-        "variants": {},
-        "sku": "",
-        "image": "",
-        "colorCodes": {}
+        "variants": []
     }
 ];
+
+if (typeof module !== 'undefined') module.exports = products;
