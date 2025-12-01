@@ -12,10 +12,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Try to fetch updates
-    // fetchProducts();
+    fetchProducts();
 
     // Update every 60 minutes
-    // setInterval(fetchProducts, 60 * 60 * 1000);
+    setInterval(fetchProducts, 60 * 60 * 1000);
 
     function fetchProducts() {
         console.log('Fetching product data...');

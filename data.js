@@ -39,6 +39,7 @@ var products = [
         "badge": "",
         "storage": [
             "256 GB",
+            "512 GB",
             "512 GB"
         ],
         "variants": [
@@ -53,18 +54,6 @@ var products = [
                 "hex": "#C0C0C0",
                 "sku": "SM-S938BZSIBVO",
                 "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_H7u4C0FlEXPR3mdeGBtI.png"
-            },
-            {
-                "color": "Negro",
-                "hex": "#000000",
-                "sku": "SM-S938BZKEBVO",
-                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_KQEqL0hw7JfIruXmcZsY.png"
-            },
-            {
-                "color": "Azul",
-                "hex": "#1C3A5C",
-                "sku": "SM-S938BZBKBVO",
-                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_FsmUMnZIQiwYeCTXS7EN.png"
             }
         ],
         "sku": "SM-S938BZSEBVO",
@@ -85,26 +74,20 @@ var products = [
         ],
         "variants": [
             {
-                "color": "Azul Sombra",
-                "hex": "#111111",
-                "sku": "SM-F766BDBJCHO",
-                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
+                "color": "Gris",
+                "hex": "#6B6B6B",
+                "sku": "SM-S938BZSEBVO",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_qI9E4ZaOzVG1HFbrLPlf.png"
             },
             {
-                "color": "Plata Sombra",
-                "hex": "#111111",
-                "sku": "SM-F766BZSECHO",
-                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
-            },
-            {
-                "color": "Negro",
-                "hex": "#111111",
-                "sku": "SM-F766BZKECHO",
-                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
+                "color": "Plata",
+                "hex": "#C0C0C0",
+                "sku": "SM-S938BZSIBVO",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_H7u4C0FlEXPR3mdeGBtI.png"
             }
         ],
-        "sku": "SM-F766BDBJCHO",
-        "image": "https://placehold.co/600x600/ffffff/ffffff.png"
+        "sku": "SM-S938BZSEBVO",
+        "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_qI9E4ZaOzVG1HFbrLPlf.png"
     },
     {
         "id": 4,
@@ -115,32 +98,8 @@ var products = [
         "link": "https://shop.samsung.com.bo/smartphones/galaxy-s/galaxy-s25-plus-gris-256gb-sm-s936bzsjbvo/",
         "description": "Pantalla QHD+ 6.7, batería 4900 mAh, Armor Aluminum y Galaxy AI.",
         "badge": "",
-        "storage": [
-            "256 GB",
-            "512 GB"
-        ],
-        "variants": [
-            {
-                "color": "Gris",
-                "hex": "#111111",
-                "sku": "SM-S936BZSJBVO",
-                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
-            },
-            {
-                "color": "Negro",
-                "hex": "#111111",
-                "sku": "SM-S936BZKEBVO",
-                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
-            },
-            {
-                "color": "Azul",
-                "hex": "#111111",
-                "sku": "SM-S936BZBEBVO",
-                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
-            }
-        ],
-        "sku": "SM-S936BZSJBVO",
-        "image": "https://placehold.co/600x600/ffffff/ffffff.png"
+        "storage": [],
+        "variants": []
     },
     {
         "id": 5,
@@ -151,32 +110,8 @@ var products = [
         "link": "https://shop.samsung.com.bo/smartphones/galaxy-s/galaxy-s25-gris-256gb-sm-s931bzskbvo/",
         "description": "Pantalla FHD+ 6.2, batería 4000 mAh, 12GB RAM y diseño compacto.",
         "badge": "",
-        "storage": [
-            "128 GB",
-            "256 GB"
-        ],
-        "variants": [
-            {
-                "color": "Gris",
-                "hex": "#111111",
-                "sku": "SM-S931BZSKBVO",
-                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
-            },
-            {
-                "color": "Negro",
-                "hex": "#111111",
-                "sku": "SM-S931BZKEBVO",
-                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
-            },
-            {
-                "color": "Azul",
-                "hex": "#111111",
-                "sku": "SM-S931BZBEBVO",
-                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
-            }
-        ],
-        "sku": "SM-S931BZSKBVO",
-        "image": "https://placehold.co/600x600/ffffff/ffffff.png"
+        "storage": [],
+        "variants": []
     },
     {
         "id": 6,
@@ -187,32 +122,8 @@ var products = [
         "link": "https://shop.samsung.com.bo/smartphones/galaxy-s/galaxy-s25-fe-navy-256gb-sm-s731bdbkbvo",
         "description": "Pantalla 6.6, 4700mAh, Exynos 2400e, Cámara 50MP y resistencia IP68.",
         "badge": "",
-        "storage": [
-            "128 GB",
-            "256 GB"
-        ],
-        "variants": [
-            {
-                "color": "Azul Marino",
-                "hex": "#111111",
-                "sku": "SM-S731BDBKBVO",
-                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
-            },
-            {
-                "color": "Menta",
-                "hex": "#111111",
-                "sku": "SM-S731BLGEBVO",
-                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
-            },
-            {
-                "color": "Grafito",
-                "hex": "#111111",
-                "sku": "SM-S731BZAEBVO",
-                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
-            }
-        ],
-        "sku": "SM-S731BDBKBVO",
-        "image": "https://placehold.co/600x600/ffffff/ffffff.png"
+        "storage": [],
+        "variants": []
     },
     {
         "id": 7,
@@ -223,32 +134,8 @@ var products = [
         "link": "https://shop.samsung.com.bo/smartphones/galaxy-a/galaxy-a56-5g-awesome-graphite-256gb-sm-a566ezkcbvo/",
         "description": "Pantalla Super AMOLED, cuerpo de 7.4mm, Super HDR y marco de aluminio.",
         "badge": "",
-        "storage": [
-            "128 GB",
-            "256 GB"
-        ],
-        "variants": [
-            {
-                "color": "Grafito",
-                "hex": "#111111",
-                "sku": "SM-A566EZKCBVO",
-                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
-            },
-            {
-                "color": "Azul Claro",
-                "hex": "#111111",
-                "sku": "SM-A566EZBEBVO",
-                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
-            },
-            {
-                "color": "Violeta",
-                "hex": "#111111",
-                "sku": "SM-A566ELVEBVO",
-                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
-            }
-        ],
-        "sku": "SM-A566EZKCBVO",
-        "image": "https://placehold.co/600x600/ffffff/ffffff.png"
+        "storage": [],
+        "variants": []
     },
     {
         "id": 8,
@@ -259,32 +146,8 @@ var products = [
         "link": "https://shop.samsung.com.bo/smartphones/galaxy-a/galaxy-a26-5g-mint-128gb-sm-a266mlgdbvo/",
         "description": "Pantalla 6.7 Super AMOLED, IP67, Batería 5000mAh y diseño Key Island.",
         "badge": "",
-        "storage": [
-            "128 GB",
-            "256 GB"
-        ],
-        "variants": [
-            {
-                "color": "Menta",
-                "hex": "#111111",
-                "sku": "SM-A266MLGDBVO",
-                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
-            },
-            {
-                "color": "Negro",
-                "hex": "#111111",
-                "sku": "SM-A266MZKDBVO",
-                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
-            },
-            {
-                "color": "Azul",
-                "hex": "#111111",
-                "sku": "SM-A266MZBDBVO",
-                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
-            }
-        ],
-        "sku": "SM-A266MLGDBVO",
-        "image": "https://placehold.co/600x600/ffffff/ffffff.png"
+        "storage": [],
+        "variants": []
     },
     {
         "id": 9,
@@ -295,32 +158,8 @@ var products = [
         "link": "https://shop.samsung.com.bo/smartphones/galaxy-a/galaxy-a36-5g-awesome-black-256gb-sm-a366ezkgbvo/",
         "description": "Pantalla 6.7 FHD+ 120Hz (1200 nits), Knox Vault y diseño minimalista.",
         "badge": "",
-        "storage": [
-            "128 GB",
-            "256 GB"
-        ],
-        "variants": [
-            {
-                "color": "Negro",
-                "hex": "#111111",
-                "sku": "SM-A366EZKGBVO",
-                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
-            },
-            {
-                "color": "Azul Claro",
-                "hex": "#111111",
-                "sku": "SM-A366EZBGBVO",
-                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
-            },
-            {
-                "color": "Menta",
-                "hex": "#111111",
-                "sku": "SM-A366ELGGBVO",
-                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
-            }
-        ],
-        "sku": "SM-A366EZKGBVO",
-        "image": "https://placehold.co/600x600/ffffff/ffffff.png"
+        "storage": [],
+        "variants": []
     },
     {
         "id": 10,
@@ -331,32 +170,8 @@ var products = [
         "link": "https://shop.samsung.com.bo/smartphones/galaxy-a/galaxy-a17-black-128gb-sm-a175fzkgbvo",
         "description": "Diseño moderno, cámara principal 50MP y batería de 5000mAh para todo el día.",
         "badge": "",
-        "storage": [
-            "64 GB",
-            "128 GB"
-        ],
-        "variants": [
-            {
-                "color": "Negro",
-                "hex": "#111111",
-                "sku": "SM-A175FZKGBVO",
-                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
-            },
-            {
-                "color": "Azul Claro",
-                "hex": "#111111",
-                "sku": "SM-A175FZBGBVO",
-                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
-            },
-            {
-                "color": "Menta",
-                "hex": "#111111",
-                "sku": "SM-A175FLGGBVO",
-                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
-            }
-        ],
-        "sku": "SM-A175FZKGBVO",
-        "image": "https://placehold.co/600x600/ffffff/ffffff.png"
+        "storage": [],
+        "variants": []
     },
     {
         "id": 11,
@@ -367,32 +182,8 @@ var products = [
         "link": "https://shop.samsung.com.bo/smartphones/galaxy-a/galaxy-a16-black-256gb-sm-a165mzkibvo",
         "description": "Pantalla 6.7 FHD+ sAMOLED, 6 actualizaciones de seguridad y diseño ultra delgado.",
         "badge": "",
-        "storage": [
-            "128 GB",
-            "256 GB"
-        ],
-        "variants": [
-            {
-                "color": "Negro",
-                "hex": "#111111",
-                "sku": "SM-A165MZKIBVO",
-                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
-            },
-            {
-                "color": "Azul Claro",
-                "hex": "#111111",
-                "sku": "SM-A165MZBIBVO",
-                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
-            },
-            {
-                "color": "Dorado",
-                "hex": "#111111",
-                "sku": "SM-A165MZDIBVO",
-                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
-            }
-        ],
-        "sku": "SM-A165MZKIBVO",
-        "image": "https://placehold.co/600x600/ffffff/ffffff.png"
+        "storage": [],
+        "variants": []
     },
     {
         "id": 12,
@@ -403,26 +194,8 @@ var products = [
         "link": "https://shop.samsung.com.bo/smartphones/galaxy-a/galaxy-a07-black-64gb-sm-a075mzkdbvo",
         "description": "Pantalla expansiva, cámara dual esencial 50MP y batería de 5000mAh.",
         "badge": "",
-        "storage": [
-            "64 GB",
-            "128 GB"
-        ],
-        "variants": [
-            {
-                "color": "Negro",
-                "hex": "#111111",
-                "sku": "SM-A075MZKDBVO",
-                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
-            },
-            {
-                "color": "Azul Claro",
-                "hex": "#111111",
-                "sku": "SM-A075MZBDBVO",
-                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
-            }
-        ],
-        "sku": "SM-A075MZKDBVO",
-        "image": "https://placehold.co/600x600/ffffff/ffffff.png"
+        "storage": [],
+        "variants": []
     },
     {
         "id": 13,
@@ -433,32 +206,8 @@ var products = [
         "link": "https://shop.samsung.com.bo/smartphones/galaxy-a/galaxy-a06-black-64gb-sm-a065mzkdbvo/",
         "description": "Pantalla 6.7, Cámara 50MP, Carga rápida 25W y lector de huella lateral.",
         "badge": "",
-        "storage": [
-            "64 GB",
-            "128 GB"
-        ],
-        "variants": [
-            {
-                "color": "Negro",
-                "hex": "#111111",
-                "sku": "SM-A065MZKDBVO",
-                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
-            },
-            {
-                "color": "Azul Claro",
-                "hex": "#111111",
-                "sku": "SM-A065MZBDBVO",
-                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
-            },
-            {
-                "color": "Dorado",
-                "hex": "#111111",
-                "sku": "SM-A065MZDDBVO",
-                "image": "https://placehold.co/600x600/ffffff/ffffff.png"
-            }
-        ],
-        "sku": "SM-A065MZKDBVO",
-        "image": "https://placehold.co/600x600/ffffff/ffffff.png"
+        "storage": [],
+        "variants": []
     },
     {
         "id": 14,
@@ -466,13 +215,10 @@ var products = [
         "category": "tablets",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/tablets/galaxy-tab-s/galaxy-tab-s11-ultra-gray-256gb-sm-x930nzadbvo",
+        "link": "",
         "description": "Diseño ultra delgado 5.1mm, Drawing Assist con IA y S Pen hexagonal.",
         "badge": "",
-        "storage": [
-            "256 GB",
-            "512 GB"
-        ],
+        "storage": [],
         "variants": []
     },
     {
@@ -481,13 +227,10 @@ var products = [
         "category": "tablets",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/tablets/galaxy-tab-s/galaxy-tab-s10-ultra-gray-256gb-sm-x920nzadbvo",
+        "link": "",
         "description": "Pantalla 14.6 Dynamic AMOLED 2x, cuerpo de 718g y resistencia IP68.",
         "badge": "",
-        "storage": [
-            "256 GB",
-            "512 GB"
-        ],
+        "storage": [],
         "variants": []
     },
     {
@@ -496,13 +239,10 @@ var products = [
         "category": "tablets",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://www.samsung.com/latin/tablets/galaxy-tab-s/galaxy-tab-s11-gray-128gb-sm-x730nzaagto/buy/",
+        "link": "",
         "description": "Pantalla Dynamic AMOLED 2X, S Pen incluido y resistencia al agua/polvo IP68.",
         "badge": "",
-        "storage": [
-            "128 GB",
-            "256 GB"
-        ],
+        "storage": [],
         "variants": []
     },
     {
@@ -511,13 +251,10 @@ var products = [
         "category": "tablets",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/tablets/galaxy-tab-s/galaxy-tab-s10-plus-gray-256gb-sm-x820nzadbvo",
+        "link": "",
         "description": "Pantalla 12.4 WQXGA+, cámara dual y procesador optimizado para multitarea.",
         "badge": "",
-        "storage": [
-            "256 GB",
-            "512 GB"
-        ],
+        "storage": [],
         "variants": []
     },
     {
@@ -526,13 +263,10 @@ var products = [
         "category": "tablets",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/tablets/galaxy-tab-s/galaxy-tab-s9-graphite-256gb-sm-x716bzaebvo",
+        "link": "",
         "description": "Pantalla Dynamic AMOLED 2X, Vision Booster y procesador Snapdragon 8 Gen 2.",
         "badge": "",
-        "storage": [
-            "128 GB",
-            "256 GB"
-        ],
+        "storage": [],
         "variants": []
     },
     {
@@ -541,13 +275,10 @@ var products = [
         "category": "tablets",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/tablets/galaxy-tab-s/galaxy-tab-s8-ultra-wi-fi-graphite-256gb-sm-x900nzadcho/",
+        "link": "",
         "description": "Pantalla 14.6 Super AMOLED, doble cámara frontal 12MP y batería 11200mAh.",
         "badge": "",
-        "storage": [
-            "256 GB",
-            "512 GB"
-        ],
+        "storage": [],
         "variants": []
     },
     {
@@ -556,13 +287,10 @@ var products = [
         "category": "tablets",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://samsung.com.bo/tablets/galaxy-tab-s8-ultra",
+        "link": "",
         "description": "Pantalla masiva 14.6 sAMOLED, conectividad 5G, doble cámara frontal y batería 11200mAh.",
         "badge": "",
-        "storage": [
-            "256 GB",
-            "512 GB"
-        ],
+        "storage": [],
         "variants": []
     },
     {
@@ -571,13 +299,10 @@ var products = [
         "category": "tablets",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://samsung.com.bo/tablets/galaxy-tab-s/galaxy-tab-s8-5g-silver-256gb-sm-x706bzswbvo",
+        "link": "",
         "description": "Pantalla 11 LTPS 120Hz, procesador Snapdragon 8 Gen 1 y S Pen de baja latencia.",
         "badge": "",
-        "storage": [
-            "128 GB",
-            "256 GB"
-        ],
+        "storage": [],
         "variants": []
     },
     {
@@ -586,13 +311,10 @@ var products = [
         "category": "tablets",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/tablets/galaxy-tab-s/galaxy-tab-s10-fe-plus-gray-128gb-sm-x620nzaabvo/",
+        "link": "",
         "description": "Pantalla masiva de 13.1, resistencia al agua IP68 y S Pen Creator incluido.",
         "badge": "",
-        "storage": [
-            "128 GB",
-            "256 GB"
-        ],
+        "storage": [],
         "variants": []
     },
     {
@@ -601,13 +323,10 @@ var products = [
         "category": "tablets",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/tablets/galaxy-tab-s/galaxy-tab-s10-lite-gray-128gb-sm-x406bzadbvo",
+        "link": "",
         "description": "Pantalla con Low Blue Light, soporte MicroSD hasta 2TB y diseño ligero.",
         "badge": "",
-        "storage": [
-            "128 GB",
-            "256 GB"
-        ],
+        "storage": [],
         "variants": []
     },
     {
@@ -616,13 +335,10 @@ var products = [
         "category": "tablets",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/tablets/galaxy-tab-s/galaxy-tab-s10-fe-gray-128gb-sm-x520nzaabvo/",
+        "link": "",
         "description": "Pantalla 10.9, S Pen resistente al agua y batería de larga duración.",
         "badge": "",
-        "storage": [
-            "128 GB",
-            "256 GB"
-        ],
+        "storage": [],
         "variants": []
     },
     {
@@ -631,13 +347,10 @@ var products = [
         "category": "tablets",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/tablets/galaxy-tab-s/galaxy-tab-s6-lite-10-4-inch-pink-64gb-wi-fi-sm-p615nziucho",
+        "link": "",
         "description": "Diseño metálico 10.4, S Pen magnético, One UI y sonido AKG.",
         "badge": "",
-        "storage": [
-            "64 GB",
-            "128 GB"
-        ],
+        "storage": [],
         "variants": []
     },
     {
@@ -646,13 +359,10 @@ var products = [
         "category": "tablets",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://www.samsung.com/es/tablets/galaxy-tab-a/galaxy-tab-a11-silver-128gb-sm-x135fzseeub/buy/",
+        "link": "",
         "description": "Conectividad LTE, diseño metálico moderno, pantalla fluida y multitarea mejorada.",
         "badge": "",
-        "storage": [
-            "64 GB",
-            "128 GB"
-        ],
+        "storage": [],
         "variants": []
     },
     {
@@ -661,13 +371,10 @@ var products = [
         "category": "tablets",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/tablets/galaxy-tab-a/galaxy-tab-a9-plus-5g-gray-64gb-sm-x216bzaabvo/",
+        "link": "",
         "description": "Pantalla 11.0 90Hz, cuerpo metálico 6.9mm y multitarea de 3 apps.",
         "badge": "",
-        "storage": [
-            "64 GB",
-            "128 GB"
-        ],
+        "storage": [],
         "variants": []
     },
     {
@@ -676,7 +383,7 @@ var products = [
         "category": "smartwatches",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/galaxy-watch/galaxy-watch8-44mm-graphite-bluetooth-sm-l330ndaalta",
+        "link": "",
         "description": "Diseño ultra delgado, procesador de 3nm, sensor BioActive avanzado y GPS de doble frecuencia.",
         "badge": "",
         "storage": [],
@@ -688,7 +395,7 @@ var products = [
         "category": "smartwatches",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/galaxy-watch/galaxy-watch8-40mm-graphite-bluetooth-sm-l320ndaalta",
+        "link": "",
         "description": "Diseño acolchado icónico, monitor de sueño con IA y pantalla más brillante.",
         "badge": "",
         "storage": [],
@@ -700,7 +407,7 @@ var products = [
         "category": "smartwatches",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/watches/galaxy-watch/galaxy-watch7-44mm-silver-bluetooth-sm-l310nzsalta/",
+        "link": "",
         "description": "Procesador de 3nm, GPS de doble frecuencia y monitoreo de salud con Galaxy AI.",
         "badge": "",
         "storage": [],
@@ -712,7 +419,7 @@ var products = [
         "category": "smartwatches",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/watches/galaxy-watch/galaxy-watch7-40mm-cream-bluetooth-sm-l300nzealta",
+        "link": "",
         "description": "Compacto y potente, control de gestos doble pellizco y batería de larga duración.",
         "badge": "",
         "storage": [],
@@ -724,7 +431,7 @@ var products = [
         "category": "smartwatches",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/search/smartwatches/galaxy-watch6",
+        "link": "",
         "description": "Bisel giratorio físico, pantalla de cristal de zafiro y diseño clásico de gran formato.",
         "badge": "",
         "storage": [],
@@ -736,7 +443,7 @@ var products = [
         "category": "smartwatches",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/search/smartwatches/galaxy-watch6",
+        "link": "",
         "description": "Elegancia atemporal con bisel giratorio, seguimiento de salud 24/7 y diseño refinado.",
         "badge": "",
         "storage": [],
@@ -748,7 +455,7 @@ var products = [
         "category": "smartwatches",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/watches/galaxy-fit/galaxy-fit3-gray-bluetooth-sm-r390nzaalta",
+        "link": "",
         "description": "Pantalla AMOLED 1.6, batería de hasta 13 días y cuerpo de aluminio ligero.",
         "badge": "",
         "storage": [],
@@ -760,7 +467,7 @@ var products = [
         "category": "buds",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/audio-sound/galaxy-buds/galaxy-buds3-pro-silver-sm-r630nzaalta",
+        "link": "",
         "description": "Sonido Hi-Fi de 24 bits, diseño con Blade Lights, ANC adaptativo y traductor por IA.",
         "badge": "",
         "storage": [],
@@ -772,7 +479,7 @@ var products = [
         "category": "buds",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/audio-sound/galaxy-buds/galaxy-buds3-silver-sm-r530nzaalta",
+        "link": "",
         "description": "Diseño Open Type, ecualizador adaptativo con IA y sonido de alta resolución.",
         "badge": "",
         "storage": [],
@@ -784,7 +491,7 @@ var products = [
         "category": "buds",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/audio-sound/galaxy-buds/galaxy-buds3-fe-black-sm-r420nzkalta",
+        "link": "",
         "description": "Cancelación de ruido activa, ajuste ergonómico mejorado y bajos potentes.",
         "badge": "",
         "storage": [],
@@ -796,7 +503,7 @@ var products = [
         "category": "buds",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/audio-sound/galaxy-buds/galaxy-buds2-pro-graphite-sm-r510nzaalta",
+        "link": "",
         "description": "Audio 360 inteligente, 24-bit Hi-Fi, diseño un 15% más pequeño y resistencia al agua IPX7.",
         "badge": "",
         "storage": [],
@@ -808,7 +515,7 @@ var products = [
         "category": "buds",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/audio-sound/galaxy-buds/galaxy-buds2-graphite-sm-r177nzkalta/",
+        "link": "",
         "description": "Sonido equilibrado con parlantes duales, ANC y ajuste ligero de 5g.",
         "badge": "",
         "storage": [],
@@ -820,7 +527,7 @@ var products = [
         "category": "buds",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://samsung.com.bo/audio-sound/galaxy-buds/galaxy-buds-core-black-sm-r410nzkalta",
+        "link": "",
         "description": "Modelo esencial 2026: Sonido claro, diseño compacto y batería de larga duración para el día a día.",
         "badge": "",
         "storage": [],
@@ -832,12 +539,10 @@ var products = [
         "category": "laptops",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/computers/galaxy-book/galaxy-book4-15-6-inch-16gb-512gb-np750xgk-ka3cl",
+        "link": "",
         "description": "Pantalla 15.6 FHD, Intel Core 5, cuerpo metálico completo y RJ45 integrado.",
         "badge": "",
-        "storage": [
-            "512 GB"
-        ],
+        "storage": [],
         "variants": []
     },
     {
@@ -846,12 +551,10 @@ var products = [
         "category": "laptops",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/galaxy-book/galaxy-book3-ultra-16-inch-i7-16gb-1tb-np960xfh-xa1cl",
+        "link": "",
         "description": "Pantalla 16 3K AMOLED 120Hz, Intel Core i7 Serie H, NVIDIA GeForce RTX 4050.",
         "badge": "",
-        "storage": [
-            "1 TB"
-        ],
+        "storage": [],
         "variants": []
     },
     {
@@ -860,12 +563,10 @@ var products = [
         "category": "laptops",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/galaxy-book",
+        "link": "",
         "description": "Pantalla 16 Dynamic AMOLED 2X, diseño ultradelgado y procesador Intel Evo i7.",
         "badge": "",
-        "storage": [
-            "512 GB"
-        ],
+        "storage": [],
         "variants": []
     },
     {
@@ -874,12 +575,10 @@ var products = [
         "category": "laptops",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/galaxy-book/galaxy-book3-360-15-6-inch-i7-8gb-512gb-np750qfg-kb2cl/",
+        "link": "",
         "description": "Diseño 2 en 1 con S Pen, pantalla Super AMOLED táctil y procesador Intel Core i7.",
         "badge": "",
-        "storage": [
-            "512 GB"
-        ],
+        "storage": [],
         "variants": []
     },
     {
@@ -888,12 +587,10 @@ var products = [
         "category": "laptops",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/galaxy-book/galaxy-book3-15-6-inch-int-i5-8gb-512gb-np750xfg-kb3cl",
+        "link": "",
         "description": "Pantalla 15.6, puertos completos (HDMI/USB-A/C) y cuerpo delgado de aluminio.",
         "badge": "",
-        "storage": [
-            "512 GB"
-        ],
+        "storage": [],
         "variants": []
     },
     {
@@ -902,12 +599,10 @@ var products = [
         "category": "laptops",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/galaxy-book/galaxy-book2-pro-360",
+        "link": "",
         "description": "Laptop 2 en 1 ultra ligera, pantalla Super AMOLED y S Pen incluido en caja.",
         "badge": "",
-        "storage": [
-            "512 GB"
-        ],
+        "storage": [],
         "variants": []
     },
     {
@@ -916,12 +611,10 @@ var products = [
         "category": "laptops",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/computers/galaxy-book/galaxy-book2-pro-13inch-i5-8gb-512gb-np930xed-kb1cl",
+        "link": "",
         "description": "Movilidad extrema (0.87kg), pantalla AMOLED y procesador Intel Core i5 certificado Evo.",
         "badge": "",
-        "storage": [
-            "512 GB"
-        ],
+        "storage": [],
         "variants": []
     },
     {
@@ -930,12 +623,10 @@ var products = [
         "category": "laptops",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/computers/galaxy-book/galaxy-book2-15inch-i5-8gb-256gb-np750xed-kc3cl",
+        "link": "",
         "description": "Pantalla 15.6 antirreflejo, gran rendimiento Intel Core i5 y ranura extra para SSD.",
         "badge": "",
-        "storage": [
-            "256 GB"
-        ],
+        "storage": [],
         "variants": []
     },
     {
@@ -944,7 +635,7 @@ var products = [
         "category": "accessories",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/mobile-accessories/usb-cable-3a-usb-c-to-usb-c-black-ep-dx310jbegww/",
+        "link": "",
         "description": "Cable Tipo C a Tipo C (1.8m), carga rápida hasta 60W y transferencia de datos USB 2.0.",
         "badge": "",
         "storage": [],
@@ -956,7 +647,7 @@ var products = [
         "category": "accessories",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/mobile-accessories/wall-charger-for-super-fast-charging-25w-black-ep-ta800nbegmx/",
+        "link": "",
         "description": "Cargador de pared Super Fast Charging (25W), compatible con PD 3.0.",
         "badge": "",
         "storage": [],
@@ -968,7 +659,7 @@ var products = [
         "category": "accessories",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/mobile-accessories/",
+        "link": "",
         "description": "Adaptador de viaje 45W, Super Fast Charging 2.0 para modelos Ultra.",
         "badge": "",
         "storage": [],
@@ -980,7 +671,7 @@ var products = [
         "category": "accessories",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/tablets/galaxy-tab-s/galaxy-tab-s10-fe-plus-gray-128gb-sm-x620nzaabvo/",
+        "link": "",
         "description": "Teclado Book Cover con trackpad, diseño magnético y modo DeX.",
         "badge": "",
         "storage": [],
@@ -992,7 +683,7 @@ var products = [
         "category": "accessories",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/tablets/galaxy-tab-s/galaxy-tab-s10-fe-gray-128gb-sm-x520nzaabvo/",
+        "link": "",
         "description": "Teclado delgado y ligero, compartimento para S Pen y conexión POGO.",
         "badge": "",
         "storage": [],
@@ -1004,7 +695,7 @@ var products = [
         "category": "televisions",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/tvs/uhd-4k-tv/du8000-55-inch-crystal-uhd-4k-tizen-os-smart-tv-un55du8000gxzs/",
+        "link": "",
         "description": "Procesador Crystal 4K, Dynamic Crystal Color y diseño AirSlim.",
         "badge": "",
         "storage": [],
@@ -1016,7 +707,7 @@ var products = [
         "category": "televisions",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/tvs/uhd-4k-tv/u8000f-65-inch-crystal-uhd-4k-smart-tv-un65u8000fgxzs",
+        "link": "",
         "description": "Modelo 2025: Motion Xcelerator, HDR optimizado y SmartThings Hub integrado.",
         "badge": "",
         "storage": [],
@@ -1028,7 +719,7 @@ var products = [
         "category": "televisions",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/tvs/uhd-4k-tv/du8000-50-inch-crystal-uhd-4k-tizen-os-smart-tv-un50du8000gxzs",
+        "link": "",
         "description": "Escalado 4K, Gaming Hub y sonido OTS Lite.",
         "badge": "",
         "storage": [],
@@ -1040,7 +731,7 @@ var products = [
         "category": "televisions",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/search/lifestyle-tvs/the-frame",
+        "link": "",
         "description": "Pantalla Mate antirreflejo, Marco personalizable y Modo Arte.",
         "badge": "",
         "storage": [],
@@ -1052,7 +743,7 @@ var products = [
         "category": "televisions",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/lifestyle-tvs/the-sero/ls05b-43-inch-the-sero-qled-4k-smart-tv-navy-blue-qn43ls05bagxzs",
+        "link": "",
         "description": "Pantalla giratoria (Móvil/Horizontal), Sonido 4.1ch y Pantalla Mate.",
         "badge": "",
         "storage": [],
@@ -1064,7 +755,7 @@ var products = [
         "category": "televisions",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/tvs/uhd-4k-tv/du9000-98-inch-crystal-uhd-4k-tizen-os-smart-tv-un98du9000gxzs",
+        "link": "",
         "description": "Pantalla gigante 98, Supersize Picture Enhancer y 120Hz nativos.",
         "badge": "",
         "storage": [],
@@ -1076,7 +767,7 @@ var products = [
         "category": "televisions",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/tvs/qled-tv/",
+        "link": "",
         "description": "Quantum Processor 4K, Motion Xcelerator Turbo+ 120Hz y diseño AirSlim.",
         "badge": "",
         "storage": [],
@@ -1088,7 +779,7 @@ var products = [
         "category": "televisions",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/tvs/qled-tv/q7f-55-inch-qled-4k-smart-tv-qn55q7faagxzs",
+        "link": "",
         "description": "Nueva Serie 2025: Vision AI, Color Booster Pro y Diseño MetalStream.",
         "badge": "",
         "storage": [],
@@ -1100,7 +791,7 @@ var products = [
         "category": "televisions",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/tvs/qled-tv/q7f-55-inch-qled-4k-smart-tv-qn55q7faagxzs",
+        "link": "",
         "description": "Procesador Vision AI, Q-Symphony y Active Voice Amplifier Pro.",
         "badge": "",
         "storage": [],
@@ -1112,7 +803,7 @@ var products = [
         "category": "televisions",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/tvs/qled-tv/q7f-55-inch-qled-4k-smart-tv-qn55q7faagxzs",
+        "link": "",
         "description": "Pantalla inmersiva Vision AI, Escalado 4K Pro y Control SolarCell.",
         "badge": "",
         "storage": [],
@@ -1124,7 +815,7 @@ var products = [
         "category": "televisions",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/tvs/qled-tv/q7f-55-inch-qled-4k-smart-tv-qn55q7faagxzs",
+        "link": "",
         "description": "Vision AI, Motion Xcelerator 120Hz y SmartThings Hub.",
         "badge": "",
         "storage": [],
@@ -1136,7 +827,7 @@ var products = [
         "category": "televisions",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/tvs/qled-tv/q7f-55-inch-qled-4k-smart-tv-qn55q7faagxzs",
+        "link": "",
         "description": "Gran formato 85, AI Energy Mode y Diseño Infinity.",
         "badge": "",
         "storage": [],
@@ -1148,7 +839,7 @@ var products = [
         "category": "televisions",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://www.samsung.com/es/tvs/oled-tv/s85f-65-inch-oled-4k-smart-tv-tq65s85faexxc/",
+        "link": "",
         "description": "Tecnología OLED con negros profundos, Pantone Validated y diseño LaserSlim.",
         "badge": "",
         "storage": [],
@@ -1160,7 +851,7 @@ var products = [
         "category": "monitors",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/monitors/flat/monitor-22-inch-fhd-1920x1080-ls22c310ealxzs",
+        "link": "",
         "description": "Panel IPS, frecuencia 75Hz, AMD FreeSync y diseño sin bordes.",
         "badge": "",
         "storage": [],
@@ -1172,7 +863,7 @@ var products = [
         "category": "monitors",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/monitors/flat/monitor-27-inch-fhd-1920x1080-ls27c310ealxzs",
+        "link": "",
         "description": "Pantalla amplia 27, protección visual Eye Saver y panel IPS.",
         "badge": "",
         "storage": [],
@@ -1184,7 +875,7 @@ var products = [
         "category": "monitors",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/monitors/flat/monitor-24-inch-fhd-1920x1080-ls24c310ealxzs",
+        "link": "",
         "description": "Tamaño estándar 24, Modo Juego y panel IPS vibrante.",
         "badge": "",
         "storage": [],
@@ -1196,7 +887,7 @@ var products = [
         "category": "monitors",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/monitors/gaming/odyssey-g6-g65b-27-inch-240hz-ls27bg650elxzs/",
+        "link": "",
         "description": "Curvatura 1000R, QHD, 240Hz y Smart TV Apps integradas.",
         "badge": "",
         "storage": [],
@@ -1208,7 +899,7 @@ var products = [
         "category": "monitors",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/monitors/gaming/odyssey-g6-g65b-32-inch-240hz-ls32bg650elxzs/",
+        "link": "",
         "description": "Pantalla grande 32, 1ms respuesta y AMD FreeSync Premium Pro.",
         "badge": "",
         "storage": [],
@@ -1220,7 +911,7 @@ var products = [
         "category": "monitors",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/monitors/gaming/odyssey-g3-g30d-27-inch-180hz-ls27g300ealxzs/",
+        "link": "",
         "description": "Frecuencia 180Hz (Modelo 2025), 1ms y soporte ajustable.",
         "badge": "",
         "storage": [],
@@ -1232,7 +923,7 @@ var products = [
         "category": "monitors",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/monitors/gaming/odyssey-g7-g70b-28-inch-uhd-ls28bg702elxzs/",
+        "link": "",
         "description": "Resolución 4K UHD, panel IPS, 144Hz y G-Sync Compatible.",
         "badge": "",
         "storage": [],
@@ -1244,7 +935,7 @@ var products = [
         "category": "monitors",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/monitors/gaming/odyssey-g3-32-inch-165hz-1ms-ls32ag320nlxzs",
+        "link": "",
         "description": "Pantalla 32 inmersiva, 165Hz y diseño sin bordes en 3 lados.",
         "badge": "",
         "storage": [],
@@ -1256,7 +947,7 @@ var products = [
         "category": "monitors",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/monitors/gaming/odyssey-g3-g30d-24-inch-180hz-ls24g300ealxzs/",
+        "link": "",
         "description": "Esencial Gaming: 24, 180Hz (G30D) y FreeSync.",
         "badge": "",
         "storage": [],
@@ -1268,7 +959,7 @@ var products = [
         "category": "washing_machines",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/home-appliances/laundry/wa5000t-top-loading-washer-with-ecobubble-13-kg-wa13t5260bw-zs",
+        "link": "",
         "description": "Tecnología EcoBubble, Motor Digital Inverter y Tapa de cierre suave.",
         "badge": "",
         "storage": [],
@@ -1280,7 +971,7 @@ var products = [
         "category": "washing_machines",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/home-appliances/laundry/top-load-washer-13kg-gray-wa13cg5441byzs/",
+        "link": "",
         "description": "Tecnología Wobble anti-enredos, Motor DIT y diseño moderno.",
         "badge": "",
         "storage": [],
@@ -1292,7 +983,7 @@ var products = [
         "category": "washing_machines",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/home-appliances/laundry/top-load-washer-13kg-white-wa13cg5441wwzs/",
+        "link": "",
         "description": "Tecnología Wobble, Lavado Intenso y ahorro de energía.",
         "badge": "",
         "storage": [],
@@ -1304,7 +995,7 @@ var products = [
         "category": "washing_machines",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/home-appliances/laundry/top-load-washer-15kg-gray-wa15cg5441byzs/",
+        "link": "",
         "description": "Capacidad 15Kg, Pulsador Wobble y 20 años de garantía en motor.",
         "badge": "",
         "storage": [],
@@ -1316,7 +1007,7 @@ var products = [
         "category": "washing_machines",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/home-appliances/laundry/top-load-washer-17kg-gray-wa17cg5441byzs/",
+        "link": "",
         "description": "Gran capacidad 17Kg, Deep Softener y Filtro Mágico.",
         "badge": "",
         "storage": [],
@@ -1328,7 +1019,7 @@ var products = [
         "category": "washing_machines",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/home-appliances/laundry/top-load-washer-19kg-gray-wa19cg6745bdzs",
+        "link": "",
         "description": "EcoBubble con Dual Storm, Speed Spray (Lavado 31min) y SmartThings.",
         "badge": "",
         "storage": [],
@@ -1340,7 +1031,7 @@ var products = [
         "category": "washing_machines",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/home-appliances/laundry/top-load-washer-19kg-gray-wa19cg5441byzs/",
+        "link": "",
         "description": "Capacidad familiar, tecnología Wobble y eficiencia energética A.",
         "badge": "",
         "storage": [],
@@ -1352,7 +1043,7 @@ var products = [
         "category": "washing_machines",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/home-appliances/laundry/wa7000c-top-load-washer-with-ecobubble-22kg-black-wa22c8700gv-zs",
+        "link": "",
         "description": "Heavy Duty+, BubbleStorm para lavado rápido y gran capacidad 22kg.",
         "badge": "",
         "storage": [],
@@ -1364,7 +1055,7 @@ var products = [
         "category": "washing_machines",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/home-appliances/laundry/washer-ww5000t-front-loading-eco-bubble-ai-control-10-5kg-white-ww10t534dtt-zs",
+        "link": "",
         "description": "Lavado con IA (AI Control), EcoBubble y Dispensador Automático.",
         "badge": "",
         "storage": [],
@@ -1376,7 +1067,7 @@ var products = [
         "category": "washing_machines",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/home-appliances/laundry/wa4000hh-top-loading-with-wobble-technology-9kg-wa90h4200sw1zs",
+        "link": "",
         "description": "Modelo compacto, Wobble Technology y secado de aire turbo.",
         "badge": "",
         "storage": [],
@@ -1388,7 +1079,7 @@ var products = [
         "category": "washing_machines",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/home-appliances/laundry/washer-ww3000t-front-loading-inverter-8-5kg-white-ww85t3040ww-zs/",
+        "link": "",
         "description": "Motor Digital Inverter, Lavado Rápido 18min y Limpieza de Tambor.",
         "badge": "",
         "storage": [],
@@ -1400,7 +1091,7 @@ var products = [
         "category": "washing_machines",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/home-appliances/laundry/wa4000hh-top-loading-with-wobble-technology-8kg-wa80h4010sw1zs/",
+        "link": "",
         "description": "Diseño duradero, tina de diamantes y panel de control trasero.",
         "badge": "",
         "storage": [],
@@ -1412,7 +1103,7 @@ var products = [
         "category": "washing_machines",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/home-appliances/laundry/wd5000t-combo-front-loading-with-ai-control-12-5kg-wd12t504dbx-zs/",
+        "link": "",
         "description": "Lavaseca 2 en 1, EcoBubble, Air Wash (Desodorizar) y AI Control.",
         "badge": "",
         "storage": [],
@@ -1424,11 +1115,20 @@ var products = [
         "category": "refrigerators",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/home-appliances/refrigerators/top-mount-freezer-290l-silver-rt29k571js8-zs",
+        "link": "https://samsung.com.bo/refrigerators/top-mount-freezer/refrigerator-234l-silver-rt22farads8-zs",
         "description": "Sistema All-Around Cooling, Digital Inverter y compresor duradero (234L útil).",
         "badge": "",
         "storage": [],
-        "variants": []
+        "variants": [
+            {
+                "color": "Plateado",
+                "hex": "#dbdbdb",
+                "sku": "RT22FARADS8/ZS",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_5COYXBSuT1VHEmLe0tAG.png"
+            }
+        ],
+        "sku": "RT22FARADS8/ZS",
+        "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_5COYXBSuT1VHEmLe0tAG.png"
     },
     {
         "id": 90,
@@ -1436,11 +1136,20 @@ var products = [
         "category": "refrigerators",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/home-appliances/refrigerators/top-mount-freezer-301l-silver-rt31cg5000s9zs",
+        "link": "https://samsung.com.bo/refrigerators/top-mount-freezer/rt5300c-top-mount-freezer-spacemax-301l-silver-rt31cg5420s9zs",
         "description": "Tecnología SpaceMax (paredes finas), All-Around Cooling y 301L efectivos.",
         "badge": "",
         "storage": [],
-        "variants": []
+        "variants": [
+            {
+                "color": "Silver",
+                "hex": "#c0c0c0",
+                "sku": "RT31CG5420S9ZS",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_sljpqH4KTY7JcAitRfzn.png"
+            }
+        ],
+        "sku": "RT31CG5420S9ZS",
+        "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_sljpqH4KTY7JcAitRfzn.png"
     },
     {
         "id": 91,
@@ -1448,11 +1157,26 @@ var products = [
         "category": "refrigerators",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/home-appliances/refrigerators/top-mount-freezer-526l-silver-rt53k6655sl-zs/",
+        "link": "https://samsung.com.bo/refrigeradores/RT53K6541BS",
         "description": "Twin Cooling Plus (No mezcla olores), 5 modos de conversión y dispensador.",
         "badge": "",
         "storage": [],
-        "variants": []
+        "variants": [
+            {
+                "color": "Negro",
+                "hex": "#000000",
+                "sku": "RT53K6541BS/ZS",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_EZwrpQvh7dGJfLz8O4SD.png"
+            },
+            {
+                "color": "Silver",
+                "hex": "#d3d3d3",
+                "sku": "RT53K6541SL/ZS",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/original/product-family-item-image-image_ZeLXNjyAPOFGD8znriCB.png"
+            }
+        ],
+        "sku": "RT53K6541BS/ZS",
+        "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_EZwrpQvh7dGJfLz8O4SD.png"
     },
     {
         "id": 92,
@@ -1460,11 +1184,26 @@ var products = [
         "category": "refrigerators",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/home-appliances/refrigerators/side-by-side-501l-silver-rs50n3503sa-zs/",
+        "link": "https://samsung.com.bo/refrigerators/side-by-side/rs3000bm-side-by-side-modern-and-sleek-design-490l-black-rs52b3000b4-zs",
         "description": "Diseño minimalista Side by Side, All-Around Cooling y compresor silencioso.",
         "badge": "",
         "storage": [],
-        "variants": []
+        "variants": [
+            {
+                "color": "Silver",
+                "hex": "#d3d3d3",
+                "sku": "RS52B3000M9/ZS",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_C81GHQufw5rAhnMT7XUt.png"
+            },
+            {
+                "color": "Black",
+                "hex": "#000000",
+                "sku": "RS52B3000B4/ZS",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_6d7ECzRqcX2IgZFSH1Vt.png"
+            }
+        ],
+        "sku": "RS52B3000M9/ZS",
+        "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_C81GHQufw5rAhnMT7XUt.png"
     },
     {
         "id": 93,
@@ -1472,11 +1211,20 @@ var products = [
         "category": "refrigerators",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/home-appliances/refrigerators/french-door-425l-silver-rf49a5202sl-zs",
+        "link": "https://samsung.com.bo/refrigerators/french-door/rf5000a-425l-black-rf44a5202b1-zs",
         "description": "Puerta Francesa (Twin Cooling), dispensador de agua externo y caja de vegetales.",
         "badge": "",
         "storage": [],
-        "variants": []
+        "variants": [
+            {
+                "color": "Negro",
+                "hex": "#000000",
+                "sku": "RF44A5202B1/ZS",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_xgmOh0RCkMKVTP5WieGE.png"
+            }
+        ],
+        "sku": "RF44A5202B1/ZS",
+        "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_xgmOh0RCkMKVTP5WieGE.png"
     },
     {
         "id": 94,
@@ -1484,11 +1232,26 @@ var products = [
         "category": "refrigerators",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/home-appliances/refrigerators/top-mount-freezer-526l-black-rt53k6655bs-zs/",
+        "link": "https://samsung.com.bo/refrigeradores/RT53K6541BS",
         "description": "Edición Black Inox, Twin Cooling, Smart Conversion y Power Cool/Freeze.",
         "badge": "",
         "storage": [],
-        "variants": []
+        "variants": [
+            {
+                "color": "Negro",
+                "hex": "#000000",
+                "sku": "RT53K6541BS/ZS",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_EZwrpQvh7dGJfLz8O4SD.png"
+            },
+            {
+                "color": "Silver",
+                "hex": "#d3d3d3",
+                "sku": "RT53K6541SL/ZS",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/original/product-family-item-image-image_ZeLXNjyAPOFGD8znriCB.png"
+            }
+        ],
+        "sku": "RT53K6541BS/ZS",
+        "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_EZwrpQvh7dGJfLz8O4SD.png"
     },
     {
         "id": 95,
@@ -1496,11 +1259,26 @@ var products = [
         "category": "refrigerators",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/home-appliances/refrigerators/top-mount-freezer-384l-grey-rt38cu5600b1zs",
+        "link": "https://samsung.com.bo/refrigerators/top-mount-freezer/rt6300c-top-mount-freezer-optimal-fresh-and-space-max-384l-black-rt38cg6720b1zs",
         "description": "Bespoke Design (Panel personalizable), WiFi SmartThings y SpaceMax.",
         "badge": "",
         "storage": [],
-        "variants": []
+        "variants": [
+            {
+                "color": "Negro",
+                "hex": "#000000",
+                "sku": "RT38CG6720B1ZS",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_zJbv7fYwk1ruh9PVIHaE.png"
+            },
+            {
+                "color": "Plateado",
+                "hex": "#dbdbdb",
+                "sku": "RT38CG6720S9ZS",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_vohCPp2fGgDBs64nty19.png"
+            }
+        ],
+        "sku": "RT38CG6720B1ZS",
+        "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_zJbv7fYwk1ruh9PVIHaE.png"
     },
     {
         "id": 96,
@@ -1508,11 +1286,26 @@ var products = [
         "category": "refrigerators",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/home-appliances/refrigerators/side-by-side-602l-silver-rs60a5600s9-zs/",
+        "link": "https://samsung.com.bo/refrigerators/side-by-side/rs5000rc-spacemax-602l-black-rs65r5691b4-zs",
         "description": "Tecnología SpaceMax (602L), 3 puertas con FlexZone y Metal Cooling.",
         "badge": "",
         "storage": [],
-        "variants": []
+        "variants": [
+            {
+                "color": "Plateado",
+                "hex": "#dbdbdb",
+                "sku": "RS65R5691M9/ZS",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_xDYXudpNP4qvCsWoOZaQ.png"
+            },
+            {
+                "color": "Negro",
+                "hex": "#000000",
+                "sku": "RS65R5691B4/ZS",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_4JuPHt1WvOwDnmYhZ6rA.png"
+            }
+        ],
+        "sku": "RS65R5691M9/ZS",
+        "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_xDYXudpNP4qvCsWoOZaQ.png"
     },
     {
         "id": 97,
@@ -1520,11 +1313,20 @@ var products = [
         "category": "kitchen_cleaning",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/home-appliances/cooking-appliances/electric-cooktop-60cm-black-nz60r3703pk-zs",
+        "link": "https://samsung.com.bo/empotrados/ctr264kc01",
         "description": "Controles táctiles deslizantes, indicadores de calor residual y bloqueo de seguridad.",
         "badge": "",
         "storage": [],
-        "variants": []
+        "variants": [
+            {
+                "color": "Negro",
+                "hex": "#000000",
+                "sku": "CTR264KC01/BG",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/original/product-family-item-image-image_Zp9aPkgvDu8rVGcfdqCB.png"
+            }
+        ],
+        "sku": "CTR264KC01/BG",
+        "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/original/product-family-item-image-image_Zp9aPkgvDu8rVGcfdqCB.png"
     },
     {
         "id": 98,
@@ -1532,11 +1334,20 @@ var products = [
         "category": "kitchen_cleaning",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/home-appliances/cooking-appliances/microwave-oven-23l-black-mg23a7318ck-zs",
+        "link": "https://samsung.com.bo/empotrados/fg87sub",
         "description": "Grill Fry (Freír sin aceite), Panel táctil Glass Touch y función de descongelado.",
         "badge": "",
         "storage": [],
-        "variants": []
+        "variants": [
+            {
+                "color": "Negro",
+                "hex": "#000000",
+                "sku": "FG87SUB/BO",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_dFikWDSQVysRewYKjpcu.png"
+            }
+        ],
+        "sku": "FG87SUB/BO",
+        "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_dFikWDSQVysRewYKjpcu.png"
     },
     {
         "id": 99,
@@ -1544,11 +1355,20 @@ var products = [
         "category": "kitchen_cleaning",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/home-appliances/cooking-appliances/electric-oven-75l-nv75k5541rs-zs",
+        "link": "https://samsung.com.bo/empotrados/nv75k5541rs",
         "description": "Dual Cook (Cocina 2 platos a temp. distinta), Riel telescópico y limpieza catalítica.",
         "badge": "",
         "storage": [],
-        "variants": []
+        "variants": [
+            {
+                "color": "Plateado",
+                "hex": "#dbdbdb",
+                "sku": "NV75K5541RS/BG",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_VxNdzUERtanrJg7hL5kG.png"
+            }
+        ],
+        "sku": "NV75K5541RS/BG",
+        "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_VxNdzUERtanrJg7hL5kG.png"
     },
     {
         "id": 100,
@@ -1556,11 +1376,20 @@ var products = [
         "category": "kitchen_cleaning",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/home-appliances/cooking-appliances/wall-mount-hood-60cm-silver-nk24m5070bs-ur",
+        "link": "https://samsung.com.bo/cooking-appliances/hoods/wall-mount-hood-hdc6a90tx-bg",
         "description": "Alto poder de succión (668 m3/h), filtro lavable y luces LED.",
         "badge": "",
         "storage": [],
-        "variants": []
+        "variants": [
+            {
+                "color": "Plateado",
+                "hex": "#dbdbdb",
+                "sku": "HDC6A90TX/BG",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_W8fdDIXRYQltHKUqrm5o.png"
+            }
+        ],
+        "sku": "HDC6A90TX/BG",
+        "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_W8fdDIXRYQltHKUqrm5o.png"
     },
     {
         "id": 101,
@@ -1568,11 +1397,20 @@ var products = [
         "category": "kitchen_cleaning",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/home-appliances/vacuum-cleaners/canister-vacuum-cleaner-1800w-vc18m3120v1-zs/",
+        "link": "https://samsung.com.bo/vacuum-cleaners/canister/canister-vc3100m",
         "description": "Turbina Anti-Tangle (No se atasca con pelos), depósito Easy Dustbin y 1800W.",
         "badge": "",
         "storage": [],
-        "variants": []
+        "variants": [
+            {
+                "color": "Azul Cosmo",
+                "hex": "#1c0d82",
+                "sku": "VC18M3110VB/BO",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_xjtC0g9Z2bEXqADP3HNy.png"
+            }
+        ],
+        "sku": "VC18M3110VB/BO",
+        "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_xjtC0g9Z2bEXqADP3HNy.png"
     },
     {
         "id": 102,
@@ -1580,11 +1418,20 @@ var products = [
         "category": "kitchen_cleaning",
         "price": 0,
         "originalPrice": 0,
-        "link": "https://shop.samsung.com.bo/home-appliances/vacuum-cleaners/canister-vacuum-cleaner-2000w-vc20m2520jp-zs",
+        "link": "https://samsung.com.bo/vacuum-cleaners/canister/vcc4190v3exbo",
         "description": "Potente 2000W, función de soplado de polvo y filtro de alérgenos.",
         "badge": "",
         "storage": [],
-        "variants": []
+        "variants": [
+            {
+                "color": "Vino Rubí",
+                "hex": "#653038",
+                "sku": "VCC4190V3E/XBO",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_hx8bfBduoXV1MyCcHAlZ.png"
+            }
+        ],
+        "sku": "VCC4190V3E/XBO",
+        "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_hx8bfBduoXV1MyCcHAlZ.png"
     }
 ];
 

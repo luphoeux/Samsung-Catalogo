@@ -1,22 +1,67 @@
 const fs = require('fs');
 const path = require('path');
+const https = require('https');
 
-const csvPath = path.join(__dirname, '..', 'products_export.csv');
 const dataJsPath = path.join(__dirname, '..', 'data.js');
+const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTuLe28pznqPjc7LrqZiDee4yxlO2w1KMhjuxP6-nd-FVM6_V6RrTCOHtnowZsjiOKE9H6YeZ4ycUOH/pub?gid=0&single=true&output=csv';
 
-try {
-    const csvContent = fs.readFileSync(csvPath, 'utf8');
-    const products = parseCSV(csvContent);
+console.log('Fetching data from Google Sheets...');
 
-    const fileContent = `var products = ${JSON.stringify(products, null, 4)};\n\nif (typeof module !== 'undefined') module.exports = products;`;
-    fs.writeFileSync(dataJsPath, fileContent);
-    console.log(`Successfully updated data.js with ${products.length} products from CSV.`);
+function fetchCsv(url) {
+    https.get(url, (res) => {
+        // Handle redirects
+        if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
+            console.log(`Redirecting to ${res.headers.location}...`);
+            fetchCsv(res.headers.location);
+            return;
+        }
 
-} catch (error) {
-    console.error('Error updating data.js:', error);
+        let data = '';
+
+        // A chunk of data has been received.
+        res.on('data', (chunk) => {
+            data += chunk;
+        });
+
+        // The whole response has been received.
+        res.on('end', () => {
+            if (res.statusCode !== 200) {
+                console.error(`Failed to fetch CSV. Status Code: ${res.statusCode}`);
+                return;
+            }
+
+            try {
+                let currentProducts = [];
+                if (fs.existsSync(dataJsPath)) {
+                    try {
+                        // Read the file content and extract the JSON part
+                        const fileContent = fs.readFileSync(dataJsPath, 'utf8');
+                        const jsonMatch = fileContent.match(/var products = (\[[\s\S]*?\]);/);
+                        if (jsonMatch && jsonMatch[1]) {
+                            currentProducts = JSON.parse(jsonMatch[1]);
+                        }
+                    } catch (e) {
+                        console.log('Could not read existing data.js, starting fresh.');
+                    }
+                }
+
+                const products = parseCSV(data, currentProducts);
+                const fileContent = `var products = ${JSON.stringify(products, null, 4)};\n\nif (typeof module !== 'undefined') module.exports = products;`;
+                fs.writeFileSync(dataJsPath, fileContent);
+                console.log(`Successfully updated data.js with ${products.length} products from Google Sheets.`);
+            } catch (error) {
+                console.error('Error parsing or writing data:', error);
+            }
+        });
+
+    }).on("error", (err) => {
+        console.log("Error fetching CSV: " + err.message);
+    });
 }
 
-function parseCSV(csvText) {
+fetchCsv(CSV_URL);
+
+function parseCSV(csvText, currentProducts = []) {
     const lines = csvText.split(/\r?\n/).filter(line => line.trim() !== '');
     if (lines.length < 2) return [];
 
@@ -48,6 +93,15 @@ function parseCSV(csvText) {
                 product[header] = value;
             }
         });
+
+        // Preserve prices if they are 0 in CSV but exist in current data
+        if (product.price === 0 && currentProducts.length > 0) {
+            const existingProduct = currentProducts.find(p => p.id === product.id);
+            if (existingProduct && existingProduct.price > 0) {
+                product.price = existingProduct.price;
+                product.originalPrice = existingProduct.originalPrice;
+            }
+        }
 
         // Build variants array
         const variants = [];
