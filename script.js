@@ -63,8 +63,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 product[header] = value;
             });
 
-            // Build variants array
-            const variants = [];
+            // Build colors, variants, and colorCodes from individual columns
+            const colors = [];
+            const variants = {};
+            const colorCodes = {};
             let defaultSku = '';
             let defaultImage = '';
 
@@ -81,12 +83,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Only add variant if SKU, Color, and Image are present
                 if (sku && sku.trim() !== '' && color && color.trim() !== '' && imagen && imagen.trim() !== '') {
-                    variants.push({
-                        color: color,
-                        hex: (hex && hex.trim() !== '') ? hex : (product.colorCodes?.[color] || '#CCCCCC'),
+                    colors.push(color);
+                    variants[color] = {
                         sku: sku,
                         image: imagen
-                    });
+                    };
+
+                    // Add hex code if provided
+                    if (hex && hex.trim() !== '') {
+                        colorCodes[color] = hex;
+                    }
 
                     // First variant is the default
                     if (variantNum === 1) {
@@ -102,15 +108,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 delete product[hexKey];
             }
 
-            // Assign the new variants array
+            // Set the built arrays (Hex columns override colorCodes JSON)
+            product.colors = colors;
             product.variants = variants;
+            product.sku = defaultSku;
+            product.image = defaultImage;
 
-            // Clean up old properties if they exist in the source or were created temporarily
-            delete product.colors;
-            delete product.colorCodes;
-
-            if (defaultSku) product.sku = defaultSku;
-            if (defaultImage) product.image = defaultImage;
+            // Merge hex codes from columns with existing colorCodes (columns have priority)
+            product.colorCodes = { ...product.colorCodes, ...colorCodes };
 
             parsedProducts.push(product);
         }
@@ -286,28 +291,31 @@ function renderProducts(items) {
         const card = document.createElement('div');
         card.className = 'product-card';
 
-        // Default to first variant
-        const firstVariant = product.variants && product.variants.length > 0 ? product.variants[0] : null;
-        const firstColor = firstVariant ? firstVariant.color : '';
+        // Default to first color
+        const firstColor = product.colors && product.colors.length > 0 ? product.colors[0] : '';
 
         const badgeHtml = product.badge ? `<span class="badge">${product.badge}</span>` : '';
 
         // Generate color dots HTML
         let colorsHtml = '';
-        if (product.variants && product.variants.length > 0) {
+        if (product.colors && product.colors.length > 0) {
             colorsHtml = `<div class="product-colors-container">
                 <p class="color-label">Color: <span class="selected-color-name">${firstColor}</span></p>
                 <div class="product-colors">
-                    ${product.variants.map((variant, index) => {
-                const variantImage = variant.image || product.image;
-                const variantSku = variant.sku || product.sku;
-                const variantHex = variant.hex || '#CCCCCC';
+                    ${product.colors.map((color, index) => {
+                const variant = product.variants && product.variants[color];
+                const variantImage = variant && variant.image ? variant.image : product.image;
+                const variantSku = variant && variant.sku ? variant.sku : product.sku;
+
+                // If no specific variant image, fallback to default logic (though for S3 links it might be static)
+                // We use the variantImage if found, otherwise product.image
+                const imageSrc = variantImage;
 
                 return `
                         <span class="color-dot ${index === 0 ? 'active' : ''}" 
-                              style="background-color: ${variantHex}" 
-                              data-color="${variant.color}"
-                              data-image="${variantImage}"
+                              style="background-color: ${getHexColor(color, product)}" 
+                              data-color="${color}"
+                              data-image="${imageSrc}"
                               data-sku="${variantSku}"
                               onclick="changeProductColor(this, 'product-${product.id}')">
                         </span>

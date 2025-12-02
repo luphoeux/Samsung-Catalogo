@@ -8,9 +8,7 @@ var products = [
         "link": "https://shop.samsung.com.bo/smartphones/galaxy-z/galaxy-z-fold7-blue-shadow-512gb-sm-f966bdbkcho",
         "description": "Diseño ultra delgado 8.9mm, Cámara 200MP, Snapdragon 8 Elite y Galaxy AI.",
         "badge": "",
-        "storage": [
-            "512 GB"
-        ],
+        "storage": [],
         "variants": [
             {
                 "color": "1",
@@ -37,11 +35,7 @@ var products = [
         "link": "https://shop.samsung.com.bo/smartphones/galaxy-s/galaxy-s25-ultra-azul-titanio-256gb-sm-s938bzbkbvo",
         "description": "Cámara 200MP + 50MP, Titanio, Snapdragon 8 Elite y bat. 5000 mAh.",
         "badge": "",
-        "storage": [
-            "256 GB",
-            "512 GB",
-            "512 GB"
-        ],
+        "storage": [],
         "variants": [
             {
                 "color": "Gris",
@@ -68,10 +62,7 @@ var products = [
         "link": "https://shop.samsung.com.bo/smartphones/galaxy-z/galaxy-z-flip7-blue-shadow-256gb-sm-f766bdbjcho",
         "description": "Cámara 50 MP, batería 4300 mAh, pantalla 2600 nits y FlexWindow.",
         "badge": "",
-        "storage": [
-            "256 GB",
-            "512 GB"
-        ],
+        "storage": [],
         "variants": [
             {
                 "color": "Gris",
@@ -827,11 +818,20 @@ var products = [
         "category": "televisions",
         "price": 0,
         "originalPrice": 0,
-        "link": "",
+        "link": "https://samsung.com.bo/tvs/qled-tv/q7f-85-inch-qled-4k-smart-tv-qn85q7faagxzs",
         "description": "Gran formato 85, AI Energy Mode y Diseño Infinity.",
         "badge": "",
         "storage": [],
-        "variants": []
+        "variants": [
+            {
+                "color": "Negro",
+                "hex": "#000000",
+                "sku": "QN85Q7FAAGXZS",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_y3SazKNiqZL2GgWMDAB1.png"
+            }
+        ],
+        "sku": "QN85Q7FAAGXZS",
+        "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_y3SazKNiqZL2GgWMDAB1.png"
     },
     {
         "id": 66,
@@ -839,23 +839,41 @@ var products = [
         "category": "televisions",
         "price": 0,
         "originalPrice": 0,
-        "link": "",
+        "link": "https://samsung.com.bo/tvs/oled-tv/s90f-65-inch-oled-4k-smart-tv-qn65s90faexzs",
         "description": "Tecnología OLED con negros profundos, Pantone Validated y diseño LaserSlim.",
         "badge": "",
         "storage": [],
-        "variants": []
+        "variants": [
+            {
+                "color": "Negro",
+                "hex": "#000000",
+                "sku": "QN65S90FAEXZS",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_aBiCzY5V7jtclEme09N6.png"
+            }
+        ],
+        "sku": "QN65S90FAEXZS",
+        "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_aBiCzY5V7jtclEme09N6.png"
     },
     {
         "id": 67,
-        "name": "Monitor 22 FHD IPS 75Hz (Essential S3)",
+        "name": "Monitor 22 FHD IPS 75Hz (Essential S3) Borrar?",
         "category": "monitors",
         "price": 0,
         "originalPrice": 0,
-        "link": "",
+        "link": "https://samsung.com.bo/monitors/flat/essential-monitor-s3-24-inch-borderless-design-ips-panel-fhd-freesync-ls24c310ealxzs/",
         "description": "Panel IPS, frecuencia 75Hz, AMD FreeSync y diseño sin bordes.",
         "badge": "",
         "storage": [],
-        "variants": []
+        "variants": [
+            {
+                "color": "Negro",
+                "hex": "#000000",
+                "sku": "LS24C310EALXZS",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_nKcECHIJmxFvTszBuRWi.png"
+            }
+        ],
+        "sku": "LS24C310EALXZS",
+        "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_nKcECHIJmxFvTszBuRWi.png"
     },
     {
         "id": 68,
@@ -863,11 +881,20 @@ var products = [
         "category": "monitors",
         "price": 0,
         "originalPrice": 0,
-        "link": "",
+        "link": "https://samsung.com.bo/monitors/flat/essential-monitor-s3-24-inch-borderless-design-ips-panel-fhd-freesync-ls24c310ealxzs/",
         "description": "Pantalla amplia 27, protección visual Eye Saver y panel IPS.",
         "badge": "",
         "storage": [],
-        "variants": []
+        "variants": [
+            {
+                "color": "Negro",
+                "hex": "#000000",
+                "sku": "LS27C310EALXZS",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_nKcECHIJmxFvTszBuRWi.png"
+            }
+        ],
+        "sku": "LS27C310EALXZS",
+        "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_nKcECHIJmxFvTszBuRWi.png"
     },
     {
         "id": 69,
@@ -875,11 +902,20 @@ var products = [
         "category": "monitors",
         "price": 0,
         "originalPrice": 0,
-        "link": "",
+        "link": "https://samsung.com.bo/monitors/flat/essential-monitor-s3-24-inch-borderless-design-ips-panel-fhd-freesync-ls24c310ealxzs/",
         "description": "Tamaño estándar 24, Modo Juego y panel IPS vibrante.",
         "badge": "",
         "storage": [],
-        "variants": []
+        "variants": [
+            {
+                "color": "Negro",
+                "hex": "#000000",
+                "sku": "LS24C310EALXZS",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_H03KQGCqLBhyax9zYskp.png"
+            }
+        ],
+        "sku": "LS24C310EALXZS",
+        "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_H03KQGCqLBhyax9zYskp.png"
     },
     {
         "id": 70,
@@ -887,11 +923,20 @@ var products = [
         "category": "monitors",
         "price": 0,
         "originalPrice": 0,
-        "link": "",
+        "link": "https://samsung.com.bo/monitors/gaming/odyssey-g65b-g6-27-inch-240hz-1ms-curved-qhd-1440p-ls27bg650elxzs",
         "description": "Curvatura 1000R, QHD, 240Hz y Smart TV Apps integradas.",
         "badge": "",
         "storage": [],
-        "variants": []
+        "variants": [
+            {
+                "color": "Negro",
+                "hex": "#000000",
+                "sku": "LS27BG650ELXZS",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_f3zNX7xI1SBGJ84ZQlpW.png"
+            }
+        ],
+        "sku": "LS27BG650ELXZS",
+        "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_f3zNX7xI1SBGJ84ZQlpW.png"
     },
     {
         "id": 71,
@@ -899,11 +944,20 @@ var products = [
         "category": "monitors",
         "price": 0,
         "originalPrice": 0,
-        "link": "",
+        "link": "https://samsung.com.bo/monitors/gaming/odyssey-g65b-g6-32-inch-240hz-1ms-curved-qhd-1440p-ls32bg650elxzs",
         "description": "Pantalla grande 32, 1ms respuesta y AMD FreeSync Premium Pro.",
         "badge": "",
         "storage": [],
-        "variants": []
+        "variants": [
+            {
+                "color": "Negro",
+                "hex": "#000000",
+                "sku": "LS32BG650ELXZS",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_A927JViBuNCDeI08sW6g.png"
+            }
+        ],
+        "sku": "LS32BG650ELXZS",
+        "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_A927JViBuNCDeI08sW6g.png"
     },
     {
         "id": 72,
@@ -911,11 +965,20 @@ var products = [
         "category": "monitors",
         "price": 0,
         "originalPrice": 0,
-        "link": "",
+        "link": "https://samsung.com.bo/monitors/gaming/odyssey-g3-g30d-27-inch-180hz-freesync-ls27dg300elxzs",
         "description": "Frecuencia 180Hz (Modelo 2025), 1ms y soporte ajustable.",
         "badge": "",
         "storage": [],
-        "variants": []
+        "variants": [
+            {
+                "color": "Negro",
+                "hex": "#000000",
+                "sku": "LS27DG300ELXZS",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/original/product-family-item-image-image_kj72sdPaqKnIScu9mb4f.png"
+            }
+        ],
+        "sku": "LS27DG300ELXZS",
+        "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/original/product-family-item-image-image_kj72sdPaqKnIScu9mb4f.png"
     },
     {
         "id": 73,
@@ -923,11 +986,20 @@ var products = [
         "category": "monitors",
         "price": 0,
         "originalPrice": 0,
-        "link": "",
+        "link": "https://samsung.com.bo/monitors/gaming/odyssey-g70b-g7-28-inch-ips-144hz-1ms-uhd-4k-ls28bg700elxzs",
         "description": "Resolución 4K UHD, panel IPS, 144Hz y G-Sync Compatible.",
         "badge": "",
-        "storage": [],
-        "variants": []
+        "storage": ["asd"],
+        "variants": [
+            {
+                "color": "Negro",
+                "hex": "#000000",
+                "sku": "LS28BG700ELXZS",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_ubvtW7XEN8y05k9ODljY.png"
+            }
+        ],
+        "sku": "LS28BG700ELXZS",
+        "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_ubvtW7XEN8y05k9ODljY.png"
     },
     {
         "id": 74,
@@ -935,11 +1007,20 @@ var products = [
         "category": "monitors",
         "price": 0,
         "originalPrice": 0,
-        "link": "",
+        "link": "https://samsung.com.bo/monitors/gaming/odyssey-g3-g30d-32-inch-180hz-freesync-ls32dg300elxzs",
         "description": "Pantalla 32 inmersiva, 165Hz y diseño sin bordes en 3 lados.",
         "badge": "",
         "storage": [],
-        "variants": []
+        "variants": [
+            {
+                "color": "Negro",
+                "hex": "#000000",
+                "sku": "LS32DG300ELXZS",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/original/product-family-item-image-image_eJGjViTSX6K5aWQyBxRv.png"
+            }
+        ],
+        "sku": "LS32DG300ELXZS",
+        "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/original/product-family-item-image-image_eJGjViTSX6K5aWQyBxRv.png"
     },
     {
         "id": 75,
@@ -947,11 +1028,20 @@ var products = [
         "category": "monitors",
         "price": 0,
         "originalPrice": 0,
-        "link": "",
+        "link": "https://samsung.com.bo/monitors/gaming/odyssey-g3-g30d-24-inch-180hz-freesync-ls24dg300elxzs",
         "description": "Esencial Gaming: 24, 180Hz (G30D) y FreeSync.",
         "badge": "",
         "storage": [],
-        "variants": []
+        "variants": [
+            {
+                "color": "Negro",
+                "hex": "#000000",
+                "sku": "LS24DG300ELXZS",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_UKyORbzmvDhYLfIT9WNJ.png"
+            }
+        ],
+        "sku": "LS24DG300ELXZS",
+        "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_UKyORbzmvDhYLfIT9WNJ.png"
     },
     {
         "id": 76,
@@ -959,11 +1049,26 @@ var products = [
         "category": "washing_machines",
         "price": 0,
         "originalPrice": 0,
-        "link": "",
+        "link": "https://samsung.com.bo/washers-and-dryers/washing-machines/wa5000c-top-load-ecobubble-digital-inverter-technology-super-speed-13kg-white-wa13cg5441bwzs",
         "description": "Tecnología EcoBubble, Motor Digital Inverter y Tapa de cierre suave.",
         "badge": "",
         "storage": [],
-        "variants": []
+        "variants": [
+            {
+                "color": "White",
+                "hex": "#ffffff",
+                "sku": "WA13CG5441BWZS",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_su85rYTHDQ31oNcFkqKC.png"
+            },
+            {
+                "color": "Gray",
+                "hex": "#808080",
+                "sku": "WA13CG5441BDZS",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_Uo1X7Wfh25ta9TM0Oszx.png"
+            }
+        ],
+        "sku": "WA13CG5441BWZS",
+        "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_su85rYTHDQ31oNcFkqKC.png"
     },
     {
         "id": 77,
@@ -971,11 +1076,26 @@ var products = [
         "category": "washing_machines",
         "price": 0,
         "originalPrice": 0,
-        "link": "",
+        "link": "https://shop.samsung.com.bo/washers-and-dryers/washing-machines/top-load-13kg-white-wa13t5260bw-zs",
         "description": "Tecnología Wobble anti-enredos, Motor DIT y diseño moderno.",
         "badge": "",
         "storage": [],
-        "variants": []
+        "variants": [
+            {
+                "color": "Blanco",
+                "hex": "#ffffff",
+                "sku": "WA13T5260BW/ZS",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_JT9UujprqxAOCeYIymol.png"
+            },
+            {
+                "color": "Gris",
+                "hex": "#777777",
+                "sku": "WA13T5260BY/ZS",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_EkvnsOYoGfTQXcBILRhS.png"
+            }
+        ],
+        "sku": "WA13T5260BW/ZS",
+        "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_JT9UujprqxAOCeYIymol.png"
     },
     {
         "id": 78,
@@ -983,11 +1103,26 @@ var products = [
         "category": "washing_machines",
         "price": 0,
         "originalPrice": 0,
-        "link": "",
+        "link": "https://samsung.com.bo/washers-and-dryers/washing-machines/wa5000c-top-load-ecobubble-digital-inverter-technology-super-speed-13kg-white-wa13cg5441bwzs",
         "description": "Tecnología Wobble, Lavado Intenso y ahorro de energía.",
         "badge": "",
         "storage": [],
-        "variants": []
+        "variants": [
+            {
+                "color": "White",
+                "hex": "#ffffff",
+                "sku": "WA13CG5441BWZS",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_su85rYTHDQ31oNcFkqKC.png"
+            },
+            {
+                "color": "Gray",
+                "hex": "#808080",
+                "sku": "WA13CG5441BDZS",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_Uo1X7Wfh25ta9TM0Oszx.png"
+            }
+        ],
+        "sku": "WA13CG5441BWZS",
+        "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_su85rYTHDQ31oNcFkqKC.png"
     },
     {
         "id": 79,
@@ -995,11 +1130,26 @@ var products = [
         "category": "washing_machines",
         "price": 0,
         "originalPrice": 0,
-        "link": "",
+        "link": "https://samsung.com.bo/washers-and-dryers/washing-machines/top-load-15kg-white-wa15t5260bw-zs",
         "description": "Capacidad 15Kg, Pulsador Wobble y 20 años de garantía en motor.",
         "badge": "",
         "storage": [],
-        "variants": []
+        "variants": [
+            {
+                "color": "White",
+                "hex": "#ffffff",
+                "sku": "WA15T5260BW/ZS",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_zn79NiAjgpXSa02KERrW.png"
+            },
+            {
+                "color": "Gris",
+                "hex": "#777777",
+                "sku": "WA15T5260BY/ZS",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_TMWkD26xISQhd3vbeO7F.png"
+            }
+        ],
+        "sku": "WA15T5260BW/ZS",
+        "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_zn79NiAjgpXSa02KERrW.png"
     },
     {
         "id": 80,
@@ -1007,23 +1157,53 @@ var products = [
         "category": "washing_machines",
         "price": 0,
         "originalPrice": 0,
-        "link": "",
+        "link": "https://samsung.com.bo/washers-and-dryers/washing-machines/top-load-17kg-gray-wa17t6260by-zs",
         "description": "Gran capacidad 17Kg, Deep Softener y Filtro Mágico.",
         "badge": "",
         "storage": [],
-        "variants": []
+        "variants": [
+            {
+                "color": "Blanco",
+                "hex": "#ffffff",
+                "sku": "WA17T6260BW/ZS",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_YkB05w9Ql83DgzETLKJu.png"
+            },
+            {
+                "color": "Gris",
+                "hex": "#808080",
+                "sku": "WA17T6260BY/ZS",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_QGcUNDwCiW8fRAjSaT1l.png"
+            }
+        ],
+        "sku": "WA17T6260BW/ZS",
+        "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_YkB05w9Ql83DgzETLKJu.png"
     },
     {
         "id": 81,
-        "name": "Lavadora Carga Superior 19Kg c/ Eco Bubble",
+        "name": "Lavadora Carga Superior 19Kg c/ Eco Bubble ",
         "category": "washing_machines",
         "price": 0,
         "originalPrice": 0,
-        "link": "",
+        "link": "https://samsung.com.bo/washers-and-dryers/washing-machines/wa6000c-top-load-ecobubble-digital-inverter-technology-super-speed-19kg-gray-wa19cg6441bdzs",
         "description": "EcoBubble con Dual Storm, Speed Spray (Lavado 31min) y SmartThings.",
         "badge": "",
         "storage": [],
-        "variants": []
+        "variants": [
+            {
+                "color": "Gris",
+                "hex": "#808080",
+                "sku": "WA19CG6441BDZS",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_gkcsF4KAm19xdWathDey.png"
+            },
+            {
+                "color": "Negro",
+                "hex": "#000000",
+                "sku": "WA19CG6745BVZS",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_4ALNrH3PaGJvw50B6Ykz.png"
+            }
+        ],
+        "sku": "WA19CG6441BDZS",
+        "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_gkcsF4KAm19xdWathDey.png"
     },
     {
         "id": 82,
@@ -1031,11 +1211,26 @@ var products = [
         "category": "washing_machines",
         "price": 0,
         "originalPrice": 0,
-        "link": "",
-        "description": "Capacidad familiar, tecnología Wobble y eficiencia energética A.",
+        "link": "https://samsung.com.bo/washers-and-dryers/washing-machines/top-load-19kg-black-caviar-wa19t6260bv-bo",
+        "description": "Lavadora de carga superior con dosificador Magic Dispenser, lavado intenso y suavizante potente",
         "badge": "",
         "storage": [],
-        "variants": []
+        "variants": [
+            {
+                "color": "Negro",
+                "hex": "#000000",
+                "sku": "WA19T6260BV/BO",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_Xm1ChpOI24nkMTocUZfy.png"
+            },
+            {
+                "color": "Gris",
+                "hex": "#808080",
+                "sku": "WA19T6260BY/BO",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_2EcOMLa84g03ws7PhJld.png"
+            }
+        ],
+        "sku": "WA19T6260BV/BO",
+        "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_Xm1ChpOI24nkMTocUZfy.png"
     },
     {
         "id": 83,
@@ -1043,11 +1238,20 @@ var products = [
         "category": "washing_machines",
         "price": 0,
         "originalPrice": 0,
-        "link": "",
+        "link": "https://samsung.com.bo/washers-and-dryers/washing-machines/ww8800a-22kg-black-wa22a8370gv-bo",
         "description": "Heavy Duty+, BubbleStorm para lavado rápido y gran capacidad 22kg.",
         "badge": "",
         "storage": [],
-        "variants": []
+        "variants": [
+            {
+                "color": "Negro",
+                "hex": "#000000",
+                "sku": "WA22A8370GV/BO",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_Efvjbaz4T2p1qsVgYC8N.png"
+            }
+        ],
+        "sku": "WA22A8370GV/BO",
+        "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_Efvjbaz4T2p1qsVgYC8N.png"
     },
     {
         "id": 84,
@@ -1055,11 +1259,26 @@ var products = [
         "category": "washing_machines",
         "price": 0,
         "originalPrice": 0,
-        "link": "",
+        "link": "https://samsung.com.bo/washers-and-dryers/washing-machines/ww5000t-front-loading-hygiene-steam-dit-10-5kg-white-ww10ta040ce-bo",
         "description": "Lavado con IA (AI Control), EcoBubble y Dispensador Automático.",
         "badge": "",
         "storage": [],
-        "variants": []
+        "variants": [
+            {
+                "color": "Blanco",
+                "hex": "#ffffff",
+                "sku": "WW10TA040CE/BO",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_3uKoTkXGRYyDQgqJ6Sbz.png"
+            },
+            {
+                "color": "Gris",
+                "hex": "#808080",
+                "sku": "WW10TA040CX/BO",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_krILGRP5XyFmbe0hjVWJ.png"
+            }
+        ],
+        "sku": "WW10TA040CE/BO",
+        "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_3uKoTkXGRYyDQgqJ6Sbz.png"
     },
     {
         "id": 85,
@@ -1067,11 +1286,20 @@ var products = [
         "category": "washing_machines",
         "price": 0,
         "originalPrice": 0,
-        "link": "",
+        "link": "https://samsung.com.bo/washers/wa90h4400sw",
         "description": "Modelo compacto, Wobble Technology y secado de aire turbo.",
         "badge": "",
         "storage": [],
-        "variants": []
+        "variants": [
+            {
+                "color": "Blanco",
+                "hex": "#ffffff",
+                "sku": "WA90H4400SW",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_dxZmHuRywXpgqTN0LfMe.png"
+            }
+        ],
+        "sku": "WA90H4400SW",
+        "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_dxZmHuRywXpgqTN0LfMe.png"
     },
     {
         "id": 86,
@@ -1079,11 +1307,20 @@ var products = [
         "category": "washing_machines",
         "price": 0,
         "originalPrice": 0,
-        "link": "",
+        "link": "https://samsung.com.bo/washers-and-dryers/washing-machines/front-load-8-5kg-white-ww85t3040bw-bo",
         "description": "Motor Digital Inverter, Lavado Rápido 18min y Limpieza de Tambor.",
         "badge": "",
         "storage": [],
-        "variants": []
+        "variants": [
+            {
+                "color": "Blanco",
+                "hex": "#ffffff",
+                "sku": "WW85T3040BW/BO",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_DOBy17IHf4CUA8VwtipF.png"
+            }
+        ],
+        "sku": "WW85T3040BW/BO",
+        "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_DOBy17IHf4CUA8VwtipF.png"
     },
     {
         "id": 87,
@@ -1091,11 +1328,20 @@ var products = [
         "category": "washing_machines",
         "price": 0,
         "originalPrice": 0,
-        "link": "",
+        "link": "https://samsung.com.bo/lavadoras/WA80H4200SW",
         "description": "Diseño duradero, tina de diamantes y panel de control trasero.",
         "badge": "",
         "storage": [],
-        "variants": []
+        "variants": [
+            {
+                "color": "Blanco",
+                "hex": "#ffffff",
+                "sku": "WA80H4200SW",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_CFsI3gma41uDhQrA7LS8.png"
+            }
+        ],
+        "sku": "WA80H4200SW",
+        "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_CFsI3gma41uDhQrA7LS8.png"
     },
     {
         "id": 88,
@@ -1103,11 +1349,20 @@ var products = [
         "category": "washing_machines",
         "price": 0,
         "originalPrice": 0,
-        "link": "",
+        "link": "https://samsung.com.bo/washers-and-dryers/washer-dryer-combo/wd7500t-front-loading-eco-bubble-quickdrive-ai-control-12-5kg-gray-wd12t754dbn-bo",
         "description": "Lavaseca 2 en 1, EcoBubble, Air Wash (Desodorizar) y AI Control.",
         "badge": "",
         "storage": [],
-        "variants": []
+        "variants": [
+            {
+                "color": "Gray",
+                "hex": "#808080",
+                "sku": "WD12T754DBN/BO",
+                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_LMZcfWrj4VIyn51mxdGR.png"
+            }
+        ],
+        "sku": "WD12T754DBN/BO",
+        "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_LMZcfWrj4VIyn51mxdGR.png"
     },
     {
         "id": 89,
