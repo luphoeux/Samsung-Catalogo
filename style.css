@@ -250,6 +250,8 @@ header {
     position: relative;
     cursor: pointer;
     border: 1px solid transparent;
+    display: flex;
+    flex-direction: column;
 }
 
 .product-card:hover {
@@ -274,6 +276,9 @@ header {
 .product-info {
     padding: 1.5rem;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
 .product-name {
@@ -465,6 +470,7 @@ header {
     width: 100%;
     text-transform: uppercase;
     font-family: 'SamsungOne', sans-serif;
+    margin-top: auto;
 }
 
 .buy-btn:hover {
@@ -672,4 +678,69 @@ footer {
 .copyright {
     color: #999;
     font-size: 0.9rem;
+}
+
+/* Skeleton Loading */
+.skeleton-card {
+    background: var(--samsung-white);
+    border-radius: 1rem;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    padding-bottom: 1.5rem;
+}
+
+.skeleton-image {
+    width: 100%;
+    aspect-ratio: 1;
+    background-color: #e0e0e0;
+    animation: skeleton-loading 1.5s infinite linear;
+}
+
+.skeleton-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.skeleton-text {
+    height: 1rem;
+    background-color: #e0e0e0;
+    border-radius: 0.5rem;
+    width: 80%;
+    animation: skeleton-loading 1.5s infinite linear;
+}
+
+.skeleton-text.short {
+    width: 40%;
+}
+
+.skeleton-text.title {
+    height: 1.5rem;
+    width: 60%;
+    margin-bottom: 0.5rem;
+}
+
+.skeleton-button {
+    height: 2.5rem;
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 2rem;
+    margin-top: 1rem;
+    animation: skeleton-loading 1.5s infinite linear;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-color: #e0e0e0;
+    }
+
+    50% {
+        background-color: #f0f0f0;
+    }
+
+    100% {
+        background-color: #e0e0e0;
+    }
 }

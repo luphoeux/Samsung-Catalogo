@@ -9,22 +9,9 @@ var products = [
         "description": "Diseño ultra delgado 8.9mm, Cámara 200MP, Snapdragon 8 Elite y Galaxy AI.",
         "badge": "",
         "storage": [],
-        "variants": [
-            {
-                "color": "1",
-                "hex": "#c41717ff",
-                "sku": "SM-F966BDBKCHO",
-                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_REVFsxTyaj9XMYmDK7Qf.png"
-            },
-            {
-                "color": "2",
-                "hex": "#1b882dff",
-                "sku": "SM-F966BZKKCHO",
-                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/original/product-family-item-image-image_x79DA312UjEYKePb50Xd.png"
-            }
-        ],
-        "sku": "SM-F966BDBKCHO",
-        "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_REVFsxTyaj9XMYmDK7Qf.png"
+        "variants": [],
+        "sku": "",
+        "image": ""
     },
     {
         "id": 2,
@@ -36,22 +23,9 @@ var products = [
         "description": "Cámara 200MP + 50MP, Titanio, Snapdragon 8 Elite y bat. 5000 mAh.",
         "badge": "",
         "storage": [],
-        "variants": [
-            {
-                "color": "Gris",
-                "hex": "#6B6B6B",
-                "sku": "SM-S938BZSEBVO",
-                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_qI9E4ZaOzVG1HFbrLPlf.png"
-            },
-            {
-                "color": "Plata",
-                "hex": "#C0C0C0",
-                "sku": "SM-S938BZSIBVO",
-                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_H7u4C0FlEXPR3mdeGBtI.png"
-            }
-        ],
-        "sku": "SM-S938BZSEBVO",
-        "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_qI9E4ZaOzVG1HFbrLPlf.png"
+        "variants": [],
+        "sku": "",
+        "image": ""
     },
     {
         "id": 3,
@@ -63,22 +37,9 @@ var products = [
         "description": "Cámara 50 MP, batería 4300 mAh, pantalla 2600 nits y FlexWindow.",
         "badge": "",
         "storage": [],
-        "variants": [
-            {
-                "color": "Gris",
-                "hex": "#6B6B6B",
-                "sku": "SM-S938BZSEBVO",
-                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_qI9E4ZaOzVG1HFbrLPlf.png"
-            },
-            {
-                "color": "Plata",
-                "hex": "#C0C0C0",
-                "sku": "SM-S938BZSIBVO",
-                "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_H7u4C0FlEXPR3mdeGBtI.png"
-            }
-        ],
-        "sku": "SM-S938BZSEBVO",
-        "image": "https://samsung-bolivia.s3.amazonaws.com/product-family-item-image-image/square/product-family-item-image-image_qI9E4ZaOzVG1HFbrLPlf.png"
+        "variants": [],
+        "sku": "",
+        "image": ""
     },
     {
         "id": 4,
