@@ -6,9 +6,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Google Sheets CSV URL
     const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTuLe28pznqPjc7LrqZiDee4yxlO2w1KMhjuxP6-nd-FVM6_V6RrTCOHtnowZsjiOKE9H6YeZ4ycUOH/pub?gid=0&single=true&output=csv';
 
-    // Initial Render - Show static data first (fastest)
-    if (typeof products !== 'undefined') {
+    // Initial Render - Show static data first if valid, otherwise skeleton
+    if (typeof products !== 'undefined' && products.length > 0 && products[0].image && products[0].image !== "") {
         renderProducts(products);
+    } else {
+        renderSkeleton();
     }
 
     // Try to fetch updates
@@ -25,6 +27,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 const parsedProducts = parseCSV(csvText);
                 if (parsedProducts && parsedProducts.length > 0) {
                     console.log('Products updated from Google Sheets');
+                    // Update global products variable so search/filter uses the new data
+                    if (typeof products !== 'undefined') {
+                        // Update existing global variable
+                        // We use Object.assign or array splice if we wanted to keep the reference, 
+                        // but since it is a var, we can just reassign if we are in global scope.
+                        // However, we are in a function. 
+                        // To be safe and ensure we update the global variable that filterProducts uses:
+                        window.products = parsedProducts;
+                    } else {
+                        window.products = parsedProducts;
+                    }
                     renderProducts(parsedProducts);
                 } else {
                     console.warn('Fetched data was empty or invalid');
@@ -278,89 +291,236 @@ function getHexColor(colorName, product = null) {
     return colorMap[colorName] || '#CCCCCC'; // Default gray if not found
 }
 
-function renderProducts(items) {
+function renderSkeleton() {
     const productGrid = document.getElementById('product-grid');
     productGrid.innerHTML = '';
 
+    // Create 8 skeleton cards
+    for (let i = 0; i < 8; i++) {
+        const card = document.createElement('div');
+        card.className = 'skeleton-card';
+        card.innerHTML = `
+            <div class="skeleton-image"></div>
+            <div class="skeleton-content">
+                <div class="skeleton-text title"></div>
+                <div class="skeleton-text"></div>
+                <div class="skeleton-text short"></div>
+                <div class="skeleton-button"></div>
+            </div>
+        `;
+        productGrid.appendChild(card);
+    }
+}
+
+let currentDisplayedProducts = [];
+let displayedCount = 0;
+const PRODUCTS_PER_PAGE = 8;
+let observer;
+
+function renderProducts(items) {
+    const productGrid = document.getElementById('product-grid');
+
+    // Reset if it's a new set of items (not just appending)
+    // We can check if items is different from currentDisplayedProducts source
+    // But for simplicity, let's assume if this function is called, we are resetting or filtering
+
+    // If we are just appending, we should have a separate function or logic
+    // But to keep it simple with existing calls:
+    // We will assume renderProducts is called for a full reset (filter, search, initial load)
+
+    productGrid.innerHTML = '';
+    currentDisplayedProducts = items;
+    displayedCount = 0;
+
     if (items.length === 0) {
-        productGrid.innerHTML = '<div class="no-products-message">No products found.</div>';
+        productGrid.innerHTML = '<div class="no-products-message">No se encontraron productos.</div>';
         return;
     }
 
-    items.forEach(product => {
-        const card = document.createElement('div');
-        card.className = 'product-card';
+    // Disconnect old observer if exists
+    if (observer) {
+        observer.disconnect();
+    }
 
-        // Default to first color
-        const firstColor = product.colors && product.colors.length > 0 ? product.colors[0] : '';
+    // Render first batch
+    loadMoreProducts();
 
-        const badgeHtml = product.badge ? `<span class="badge">${product.badge}</span>` : '';
-
-        // Generate color dots HTML
-        let colorsHtml = '';
-        if (product.colors && product.colors.length > 0) {
-            colorsHtml = `<div class="product-colors-container">
-                <p class="color-label">Color: <span class="selected-color-name">${firstColor}</span></p>
-                <div class="product-colors">
-                    ${product.colors.map((color, index) => {
-                const variant = product.variants && product.variants[color];
-                const variantImage = variant && variant.image ? variant.image : product.image;
-                const variantSku = variant && variant.sku ? variant.sku : product.sku;
-
-                // If no specific variant image, fallback to default logic (though for S3 links it might be static)
-                // We use the variantImage if found, otherwise product.image
-                const imageSrc = variantImage;
-
-                return `
-                        <span class="color-dot ${index === 0 ? 'active' : ''}" 
-                              style="background-color: ${getHexColor(color, product)}" 
-                              data-color="${color}"
-                              data-image="${imageSrc}"
-                              data-sku="${variantSku}"
-                              onclick="changeProductColor(this, 'product-${product.id}')">
-                        </span>
-                        `;
-            }).join('')}
-                </div>
-            </div>`;
-        }
-
-        card.id = `product-${product.id}`;
-        card.innerHTML = `
-            <div class="product-image-container">
-                ${badgeHtml}
-                <img src="${product.image}" alt="${product.name}" class="product-image" id="img-${card.id}">
-            </div>
-            <div class="product-info">
-                <p class="product-sku">${product.sku || ''}</p>
-                <h3 class="product-name">${product.name}</h3>
-                <p class="product-description">${product.description || ''}</p>
-                
-                ${colorsHtml}
-
-                ${product.storage && product.storage.length > 0 ? `
-                <div class="product-storage">
-                    ${product.storage.map((s, i) => `<span class="storage-badge ${i === product.storage.length - 1 ? 'active' : ''}">${s}</span>`).join('')}
-                </div>
-                ` : ''}
-                
-                <div class="price-container">
-                    ${product.originalPrice && product.originalPrice != 0 ? `<p class="original-price">Bs ${Number(product.originalPrice).toLocaleString()}</p>` : ''}
-                    ${product.price && product.price != 0 ? `<p class="product-price">Bs ${Number(product.price).toLocaleString()}</p>` : ''}
-                </div>
-                
-                <button class="buy-btn" onclick="window.open('${product.link}', '_blank')">Más información</button>
-            </div>
-        `;
-
-        productGrid.appendChild(card);
-    });
+    // Setup Intersection Observer for infinite scroll
+    setupInfiniteScroll();
 }
 
-function changeProductColor(dot, cardId) {
+function loadMoreProducts() {
+    const productGrid = document.getElementById('product-grid');
+    const nextBatch = currentDisplayedProducts.slice(displayedCount, displayedCount + PRODUCTS_PER_PAGE);
+
+    if (nextBatch.length === 0) return;
+
+    nextBatch.forEach(product => {
+        const card = createProductCard(product);
+        productGrid.appendChild(card);
+    });
+
+    displayedCount += nextBatch.length;
+}
+
+function setupInfiniteScroll() {
+    const productGrid = document.getElementById('product-grid');
+
+    observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Load more when the sentinel (last element) is visible
+                loadMoreProducts();
+
+                // Update observer to watch the new last element
+                updateObserver();
+            }
+        });
+    }, {
+        root: null,
+        rootMargin: '100px', // Load a bit before reaching bottom
+        threshold: 0.1
+    });
+
+    updateObserver();
+}
+
+function updateObserver() {
+    if (!observer) return;
+
+    // Unobserve everything first (simplest way, though slightly inefficient, but fine for this scale)
+    observer.disconnect();
+
+    const productGrid = document.getElementById('product-grid');
+    const lastCard = productGrid.lastElementChild;
+
+    if (lastCard && displayedCount < currentDisplayedProducts.length) {
+        observer.observe(lastCard);
+    }
+}
+
+function createProductCard(product) {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+
+    // Default to first color
+    const firstColor = product.colors && product.colors.length > 0 ? product.colors[0] : '';
+
+    const badgeHtml = product.badge ? `<span class="badge">${product.badge}</span>` : '';
+
+    // Generate color dots HTML
+    let colorsHtml = '';
+    if (product.colors && product.colors.length > 0) {
+        colorsHtml = `<div class="product-colors-container">
+            <p class="color-label">Color: <span class="selected-color-name">${firstColor}</span></p>
+            <div class="product-colors">
+                ${product.colors.map((color, index) => {
+            const variant = product.variants && product.variants[color];
+            const variantImage = variant && variant.image ? variant.image : product.image;
+            const variantSku = variant && variant.sku ? variant.sku : product.sku;
+
+            // If no specific variant image, fallback to default logic (though for S3 links it might be static)
+            // We use the variantImage if found, otherwise product.image
+            const imageSrc = variantImage;
+
+            return `
+                    <span class="color-dot ${index === 0 ? 'active' : ''}" 
+                          style="background-color: ${getHexColor(color, product)}" 
+                          data-color="${color}"
+                          data-image="${imageSrc}"
+                          data-sku="${variantSku}"
+                          onclick="changeProductColor(this, 'product-${product.id}')">
+                    </span>
+                    `;
+        }).join('')}
+            </div>
+        </div>`;
+    }
+
+    card.id = `product-${product.id}`;
+    card.innerHTML = `
+        <div class="product-image-container">
+            ${badgeHtml}
+            <img src="${product.image}" alt="${product.name}" class="product-image" id="img-${card.id}">
+        </div>
+        <div class="product-info">
+            <p class="product-sku">${product.sku || ''}</p>
+            <h3 class="product-name">${product.name}</h3>
+            <p class="product-description">${product.description || ''}</p>
+            
+            ${colorsHtml}
+
+            ${product.storage && product.storage.length > 0 ? `
+            <div class="product-storage">
+                ${product.storage.map((s, i) => `<span class="storage-badge ${i === product.storage.length - 1 ? 'active' : ''}">${s}</span>`).join('')}
+            </div>
+            ` : ''}
+            
+            <div class="price-container">
+                ${product.originalPrice && product.originalPrice != 0 ? `<p class="original-price">Bs ${Number(product.originalPrice).toLocaleString()}</p>` : ''}
+                ${product.price && product.price != 0 ? `<p class="product-price">Bs ${Number(product.price).toLocaleString()}</p>` : ''}
+            </div>
+            
+            <button class="buy-btn" onclick="window.open('${product.link}', '_blank')">Más información</button>
+        </div>
+    `;
+    // Experimental: Color rotation on hover (Desktop only)
+    card.addEventListener('mouseenter', () => {
+        // Check for desktop/hover capability
+        if (window.matchMedia('(hover: hover)').matches) {
+            const dots = card.querySelectorAll('.color-dot');
+            if (dots.length < 2) return;
+
+            // Clear any existing interval just in case
+            if (card.dataset.rotationInterval) clearInterval(card.dataset.rotationInterval);
+
+            const intervalId = setInterval(() => {
+                const currentDots = card.querySelectorAll('.color-dot');
+                let activeIndex = Array.from(currentDots).findIndex(d => d.classList.contains('active'));
+                let nextIndex = (activeIndex + 1) % currentDots.length;
+
+                // Check if rotation is paused due to manual interaction
+                if (card.dataset.rotationPaused) return;
+
+                // Trigger the color change
+                changeProductColor(currentDots[nextIndex], card.id, true);
+            }, 5000); // Rotates every 5 seconds
+
+            card.dataset.rotationInterval = intervalId;
+        }
+    });
+
+    card.addEventListener('mouseleave', () => {
+        if (card.dataset.rotationInterval) {
+            clearInterval(card.dataset.rotationInterval);
+            delete card.dataset.rotationInterval;
+        }
+    });
+
+    return card;
+}
+
+function changeProductColor(dot, cardId, isAuto = false) {
     // Update active dot
     const card = document.getElementById(cardId);
     if (!card) return;
+
+    // Handle manual interaction pause logic
+    if (!isAuto) {
+        card.dataset.rotationPaused = 'true';
+
+        // Clear existing timeout if any to reset the timer
+        if (card.dataset.pauseTimeout) {
+            clearTimeout(parseInt(card.dataset.pauseTimeout));
+        }
+
+        const timeoutId = setTimeout(() => {
+            delete card.dataset.rotationPaused;
+            delete card.dataset.pauseTimeout;
+        }, 10000); // Pause for 10 seconds
+
+        card.dataset.pauseTimeout = timeoutId;
+    }
 
     const dots = card.querySelectorAll('.color-dot');
     dots.forEach(d => d.classList.remove('active'));
