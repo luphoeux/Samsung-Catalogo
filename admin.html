@@ -399,6 +399,75 @@
             display: inline-block;
             margin-top: 10px;
         }
+
+        /* Refactored Styles for Dynamic Elements */
+        .modal-section {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-section-title {
+            margin-top: 0;
+            margin-bottom: 1rem;
+            color: #1428a0;
+            font-size: 1.1rem;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .storage-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 40px;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .variant-card {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 8px;
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .variant-card h4 {
+            margin: 0 0 10px 0;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        .btn-close-card {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 2px 8px;
+            font-size: 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: #ffdddd;
+            color: #d93025;
+            border: none;
+        }
+
+        .form-grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .color-preview-bar {
+            height: 4px;
+            margin-top: 5px;
+            background: #eee;
+            border-radius: 2px;
+        }
     </style>
 </head>
 
@@ -664,11 +733,8 @@
                     <input type="hidden" id="editProductId">
 
                     <!-- SECCIÓN 1: DATOS GENERALES -->
-                    <div class="form-section"
-                        style="background:#f8f9fa; padding:1.5rem; border-radius:8px; margin-bottom:1.5rem;">
-                        <h3
-                            style="margin-top:0; margin-bottom:1rem; color:#1428a0; font-size:1.1rem; border-bottom:2px solid #ddd; padding-bottom:0.5rem;">
-                            1. Información General</h3>
+                    <div class="modal-section">
+                        <h3 class="modal-section-title">1. Información General</h3>
 
                         <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 1rem;">
                             <div class="form-group">
@@ -698,18 +764,16 @@
                     </div>
 
                     <!-- SECCIÓN 2: ALMACENAMIENTO Y PRECIOS -->
-                    <div class="form-section"
-                        style="background:#f8f9fa; padding:1.5rem; border-radius:8px; margin-bottom:1.5rem;">
-                        <div
-                            style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; border-bottom:2px solid #ddd; padding-bottom:0.5rem;">
-                            <h3 style="margin:0; color:#1428a0; font-size:1.1rem;">2. Almacenamiento y Precios</h3>
+                    <div class="modal-section">
+                        <div class="modal-section-title">
+                            <h3 style="margin:0; font-size:1.1rem;">2. Almacenamiento y Precios</h3>
                             <button type="button" class="btn-secondary" onclick="addStorageRow()"
                                 style="padding:4px 10px; font-size:0.8rem;">+ Agregar Opción</button>
                         </div>
 
                         <div style="background:white; padding:10px; border-radius:4px; border:1px solid #ddd;">
-                            <div
-                                style="display:grid; grid-template-columns: 1fr 1fr 1fr 40px; gap:10px; margin-bottom:10px; font-weight:bold; font-size:0.85rem; color:#666;">
+                            <div class="storage-row"
+                                style="margin-bottom:5px; font-weight:bold; font-size:0.85rem; color:#666; border:none;">
                                 <div>Capacidad / RAM</div>
                                 <div>Precio Oferta (Bs)</div>
                                 <div>Precio Real (Bs)</div>
@@ -724,11 +788,9 @@
                     </div>
 
                     <!-- SECCIÓN 3: VARIANTES Y FOTOS -->
-                    <div class="form-section" style="background:#f8f9fa; padding:1.5rem; border-radius:8px;">
-                        <div
-                            style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; border-bottom:2px solid #ddd; padding-bottom:0.5rem;">
-                            <h3 style="margin:0; color:#1428a0; font-size:1.1rem;">3. Variantes Visuales y Multimedia
-                            </h3>
+                    <div class="modal-section">
+                        <div class="modal-section-title">
+                            <h3 style="margin:0; font-size:1.1rem;">3. Variantes Visuales y Multimedia</h3>
                             <button type="button" class="btn-secondary" onclick="addRefinedVariantRow()"
                                 style="padding:4px 10px; font-size:0.8rem;">+ Agregar Variante</button>
                         </div>

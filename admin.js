@@ -65,14 +65,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Export color-variables.js file
+    // Export color variables as Excel
     window.exportColorVariables = function () {
-        const content = `// Color Variables\n// Este archivo contiene las variables globales de colores\nvar colorVariables = ${JSON.stringify(colorVariables, null, 4)};\n`;
-        const blob = new Blob([content], { type: 'text/javascript' });
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = 'color-variables.js';
-        link.click();
-        alert('✅ Archivo color-variables.js descargado.');
+        const data = [['Nombre del Color', 'Código Hex']];
+
+        if (typeof colorVariables !== 'undefined') {
+            Object.keys(colorVariables).sort().forEach(color => {
+                data.push([color, colorVariables[color]]);
+            });
+        }
+
+        const wb = XLSX.utils.book_new();
+        const ws = XLSX.utils.aoa_to_sheet(data);
+        ws['!cols'] = [{ wch: 30 }, { wch: 15 }];
+
+        XLSX.utils.book_append_sheet(wb, ws, 'Colores');
+        XLSX.writeFile(wb, 'Samsung_Colores.xlsx');
     }
 
     // Reset to original data.js
@@ -91,6 +99,49 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof products === 'undefined') {
         alert('Error: No se encontraron datos de productos (data.js no cargado).');
         return;
+    }
+
+    // --- Helper: Normalize Product Data ---
+    window.normalizeProduct = function (p) {
+        const norm = { ...p };
+
+        // 1. Storage Options
+        if (!norm.storageOptions || !Array.isArray(norm.storageOptions)) {
+            norm.storageOptions = [];
+            // Migration from legacy 'storage' string/array
+            if (norm.storage) {
+                if (Array.isArray(norm.storage)) {
+                    norm.storage.forEach(cap => {
+                        norm.storageOptions.push({
+                            capacity: cap,
+                            price: norm.price || 0,
+                            originalPrice: norm.originalPrice || 0
+                        });
+                    });
+                } else {
+                    norm.storageOptions.push({
+                        capacity: String(norm.storage),
+                        price: norm.price || 0,
+                        originalPrice: norm.originalPrice || 0
+                    });
+                }
+            }
+        }
+
+        // 2. Variants (Ensure images array exists)
+        if (!norm.variants || !Array.isArray(norm.variants)) {
+            norm.variants = [];
+        } else {
+            norm.variants = norm.variants.map(v => {
+                const nv = { ...v };
+                if (!nv.images || !Array.isArray(nv.images)) {
+                    nv.images = [];
+                    if (nv.image) nv.images.push(nv.image);
+                }
+                return nv;
+            });
+        }
+        return norm;
     }
 
     // Category definitions
@@ -597,7 +648,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const container = document.getElementById('storageContainer');
         const div = document.createElement('div');
         div.className = 'storage-row';
-        div.style.cssText = 'display:grid; grid-template-columns: 1fr 1fr 1fr 40px; gap:10px; margin-bottom:10px;';
+        // Styles moved to admin.html .storage-row class
 
         div.innerHTML = `
             <input type="text" class="form-input sto-capacity" placeholder="Ej: 256GB" value="${data.capacity || ''}">
@@ -613,7 +664,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const container = document.getElementById('variantsContainer');
         const card = document.createElement('div');
         card.className = 'variant-card';
-        card.style.cssText = 'background:white; border:1px solid #ddd; padding:15px; border-radius:8px; position:relative;';
+        // Styles moved to admin.html .variant-card class
 
         // Build color options
         let colorOptions = '<option value="">Seleccionar color...</option>';
@@ -629,16 +680,16 @@ document.addEventListener('DOMContentLoaded', () => {
         // Helper to format images array to string
         let imagesStr = '';
         if (Array.isArray(data.images)) {
-            imagesStr = data.images.join('\n');
+            imagesStr = data.images.join('\\n');
         } else if (data.image) {
             imagesStr = data.image; // fallback for legacy data
         }
 
         card.innerHTML = `
-            <button type="button" class="btn-danger" style="position:absolute; top:10px; right:10px; padding:2px 8px; font-size:12px; border-radius:4px; cursor:pointer;" onclick="this.parentElement.remove()">Eliminar</button>
+            <button type="button" class="btn-close-card" onclick="this.parentElement.remove()">Eliminar</button>
             <h4 style="margin:0 0 10px 0; color:#555; font-size: 0.9rem;">Detalles de Variante</h4>
             
-            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-bottom:10px;">
+            <div class="form-grid-2">
                 <!-- Color Selection -->
                 <div>
                     <label class="form-label" style="font-size:0.75rem;">Color</label>
@@ -646,7 +697,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         ${colorOptions}
                     </select>
                     <input type="text" class="form-input var-color-custom" placeholder="Nombre del color" value="${isCustom ? (data.color || '') : ''}" style="display:${isCustom ? 'block' : 'none'}; margin-top:5px;">
-                    <div class="var-color-preview" style="height:4px; margin-top:5px; background:${data.hex || '#eee'}; border-radius:2px;"></div>
+                    <div class="color-preview-bar var-color-preview" style="background:${data.hex || '#eee'};"></div>
                     <input type="hidden" class="var-hex" value="${data.hex || ''}">
                 </div>
 
@@ -947,7 +998,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td>
                     <span class="action-icon" title="Editar" onclick="window.editColor('${colorName.replace(/'/g, "\\'")}')">✏️</span>
                     <span class="action-icon" title="Eliminar" onclick="window.deleteColor('${colorName.replace(/'/g, "\\'")}')">🗑️</span>
-                </td>
+                </td >
             `;
             colorsTableBody.appendChild(tr);
         });
@@ -1050,7 +1101,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         if (inUse) {
-            if (!confirm(`El color "${colorName}" está en uso. ¿Estás seguro de eliminarlo? Los productos mantendrán el color pero sin referencia.`)) {
+            if (!confirm(`El color "${colorName}" está en uso. ¿Estás seguro de eliminarlo ? Los productos mantendrán el color pero sin referencia.`)) {
                 return;
             }
         }
@@ -1061,16 +1112,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function saveColorVariables() {
-        // Create the file content
-        const content = `// Color Variables\n// Este archivo contiene las variables globales de colores\nvar colorVariables = ${JSON.stringify(colorVariables, null, 4)};\n`;
+        // Use API to save directly to Excel
+        const btn = document.getElementById('saveVariablesBtn');
+        const originalText = btn ? btn.innerHTML : '💾 Guardar Variables';
+        if (btn) btn.innerHTML = '⏳ Guardando...';
 
-        // Download as file
-        const blob = new Blob([content], { type: 'text/javascript' });
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = 'color-variables.js';
-        link.click();
-
-        alert('✅ Archivo color-variables.js descargado. Reemplázalo en tu proyecto para aplicar los cambios.');
+        fetch('/api/save-colors', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(colorVariables)
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('✅ ' + data.message);
+                } else {
+                    alert('❌ Error al guardar: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('❌ Error de conexión. Asegúrate de que el servidor esté corriendo.');
+            })
+            .finally(() => {
+                if (btn) btn.innerHTML = originalText;
+            });
     }
 });

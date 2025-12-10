@@ -67,6 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initial Render - Show static data first if valid, otherwise skeleton
     if (typeof products !== 'undefined' && products.length > 0 && (products[0].image || isPreview)) {
+        updateTabsVisibility();
         renderProducts(products);
     } else {
         renderSkeleton();
@@ -99,6 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     } else {
                         window.products = parsedProducts;
                     }
+                    updateTabsVisibility();
                     renderProducts(parsedProducts);
                 } else {
                     console.warn('Fetched data was empty or invalid');
@@ -320,36 +322,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-const colorMap = {
-    "Sombra Azul": "#1C2E4A",
-    "Sombra Plata": "#C0C0C0",
-    "Negro Azabache": "#000000",
-    "Menta": "#98FF98",
-    "Plata Titanio": "#C0C0C0",
-    "Negro Titanio": "#333333",
-    "Violeta Titanio": "#8A2BE2",
-    "Amarillo Titanio": "#FFD700",
-    "Gris Titanio": "#808080",
-    "Azul Intenso": "#0000FF",
-    "Negro Intenso": "#000000",
-    "Negro Onix": "#353839",
-    "Gris Marmol": "#808080",
-    "Violeta Cobalto": "#3D0C02",
-    "Amarillo Ambar": "#FFBF00",
-    "Cream": "#FFFDD0",
-    "Phantom Black": "#000000",
-    "Icy Blue": "#E0FFFF",
-    "Graphite": "#41424C",
-    "Lavender": "#E6E6FA",
-    "Mint": "#98FF98",
-    "Negro": "#000000"
-};
-
 function getHexColor(colorName, product = null) {
     if (product && product.colorCodes && product.colorCodes[colorName]) {
         return product.colorCodes[colorName];
     }
-    return colorMap[colorName] || '#CCCCCC'; // Default gray if not found
+    // Check global colorVariables (loaded from color-variables.js)
+    if (typeof colorVariables !== 'undefined' && colorVariables[colorName]) {
+        return colorVariables[colorName];
+    }
+    return '#CCCCCC'; // Default gray if not found
 }
 
 function renderSkeleton() {
@@ -636,3 +617,46 @@ function changeProductColor(dot, cardId, isAuto = false) {
         skuEl.textContent = newSku;
     }
 }
+
+function updateTabsVisibility() {
+    if (typeof products === 'undefined' || !Array.isArray(products)) return;
+
+    const counts = {};
+    products.forEach(p => {
+        if (p.category) {
+            if (!counts[p.category]) counts[p.category] = 0;
+            counts[p.category]++;
+        }
+    });
+
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    let visibleCount = 0;
+
+    filterBtns.forEach(btn => {
+        const cat = btn.getAttribute('data-category');
+        if (cat === 'all') {
+            if (products.length > 0) {
+                btn.style.display = 'inline-block';
+                visibleCount++;
+            } else {
+                btn.style.display = 'none';
+            }
+        } else {
+            if (counts[cat] && counts[cat] > 0) {
+                btn.style.display = 'inline-block';
+                visibleCount++;
+            } else {
+                btn.style.display = 'none';
+            }
+        }
+    });
+
+    const activeBtn = document.querySelector('.filter-btn.active');
+    if (activeBtn && activeBtn.style.display === 'none') {
+        const allBtn = document.querySelector('.filter-btn[data-category="all"]');
+        if (allBtn && allBtn.style.display !== 'none') {
+            allBtn.click();
+        }
+    }
+}
+

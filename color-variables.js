@@ -1,5 +1,5 @@
 // Color Variables
-// Este archivo contiene las variables globales de colores
+// Auto-generated from database/Samsung_Colores.xlsx
 var colorVariables = {
     "Azul": "#8d93a4",
     "Azul Claro": "#d9e6f4",

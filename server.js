@@ -16,8 +16,67 @@ const MIME_TYPES = {
     '.ico': 'image/x-icon',
 };
 
+const xlsx = require('xlsx');
+
 const server = http.createServer((req, res) => {
     console.log(`Request: ${req.url}`);
+
+    // API Endpoint: Save Colors
+    if (req.method === 'POST' && req.url === '/api/save-colors') {
+        let body = '';
+        req.on('data', chunk => {
+            body += chunk.toString();
+        });
+        req.on('end', () => {
+            try {
+                const colors = JSON.parse(body);
+                const excelPath = path.join(__dirname, 'database', 'Samsung_Colores.xlsx');
+                const jsPath = path.join(__dirname, 'color-variables.js');
+
+                // 1. Update Excel
+                let workbook;
+                try {
+                    if (fs.existsSync(excelPath)) {
+                        workbook = xlsx.readFile(excelPath);
+                    } else {
+                        workbook = xlsx.utils.book_new();
+                    }
+                } catch (readErr) {
+                    workbook = xlsx.utils.book_new();
+                }
+
+                // Convert object to array of arrays for Excel
+                const data = [['Nombre del Color', 'Código Hex']];
+                Object.keys(colors).sort().forEach(key => {
+                    data.push([key, colors[key]]);
+                });
+
+                const newSheet = xlsx.utils.aoa_to_sheet(data);
+                newSheet['!cols'] = [{ wch: 30 }, { wch: 15 }];
+
+                // Replace or append 'Colores' sheet
+                if (workbook.Sheets['Colores']) {
+                    workbook.Sheets['Colores'] = newSheet;
+                } else {
+                    xlsx.utils.book_append_sheet(workbook, newSheet, 'Colores');
+                }
+
+                xlsx.writeFile(workbook, excelPath);
+
+                // 2. Update color-variables.js (Client "Database")
+                const jsContent = `// Color Variables\n// Auto-generated from Admin Panel\nvar colorVariables = ${JSON.stringify(colors, null, 4)};\n`;
+                fs.writeFileSync(jsPath, jsContent);
+
+                res.writeHead(200, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ success: true, message: 'Colores guardados en Excel y actualizados.' }));
+            } catch (err) {
+                console.error('Error saving colors:', err);
+                res.writeHead(500, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ success: false, message: err.message }));
+            }
+        });
+        return;
+    }
 
     let filePath = '.' + req.url;
     if (filePath === './') {
