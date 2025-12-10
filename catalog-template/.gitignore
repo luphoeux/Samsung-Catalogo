@@ -1,0 +1,13 @@
+# Archivos generados automáticamente
+data.js
+
+# Node modules
+node_modules/
+
+# Archivos temporales
+*.tmp
+*.log
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
