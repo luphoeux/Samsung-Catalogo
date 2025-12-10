@@ -7,18 +7,46 @@
     <title>Admin - Creador de Catálogo Samsung</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Admin Specific Styles */
-        body {
-            background-color: #f4f7f6;
-            display: flex;
-            min-height: 100vh;
+        /* ========================================
+           JULIUS'S IMPROVED ADMIN STYLES
+           Modern, maintainable, and beautiful
+        ======================================== */
+
+        /* CSS Variables for Consistency */
+        :root {
+            --sidebar-width: 260px;
+            --header-height: 70px;
+            --primary-color: #1428a0;
+            --primary-hover: #0d1b6e;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --text-main: #333;
+            --text-muted: #666;
+            --border-color: #e0e0e0;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+            --radius-md: 12px;
+            --radius-lg: 16px;
         }
 
+        /* Base Styles */
+        body {
+            background-color: var(--bg-color);
+            display: flex;
+            min-height: 100vh;
+            font-family: 'SamsungOne', sans-serif;
+            color: var(--text-main);
+        }
+
+        /* ========================================
+           SIDEBAR
+        ======================================== */
         .sidebar {
-            width: 250px;
-            background-color: #fff;
+            width: var(--sidebar-width);
+            background-color: var(--card-bg);
             border-right: 1px solid var(--border-color);
-            padding: 2rem;
+            padding: 2rem 1.5rem;
             display: flex;
             flex-direction: column;
             position: fixed;
@@ -26,6 +54,7 @@
             left: 0;
             top: 0;
             z-index: 100;
+            transition: transform 0.3s ease;
         }
 
         .sidebar-logo {
@@ -34,222 +63,254 @@
             margin-bottom: 3rem;
             color: var(--samsung-black);
             font-family: 'SamsungSharpSans', sans-serif;
-        }
-
-        .nav-item {
-            padding: 1rem;
-            color: #666;
-            cursor: pointer;
-            border-radius: 8px;
-            transition: all 0.2s;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
+            padding-left: 0.5rem;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .nav-item:hover,
-        .nav-item.active {
-            background-color: var(--samsung-gray);
-            color: var(--samsung-blue);
+        .nav-item {
+            padding: 1rem 1.2rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-radius: var(--radius-md);
+            transition: all 0.2s;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
         }
 
+        .nav-item:hover {
+            background-color: #f8f9fa;
+            color: var(--primary-color);
+            transform: translateX(4px);
+        }
+
+        .nav-item.active {
+            background-color: rgba(20, 40, 160, 0.08);
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .sidebar-footer {
+            margin-top: auto;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* ========================================
+           MAIN CONTENT
+        ======================================== */
         .main-content {
-            margin-left: 250px;
+            margin-left: var(--sidebar-width);
             flex: 1;
-            padding: 2rem;
-            width: calc(100% - 250px);
+            padding: 2rem 3rem;
+            width: calc(100% - var(--sidebar-width));
         }
 
         .view-section {
             display: none;
+            animation: fadeIn 0.4s ease;
         }
 
         .view-section.active {
             display: block;
         }
 
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ========================================
+           HEADER & ACTIONS
+        ======================================== */
         .header-actions {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
+            align-items: flex-end;
+            margin-bottom: 2.5rem;
         }
 
         .page-title {
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 700;
+            color: var(--samsung-black);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
         }
 
+        .page-subtitle {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        /* ========================================
+           BUTTONS
+        ======================================== */
         .btn-primary {
-            background-color: var(--samsung-blue);
+            background-color: var(--primary-color);
             color: white;
             border: none;
-            padding: 0.8rem 1.5rem;
+            padding: 0.8rem 1.8rem;
             border-radius: 2rem;
             font-weight: 600;
             cursor: pointer;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 8px;
-            transition: background-color 0.2s;
+            transition: all 0.2s;
+            box-shadow: 0 4px 10px rgba(20, 40, 160, 0.2);
         }
 
         .btn-primary:hover {
-            background-color: #0d1b6e;
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(20, 40, 160, 0.3);
         }
 
         .btn-secondary {
             background-color: white;
-            color: var(--samsung-black);
+            color: var(--text-main);
             border: 1px solid var(--border-color);
             padding: 0.8rem 1.5rem;
             border-radius: 2rem;
             font-weight: 600;
             cursor: pointer;
-            margin-right: 10px;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .products-table-container {
-            background: white;
-            border-radius: 1rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            overflow: hidden;
+        .btn-secondary:hover {
+            background-color: #f8f9fa;
+            border-color: #ccc;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th,
-        td {
-            padding: 1rem;
-            text-align: left;
-            border-bottom: 1px solid #eee;
-        }
-
-        th {
-            background-color: #f9f9f9;
+        .btn-danger {
+            background-color: #ffebee;
+            color: #c62828;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
             font-weight: 600;
-            color: #444;
-            font-size: 0.9rem;
-            text-transform: uppercase;
+            transition: background 0.2s;
         }
 
-        td {
-            vertical-align: middle;
+        .btn-danger:hover {
+            background-color: #ffcdd2;
         }
 
-        .product-mini-img {
-            width: 50px;
-            height: 50px;
-            object-fit: contain;
-            border-radius: 4px;
-            border: 1px solid #eee;
-            background: white;
-        }
-
-        .action-icon {
-            cursor: pointer;
-            color: #888;
-            margin: 0 5px;
-            font-size: 1.2rem;
-        }
-
-        .action-icon:hover {
-            color: var(--samsung-blue);
-        }
-
-        input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            accent-color: var(--samsung-blue);
-            cursor: pointer;
-        }
-
-        /* Filter bar in admin */
-        .admin-filters {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .search-admin {
-            flex: 1;
-            padding: 0.8rem 1rem;
-            border: 1px solid #ddd;
+        .btn-add {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            border: none;
+            padding: 8px 16px;
             border-radius: 8px;
-            font-family: inherit;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
         }
 
-        .select-filter {
-            padding: 0.8rem 1rem;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background: white;
-            min-width: 150px;
+        .btn-add:hover {
+            background-color: #c8e6c9;
+            transform: translateY(-1px);
         }
 
-        /* Catalogs Grid */
+        .btn-sm {
+            padding: 5px 10px;
+            font-size: 0.8rem;
+        }
+
+        /* ========================================
+           CARDS & GRID
+        ======================================== */
         .catalogs-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
             margin-top: 2rem;
         }
 
         .catalog-card {
-            background: white;
-            border-radius: 1rem;
-            padding: 1.5rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            transition: transform 0.2s;
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
             cursor: pointer;
+            border: 1px solid transparent;
         }
 
         .catalog-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(20, 40, 160, 0.1);
         }
 
         .catalog-header {
             display: flex;
             justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .catalog-icon {
+            width: 50px;
+            height: 50px;
+            background-color: #eef2ff;
+            border-radius: 12px;
+            display: flex;
             align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--primary-color);
             margin-bottom: 1rem;
         }
 
         .catalog-title {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: 700;
             color: var(--samsung-black);
         }
 
         .catalog-count {
-            background: var(--samsung-gray);
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 0.85rem;
+            background: #f0f0f0;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
             font-weight: 600;
+            color: #666;
         }
 
         .catalog-actions {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 0.5rem;
-            margin-top: 1rem;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
         }
 
         .catalog-btn {
-            padding: 0.6rem;
+            padding: 0.7rem;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             font-weight: 600;
             cursor: pointer;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             transition: transform 0.2s;
+            text-align: center;
         }
 
         .catalog-btn:hover {
@@ -258,21 +319,132 @@
 
         .catalog-btn.preview {
             background: #e3f2fd;
-            color: #1976d2;
+            color: #1565c0;
         }
 
         .catalog-btn.view {
             background: #fff3e0;
-            color: #f57c00;
+            color: #ef6c00;
         }
 
         .catalog-btn.export {
             background: #e8f5e9;
-            color: #388e3c;
+            color: #2e7d32;
             grid-column: span 2;
         }
 
-        /* Modal Styles */
+        /* ========================================
+           TABLES
+        ======================================== */
+        .products-table-container {
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background-color: #fafafa;
+            padding: 1.2rem 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: #555;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        td {
+            padding: 1rem;
+            vertical-align: middle;
+            border-bottom: 1px solid #eee;
+            color: #333;
+        }
+
+        tr:hover td {
+            background-color: #fcfcfc;
+        }
+
+        .product-mini-img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            border-radius: 8px;
+            border: 1px solid #eee;
+            background: white;
+            padding: 2px;
+        }
+
+        .action-icon {
+            cursor: pointer;
+            padding: 6px;
+            border-radius: 6px;
+            transition: background 0.2s;
+            font-size: 1.1rem;
+            display: inline-block;
+        }
+
+        .action-icon:hover {
+            background-color: #f0f0f0;
+        }
+
+        input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary-color);
+            cursor: pointer;
+        }
+
+        /* ========================================
+           FILTERS
+        ======================================== */
+        .admin-filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            background: white;
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .search-admin,
+        .select-filter {
+            padding: 0.8rem 1.2rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: border-color 0.2s;
+        }
+
+        .search-admin:focus,
+        .select-filter:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(20, 40, 160, 0.1);
+        }
+
+        .search-admin {
+            flex: 1;
+        }
+
+        .select-filter {
+            background: white;
+            min-width: 150px;
+        }
+
+        /* ========================================
+           MODAL
+        ======================================== */
         .modal {
             display: none;
             position: fixed;
@@ -282,54 +454,109 @@
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
             align-items: center;
             justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
         }
 
         .modal.active {
             display: flex;
+            opacity: 1;
         }
 
         .modal-content {
             background-color: white;
-            padding: 2rem;
-            border-radius: 1rem;
-            width: 90%;
-            max-width: 800px;
+            border-radius: var(--radius-lg);
+            width: 95%;
+            max-width: 900px;
             max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            transform: scale(0.95);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
         }
 
         .modal-header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--border-color);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 2rem;
         }
 
         .modal-title {
             font-size: 1.5rem;
             font-weight: 700;
+            color: var(--samsung-black);
         }
 
         .close-modal {
             background: none;
             border: none;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
+            color: #999;
             cursor: pointer;
-            color: #666;
+            transition: color 0.2s;
+        }
+
+        .close-modal:hover {
+            color: #333;
+        }
+
+        .modal-body {
+            padding: 2rem;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .modal-footer {
+            padding: 1.5rem 2rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            background-color: #fafafa;
+            border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+        }
+
+        /* ========================================
+           FORMS IN MODAL
+        ======================================== */
+        .modal-section {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 2rem;
+        }
+
+        .modal-section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px solid #f0f0f0;
         }
 
         .form-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(2, 1fr);
             gap: 1.5rem;
         }
 
         .form-group {
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
         }
 
         .form-group.full-width {
@@ -348,10 +575,21 @@
         .form-select,
         .form-textarea {
             width: 100%;
-            padding: 0.8rem;
+            padding: 0.8rem 1rem;
             border: 1px solid #ddd;
             border-radius: 8px;
             font-family: inherit;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+            background-color: #fff;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(20, 40, 160, 0.1);
         }
 
         .form-textarea {
@@ -359,81 +597,37 @@
             min-height: 80px;
         }
 
-        .variants-section {
-            grid-column: span 2;
-            background: #f9f9f9;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-top: 1rem;
-        }
-
-        .variant-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr auto;
-            gap: 10px;
-            margin-bottom: 10px;
-            align-items: end;
-        }
-
-        .btn-sm {
-            padding: 5px 10px;
-            font-size: 0.8rem;
-        }
-
-        .btn-danger {
-            background-color: #ffdddd;
-            color: #d93025;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .btn-add {
-            background-color: #e6f4ea;
-            color: #1e8e3e;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 600;
-            display: inline-block;
-            margin-top: 10px;
-        }
-
-        /* Refactored Styles for Dynamic Elements */
-        .modal-section {
-            background: #f8f9fa;
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-        }
-
-        .modal-section-title {
-            margin-top: 0;
-            margin-bottom: 1rem;
-            color: #1428a0;
-            font-size: 1.1rem;
-            border-bottom: 2px solid #ddd;
-            padding-bottom: 0.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
+        /* ========================================
+           STORAGE ROWS
+        ======================================== */
         .storage-row {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr 40px;
-            gap: 10px;
+            grid-template-columns: 2fr 1.5fr 1.5fr auto;
+            gap: 15px;
             margin-bottom: 10px;
+            align-items: center;
+            background: #f9fafb;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #eee;
         }
 
+        /* ========================================
+           VARIANT CARDS
+        ======================================== */
         .variant-card {
             background: white;
-            border: 1px solid #ddd;
-            padding: 15px;
-            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            padding: 1.2rem;
+            border-radius: var(--radius-md);
             position: relative;
-            margin-bottom: 15px;
+            transition: all 0.2s;
+            margin-bottom: 1rem;
+        }
+
+        .variant-card:hover {
+            border-color: #ccc;
+            box-shadow: var(--shadow-sm);
         }
 
         .variant-card h4 {
@@ -446,13 +640,19 @@
             position: absolute;
             top: 10px;
             right: 10px;
-            padding: 2px 8px;
-            font-size: 12px;
-            border-radius: 4px;
+            padding: 4px 10px;
+            font-size: 11px;
+            border-radius: 6px;
             cursor: pointer;
-            background-color: #ffdddd;
-            color: #d93025;
+            background-color: #ffebee;
+            color: #c62828;
             border: none;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .btn-close-card:hover {
+            background-color: #ffcdd2;
         }
 
         .form-grid-2 {
@@ -468,6 +668,25 @@
             background: #eee;
             border-radius: 2px;
         }
+
+        /* ========================================
+           LEGACY SUPPORT
+        ======================================== */
+        .variants-section {
+            grid-column: span 2;
+            background: #f9f9f9;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .variant-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr auto;
+            gap: 10px;
+            margin-bottom: 10px;
+            align-items: end;
+        }
     </style>
 </head>
 
@@ -479,6 +698,9 @@
         </div>
         <div class="nav-item active" data-view="catalogs">
             <span>📚</span> Catálogos
+        </div>
+        <div class="nav-item" data-view="categories">
+            <span>🏷️</span> Categorías
         </div>
         <div class="nav-item" data-view="config">
             <span>⚙️</span> Variables
@@ -634,6 +856,48 @@
             </div>
         </div>
 
+        <!-- CATEGORIES VIEW -->
+        <div id="categoriesView" class="view-section">
+            <div class="header-actions">
+                <div>
+                    <h1 class="page-title">Gestión de Categorías</h1>
+                    <p style="color: #666; margin-top: 5px;">Administra las categorías de productos del catálogo</p>
+                </div>
+                <div>
+                    <button class="btn-secondary" id="addCategoryBtn"
+                        style="color: var(--primary-color); border-color: var(--primary-color);">
+                        <span>+</span> Nueva Categoría
+                    </button>
+                </div>
+            </div>
+
+            <div
+                style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
+                <h3 style="margin-bottom: 1.5rem; font-size: 1.2rem;">🏷️ Categorías del Sistema</h3>
+
+                <div class="admin-filters" style="margin-bottom: 1rem;">
+                    <input type="text" class="search-admin" placeholder="Buscar categoría..." id="categorySearch">
+                </div>
+
+                <div style="overflow-x: auto;">
+                    <table style="font-size: 0.9rem;">
+                        <thead>
+                            <tr>
+                                <th width="60">Icono</th>
+                                <th width="150">ID (Key)</th>
+                                <th width="200">Nombre</th>
+                                <th width="120">Productos</th>
+                                <th width="100">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="categoriesTableBody">
+                            <!-- Category rows will be injected here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
         <!-- VARIABLES VIEW -->
         <div id="configView" class="view-section">
             <div class="header-actions">
@@ -714,6 +978,50 @@
                 <div style="margin-top: 2rem; text-align: right;">
                     <button type="button" class="btn-secondary" id="cancelColorBtn">Cancelar</button>
                     <button type="submit" class="btn-primary" style="display: inline-flex;">Guardar Color</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Category Edit Modal -->
+    <div id="categoryModal" class="modal">
+        <div class="modal-content" style="max-width: 550px;">
+            <div class="modal-header">
+                <h2 class="modal-title" id="categoryModalTitle">Editar Categoría</h2>
+                <button class="close-modal" id="closeCategoryModal">&times;</button>
+            </div>
+            <form id="categoryForm">
+                <input type="hidden" id="editCategoryOldKey">
+
+                <div class="form-group">
+                    <label class="form-label">ID de Categoría (Key)</label>
+                    <input type="text" class="form-input" id="categoryKey" required placeholder="Ej: smartphones"
+                        pattern="[a-z_]+">
+                    <small style="color: #666; font-size: 0.85rem;">Solo letras minúsculas y guiones bajos. Ej:
+                        smartphones, washing_machines</small>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Nombre de la Categoría</label>
+                    <input type="text" class="form-input" id="categoryName" required placeholder="Ej: Smartphones">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Icono (Emoji)</label>
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <input type="text" class="form-input" id="categoryIcon" required placeholder="📱" maxlength="2"
+                            style="flex: 1;">
+                        <div style="font-size: 2rem; padding: 8px; background: #f5f5f5; border-radius: 8px; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;"
+                            id="categoryIconPreview">
+                            📱
+                        </div>
+                    </div>
+                    <small style="color: #666; font-size: 0.85rem;">Sugerencias: 📱 📺 💻 ⌚ 🎧 ❄️ 🧺 🏠 🔌</small>
+                </div>
+
+                <div style="margin-top: 2rem; text-align: right;">
+                    <button type="button" class="btn-secondary" id="cancelCategoryBtn">Cancelar</button>
+                    <button type="submit" class="btn-primary" style="display: inline-flex;">Guardar Categoría</button>
                 </div>
             </form>
         </div>

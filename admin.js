@@ -144,8 +144,105 @@ document.addEventListener('DOMContentLoaded', () => {
         return norm;
     }
 
-    // Category definitions
-    const categories = {
+    // --- IMPROVEMENT 1: Clean up experimental or unverified data entry ---
+    window.validateAndCleanProduct = function (product) {
+        const cleaned = { ...product };
+
+        // Remove empty or invalid fields
+        if (!cleaned.name || cleaned.name.trim() === '') {
+            console.warn(`Product ${cleaned.id} has no name`);
+            return null;
+        }
+
+        // Clean up variants - remove empty ones
+        if (cleaned.variants && Array.isArray(cleaned.variants)) {
+            cleaned.variants = cleaned.variants.filter(v => {
+                return v.color && v.color.trim() !== '';
+            });
+        }
+
+        // Clean up storage options - remove invalid ones
+        if (cleaned.storageOptions && Array.isArray(cleaned.storageOptions)) {
+            cleaned.storageOptions = cleaned.storageOptions.filter(s => {
+                return s.capacity && s.capacity.trim() !== '' && s.price >= 0;
+            });
+        }
+
+        // Ensure required fields have defaults
+        cleaned.price = cleaned.price || 0;
+        cleaned.category = cleaned.category || 'accessories';
+
+        return cleaned;
+    }
+
+    // --- IMPROVEMENT 3: Implement logic for missing variants in placeholders ---
+    window.fillMissingVariantPlaceholders = function (product, maxVariants = 5) {
+        const filled = { ...product };
+
+        if (!filled.variants) {
+            filled.variants = [];
+        }
+
+        // Fill missing variants with placeholders
+        while (filled.variants.length < maxVariants) {
+            filled.variants.push({
+                sku: '',
+                color: '',
+                hex: '',
+                link: '',
+                images: [],
+                image: '',
+                isPlaceholder: true
+            });
+        }
+
+        return filled;
+    }
+
+    // --- IMPROVEMENT 2: Refactor logic for updating color placeholders ---
+    window.updateColorInProducts = function (colorName, newHex) {
+        let updatedCount = 0;
+
+        products.forEach(product => {
+            if (product.variants && Array.isArray(product.variants)) {
+                product.variants.forEach(variant => {
+                    if (variant.color === colorName) {
+                        variant.hex = newHex;
+                        updatedCount++;
+                    }
+                });
+            }
+        });
+
+        console.log(`Updated ${updatedCount} variant(s) with color "${colorName}"`);
+        return updatedCount;
+    }
+
+    window.syncColorVariablesWithProducts = function () {
+        // Sync all color hex codes from colorVariables to products
+        let syncedCount = 0;
+
+        products.forEach(product => {
+            if (product.variants && Array.isArray(product.variants)) {
+                product.variants.forEach(variant => {
+                    if (variant.color && colorVariables[variant.color]) {
+                        variant.hex = colorVariables[variant.color];
+                        syncedCount++;
+                    }
+                });
+            }
+        });
+
+        console.log(`Synced ${syncedCount} variant color(s) from color variables`);
+        return syncedCount;
+    }
+
+    // ==================== CATEGORY MANAGEMENT SYSTEM ====================
+
+    const CATEGORIES_STORAGE_KEY = 'samsung_catalog_categories';
+
+    // Default categories (11 initial categories)
+    const defaultCategories = {
         smartphones: { name: 'Smartphones', icon: '📱' },
         tablets: { name: 'Tablets', icon: '📱' },
         smartwatches: { name: 'Smartwatches', icon: '⌚' },
@@ -158,6 +255,45 @@ document.addEventListener('DOMContentLoaded', () => {
         kitchen_cleaning: { name: 'Línea Blanca', icon: '🏠' },
         accessories: { name: 'Accesorios', icon: '🔌' }
     };
+
+    // Load categories from localStorage or use defaults
+    let categories = {};
+    try {
+        const savedCategories = localStorage.getItem(CATEGORIES_STORAGE_KEY);
+        if (savedCategories) {
+            categories = JSON.parse(savedCategories);
+            console.log('✅ Categorías cargadas desde localStorage');
+        } else {
+            categories = { ...defaultCategories };
+            localStorage.setItem(CATEGORIES_STORAGE_KEY, JSON.stringify(categories));
+            console.log('✅ Categorías inicializadas con valores por defecto');
+        }
+    } catch (e) {
+        console.error('Error cargando categorías:', e);
+        categories = { ...defaultCategories };
+    }
+
+    // Save categories to localStorage
+    function saveCategories() {
+        try {
+            localStorage.setItem(CATEGORIES_STORAGE_KEY, JSON.stringify(categories));
+            console.log('💾 Categorías guardadas');
+            autoSave(); // Also trigger general auto-save
+        } catch (e) {
+            console.error('Error guardando categorías:', e);
+        }
+    }
+
+    // Export categories to JSON file
+    window.exportCategories = function () {
+        const content = `var categories = ${JSON.stringify(categories, null, 4)};\\n`;
+        const blob = new Blob([content], { type: 'application/json' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'categories.json';
+        link.click();
+        alert('✅ Categorías exportadas correctamente');
+    }
 
     // State
     let filteredProducts = [...products];
@@ -219,6 +355,9 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (view === 'catalogs') {
             document.getElementById('catalogsView').classList.add('active');
             renderCatalogs();
+        } else if (view === 'categories') {
+            document.getElementById('categoriesView').classList.add('active');
+            renderCategoriesTable();
         } else if (view === 'config') {
             document.getElementById('configView').classList.add('active');
         }
@@ -458,7 +597,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
         const category = categoryFilter ? categoryFilter.value : 'all';
 
-        filteredProducts = products.filter(product => {
+        // IMPROVEMENT 1: Clean and validate products before filtering
+        const validProducts = products.map(p => validateAndCleanProduct(p)).filter(p => p !== null);
+
+        filteredProducts = validProducts.filter(product => {
             const matchesSearch = product.name.toLowerCase().includes(searchTerm) ||
                 (product.sku && product.sku.toLowerCase().includes(searchTerm));
             const matchesCategory = category === 'all' || product.category === category;
@@ -468,10 +610,12 @@ document.addEventListener('DOMContentLoaded', () => {
         renderTable();
     }
 
+    // IMPROVEMENT 4: Optimize product rendering for appending data
     function renderTable() {
         if (!tableBody) return;
 
-        tableBody.innerHTML = '';
+        // Use DocumentFragment for better performance
+        const fragment = document.createDocumentFragment();
 
         if (filteredProducts.length === 0) {
             tableBody.innerHTML = '<tr><td colspan="19" style="text-align:center; padding: 2rem;">No se encontraron productos</td></tr>';
@@ -479,68 +623,91 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         filteredProducts.forEach(product => {
-            const tr = document.createElement('tr');
-            const imageSrc = product.image && product.image.trim() !== '' ? product.image : 'https://via.placeholder.com/50?text=No+Img';
-
-            // Get variants data (handle both array and object formats)
-            let variants = [];
-            if (Array.isArray(product.variants)) {
-                variants = product.variants;
-            } else if (product.variants && typeof product.variants === 'object') {
-                // Convert object format to array
-                variants = Object.keys(product.variants).map(color => ({
-                    color: color,
-                    sku: product.variants[color].sku,
-                    image: product.variants[color].image,
-                    hex: product.colorCodes ? product.colorCodes[color] : ''
-                }));
-            }
-
-            // Prepare variant cells (up to 5)
-            let variantCells = '';
-            for (let i = 0; i < 5; i++) {
-                if (i < variants.length) {
-                    const v = variants[i];
-                    // Get hex from variables first, fallback to variant hex
-                    const hexColor = (colorVariables && colorVariables[v.color]) || v.hex || '';
-                    const colorPreview = hexColor ? `<div style="display:inline-block; width:20px; height:20px; background:${hexColor}; border:1px solid #ddd; border-radius:4px; vertical-align:middle; margin-right:6px;"></div>` : '';
-
-                    variantCells += `
-                        <td style="font-size:0.75rem; color:#666;">${v.sku || '-'}</td>
-                        <td style="font-size:0.85rem;">${colorPreview}${v.color || '-'}</td>
-                    `;
-                } else {
-                    variantCells += '<td>-</td><td>-</td>';
-                }
-            }
-
-            // Storage display
-            let storageDisplay = '-';
-            if (product.storage) {
-                if (Array.isArray(product.storage)) {
-                    storageDisplay = product.storage.join(', ');
-                } else {
-                    storageDisplay = product.storage;
-                }
-            }
-
-            tr.innerHTML = `
-                <td style="font-weight:600; color:#666;">${product.id}</td>
-                <td><img src="${imageSrc}" class="product-mini-img" alt="img" onerror="this.src='https://via.placeholder.com/50?text=Err'"></td>
-                <td style="font-weight: 500;">${product.name}</td>
-                <td><span style="background:#eee; padding:2px 8px; border-radius:4px; font-size:0.75em;">${product.category}</span></td>
-                <td style="color:#2e7d32; font-weight:600;">${product.price.toLocaleString()}</td>
-                <td style="color:#999; text-decoration:line-through; font-size:0.85em;">${product.originalPrice ? product.originalPrice.toLocaleString() : '-'}</td>
-                <td style="font-size:0.75rem;">${product.badge || '-'}</td>
-                <td style="font-size:0.75rem; max-width:120px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" title="${storageDisplay}">${storageDisplay}</td>
-                ${variantCells}
-                <td>
-                    <span class="action-icon" title="Editar" onclick="window.editProduct(${product.id})">✏️</span>
-                    <span class="action-icon" title="Borrar" onclick="window.deleteProduct(${product.id})">🗑️</span>
-                </td>
-            `;
-            tableBody.appendChild(tr);
+            const tr = createProductRow(product);
+            fragment.appendChild(tr);
         });
+
+        // Clear and append all at once for better performance
+        tableBody.innerHTML = '';
+        tableBody.appendChild(fragment);
+    }
+
+    // Helper function to create a product row
+    function createProductRow(product) {
+        const tr = document.createElement('tr');
+        const imageSrc = product.image && product.image.trim() !== '' ? product.image : 'https://via.placeholder.com/50?text=No+Img';
+
+        // Get variants data (handle both array and object formats)
+        let variants = [];
+        if (Array.isArray(product.variants)) {
+            variants = product.variants;
+        } else if (product.variants && typeof product.variants === 'object') {
+            // Convert object format to array
+            variants = Object.keys(product.variants).map(color => ({
+                color: color,
+                sku: product.variants[color].sku,
+                image: product.variants[color].image,
+                hex: product.colorCodes ? product.colorCodes[color] : ''
+            }));
+        }
+
+        // IMPROVEMENT 3: Fill missing variant placeholders
+        const variantCells = renderVariantCells(variants, 5);
+
+        // Storage display
+        const storageDisplay = getStorageDisplay(product);
+
+        tr.innerHTML = `
+            <td style="font-weight:600; color:#666;">${product.id}</td>
+            <td><img src="${imageSrc}" class="product-mini-img" alt="img" onerror="this.src='https://via.placeholder.com/50?text=Err'"></td>
+            <td style="font-weight: 500;">${product.name}</td>
+            <td><span style="background:#eee; padding:2px 8px; border-radius:4px; font-size:0.75em;">${product.category}</span></td>
+            <td style="color:#2e7d32; font-weight:600;">${product.price.toLocaleString()}</td>
+            <td style="color:#999; text-decoration:line-through; font-size:0.85em;">${product.originalPrice ? product.originalPrice.toLocaleString() : '-'}</td>
+            <td style="font-size:0.75rem;">${product.badge || '-'}</td>
+            <td style="font-size:0.75rem; max-width:120px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" title="${storageDisplay}">${storageDisplay}</td>
+            ${variantCells}
+            <td>
+                <span class="action-icon" title="Editar" onclick="window.editProduct(${product.id})">✏️</span>
+                <span class="action-icon" title="Borrar" onclick="window.deleteProduct(${product.id})">🗑️</span>
+            </td>
+        `;
+        return tr;
+    }
+
+    // Helper function to render variant cells with placeholders
+    function renderVariantCells(variants, maxVariants) {
+        let variantCells = '';
+
+        for (let i = 0; i < maxVariants; i++) {
+            if (i < variants.length && variants[i].color) {
+                const v = variants[i];
+                // IMPROVEMENT 2: Get hex from variables first, fallback to variant hex
+                const hexColor = (colorVariables && colorVariables[v.color]) || v.hex || '';
+                const colorPreview = hexColor ? `<div style="display:inline-block; width:20px; height:20px; background:${hexColor}; border:1px solid #ddd; border-radius:4px; vertical-align:middle; margin-right:6px;"></div>` : '';
+
+                variantCells += `
+                    <td style="font-size:0.75rem; color:#666;">${v.sku || '-'}</td>
+                    <td style="font-size:0.85rem;">${colorPreview}${v.color || '-'}</td>
+                `;
+            } else {
+                // IMPROVEMENT 3: Show placeholder for missing variants
+                variantCells += '<td style="color:#ccc;">-</td><td style="color:#ccc;">-</td>';
+            }
+        }
+
+        return variantCells;
+    }
+
+    // Helper function to get storage display
+    function getStorageDisplay(product) {
+        if (!product.storage) return '-';
+
+        if (Array.isArray(product.storage)) {
+            return product.storage.join(', ');
+        }
+
+        return product.storage;
     }
 
     // Event Listeners - Products View
@@ -1069,16 +1236,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Update or add color
         colorVariables[newName] = hexCode;
 
-        // Update hex codes in products that use this color
-        products.forEach(p => {
-            if (p.variants && Array.isArray(p.variants)) {
-                p.variants.forEach(v => {
-                    if (v.color === newName) {
-                        v.hex = hexCode;
-                    }
-                });
-            }
-        });
+        // IMPROVEMENT 2: Use refactored color update logic
+        const updatedCount = updateColorInProducts(newName, hexCode);
+        console.log(`Color "${newName}" saved and updated in ${updatedCount} variant(s)`);
 
         closeColorModal();
         renderColorsTable();
@@ -1139,5 +1299,195 @@ document.addEventListener('DOMContentLoaded', () => {
             .finally(() => {
                 if (btn) btn.innerHTML = originalText;
             });
+    }
+
+    // ==================== CATEGORY MANAGEMENT ====================
+
+    // DOM Elements for Categories
+    const categoriesTableBody = document.getElementById('categoriesTableBody');
+    const categorySearch = document.getElementById('categorySearch');
+    const addCategoryBtn = document.getElementById('addCategoryBtn');
+    const categoryModal = document.getElementById('categoryModal');
+    const closeCategoryModalBtn = document.getElementById('closeCategoryModal');
+    const cancelCategoryBtn = document.getElementById('cancelCategoryBtn');
+    const categoryForm = document.getElementById('categoryForm');
+    const categoryIconInput = document.getElementById('categoryIcon');
+    const categoryIconPreview = document.getElementById('categoryIconPreview');
+
+    let filteredCategories = [];
+
+    // Event listeners for category management
+    if (categorySearch) {
+        categorySearch.addEventListener('input', renderCategoriesTable);
+    }
+
+    if (addCategoryBtn) {
+        addCategoryBtn.addEventListener('click', () => openCategoryModal());
+    }
+
+    if (closeCategoryModalBtn) {
+        closeCategoryModalBtn.addEventListener('click', closeCategoryModal);
+    }
+
+    if (cancelCategoryBtn) {
+        cancelCategoryBtn.addEventListener('click', closeCategoryModal);
+    }
+
+    if (categoryForm) {
+        categoryForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            saveCategory();
+        });
+    }
+
+    // Update icon preview when typing
+    if (categoryIconInput) {
+        categoryIconInput.addEventListener('input', (e) => {
+            categoryIconPreview.textContent = e.target.value || '📱';
+        });
+    }
+
+    function renderCategoriesTable() {
+        if (!categoriesTableBody) return;
+
+        const searchTerm = categorySearch ? categorySearch.value.toLowerCase() : '';
+
+        // Convert categories object to array
+        filteredCategories = Object.entries(categories)
+            .filter(([key, cat]) =>
+                key.toLowerCase().includes(searchTerm) ||
+                cat.name.toLowerCase().includes(searchTerm)
+            )
+            .sort((a, b) => a[1].name.localeCompare(b[1].name));
+
+        categoriesTableBody.innerHTML = '';
+
+        if (filteredCategories.length === 0) {
+            categoriesTableBody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding: 2rem;">No se encontraron categorías</td></tr>';
+            return;
+        }
+
+        filteredCategories.forEach(([key, cat]) => {
+            // Count how many products use this category
+            const productCount = products.filter(p => p.category === key).length;
+
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td style="font-size: 2rem; text-align: center;">${cat.icon}</td>
+                <td style="font-family: monospace; color: #666;">${key}</td>
+                <td style="font-weight: 500;">${cat.name}</td>
+                <td>
+                    <span style="background: ${productCount > 0 ? '#e8f5e9' : '#fce8e6'}; color: ${productCount > 0 ? '#2e7d32' : '#d93025'}; padding: 4px 12px; border-radius: 12px; font-size: 0.85rem; font-weight: 600;">
+                        ${productCount} producto${productCount !== 1 ? 's' : ''}
+                    </span>
+                </td>
+                <td>
+                    <span class="action-icon" title="Editar" onclick="window.editCategory('${key.replace(/'/g, "\\'")}')">\u270f\ufe0f</span>
+                    <span class="action-icon" title="Eliminar" onclick="window.deleteCategory('${key.replace(/'/g, "\\'")}')">\ud83d\uddd1\ufe0f</span>
+                </td>
+            `;
+            categoriesTableBody.appendChild(tr);
+        });
+    }
+
+    function openCategoryModal(categoryKey = null) {
+        categoryModal.classList.add('active');
+
+        if (categoryKey) {
+            // Edit mode
+            document.getElementById('categoryModalTitle').textContent = 'Editar Categoría';
+            document.getElementById('editCategoryOldKey').value = categoryKey;
+            document.getElementById('categoryKey').value = categoryKey;
+            document.getElementById('categoryKey').disabled = true; // Don't allow changing the key when editing
+            document.getElementById('categoryName').value = categories[categoryKey].name;
+            document.getElementById('categoryIcon').value = categories[categoryKey].icon;
+            document.getElementById('categoryIconPreview').textContent = categories[categoryKey].icon;
+        } else {
+            // Add mode
+            document.getElementById('categoryModalTitle').textContent = 'Nueva Categoría';
+            document.getElementById('editCategoryOldKey').value = '';
+            document.getElementById('categoryKey').disabled = false;
+            categoryForm.reset();
+            document.getElementById('categoryIconPreview').textContent = '📱';
+        }
+    }
+
+    function closeCategoryModal() {
+        categoryModal.classList.remove('active');
+    }
+
+    function saveCategory() {
+        const oldKey = document.getElementById('editCategoryOldKey').value;
+        const newKey = document.getElementById('categoryKey').value.trim().toLowerCase();
+        const name = document.getElementById('categoryName').value.trim();
+        const icon = document.getElementById('categoryIcon').value.trim();
+
+        if (!newKey || !name || !icon) {
+            alert('Por favor completa todos los campos');
+            return;
+        }
+
+        // Validate key format (only lowercase letters and underscores)
+        if (!/^[a-z_]+$/.test(newKey)) {
+            alert('El ID de categoría solo puede contener letras minúsculas y guiones bajos');
+            return;
+        }
+
+        // If editing and key changed, update all products
+        if (oldKey && oldKey !== newKey) {
+            if (categories[newKey]) {
+                alert('Ya existe una categoría con ese ID');
+                return;
+            }
+
+            // Update products that use this category
+            products.forEach(p => {
+                if (p.category === oldKey) {
+                    p.category = newKey;
+                }
+            });
+
+            // Remove old category
+            delete categories[oldKey];
+        }
+
+        // Check if key already exists (for new categories)
+        if (!oldKey && categories[newKey]) {
+            alert('Ya existe una categoría con ese ID');
+            return;
+        }
+
+        // Update or add category
+        categories[newKey] = { name, icon };
+
+        closeCategoryModal();
+        renderCategoriesTable();
+        renderCatalogs(); // Update catalogs view
+        saveCategories(); // Save to localStorage
+    }
+
+    window.editCategory = function (categoryKey) {
+        openCategoryModal(categoryKey);
+    }
+
+    window.deleteCategory = function (categoryKey) {
+        // Check if category is in use
+        const productsInCategory = products.filter(p => p.category === categoryKey);
+
+        if (productsInCategory.length > 0) {
+            if (!confirm(`La categoría "${categories[categoryKey].name}" tiene ${productsInCategory.length} producto(s). ¿Estás seguro de eliminarla? Los productos quedarán sin categoría.`)) {
+                return;
+            }
+
+            // Remove category from products
+            productsInCategory.forEach(p => {
+                p.category = 'accessories'; // Default to accessories
+            });
+        }
+
+        delete categories[categoryKey];
+        renderCategoriesTable();
+        renderCatalogs(); // Update catalogs view
+        saveCategories(); // Save to localStorage
     }
 });
