@@ -186,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
             card.innerHTML = `
                 <div class="catalog-header">
                     <div>
-                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">${catInfo.icon}</div>
+                        <div class="catalog-icon">${catInfo.icon}</div>
                         <div class="catalog-title">${catInfo.name}</div>
                     </div>
                     <div class="catalog-count">${productsInCat.length} items</div>
@@ -445,22 +445,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 }));
             }
 
-            // Prepare variant cells (up to 5)
-            let variantCells = '';
-            for (let i = 0; i < 5; i++) {
-                if (i < variants.length) {
-                    const v = variants[i];
-                    // Get hex from variables first, fallback to variant hex
-                    const hexColor = (colorVariables && colorVariables[v.color]) || v.hex || '';
-                    const colorPreview = hexColor ? `<div style="display:inline-block; width:20px; height:20px; background:${hexColor}; border:1px solid #ddd; border-radius:4px; vertical-align:middle; margin-right:6px;"></div>` : '';
-
-                    variantCells += `
-                        <td style="font-size:0.75rem; color:#666;">${v.sku || '-'}</td>
-                        <td style="font-size:0.85rem;">${colorPreview}${v.color || '-'}</td>
-                    `;
-                } else {
-                    variantCells += '<td>-</td><td>-</td>';
-                }
+            // Variants Summary
+            let variantsDisplay = '';
+            if (variants.length > 0) {
+                 variantsDisplay = '<div style="font-size:0.75rem; color:#555;">';
+                 variants.forEach(v => {
+                     const hex = (colorVariables && colorVariables[v.color]) || v.hex || '#eee';
+                     variantsDisplay += `<div style="display:flex; align-items:center; gap:4px; margin-bottom:2px;">
+                        <span style="width:10px; height:10px; background:${hex}; border-radius:50%; border:1px solid #ccc;"></span>
+                        <span>${v.color}</span>
+                        <span style="color:#999; font-size:0.7rem;">${v.sku || ''}</span>
+                     </div>`;
+                 });
+                 variantsDisplay += '</div>';
+            } else {
+                variantsDisplay = '-';
             }
 
             // Storage display
@@ -477,12 +476,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td style="font-weight:600; color:#666;">${product.id}</td>
                 <td><img src="${imageSrc}" class="product-mini-img" alt="img" onerror="this.src='https://via.placeholder.com/50?text=Err'"></td>
                 <td style="font-weight: 500;">${product.name}</td>
-                <td><span style="background:#eee; padding:2px 8px; border-radius:4px; font-size:0.75em;">${product.category}</span></td>
+                <td><span style="background:#f0f0f0; padding:2px 8px; border-radius:4px; font-size:0.75em;">${product.category}</span></td>
                 <td style="color:#2e7d32; font-weight:600;">${product.price.toLocaleString()}</td>
                 <td style="color:#999; text-decoration:line-through; font-size:0.85em;">${product.originalPrice ? product.originalPrice.toLocaleString() : '-'}</td>
                 <td style="font-size:0.75rem;">${product.badge || '-'}</td>
                 <td style="font-size:0.75rem; max-width:120px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" title="${storageDisplay}">${storageDisplay}</td>
-                ${variantCells}
+                <td>${variantsDisplay}</td>
                 <td>
                     <span class="action-icon" title="Editar" onclick="window.editProduct(${product.id})">✏️</span>
                     <span class="action-icon" title="Borrar" onclick="window.deleteProduct(${product.id})">🗑️</span>
@@ -597,13 +596,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const container = document.getElementById('storageContainer');
         const div = document.createElement('div');
         div.className = 'storage-row';
-        div.style.cssText = 'display:grid; grid-template-columns: 1fr 1fr 1fr 40px; gap:10px; margin-bottom:10px;';
+        // Style is handled by admin.css class .storage-row, but we can keep inline for override/shim if needed, but better use class.
+        // I will remove inline styles that are covered by CSS.
 
         div.innerHTML = `
             <input type="text" class="form-input sto-capacity" placeholder="Ej: 256GB" value="${data.capacity || ''}">
             <input type="number" class="form-input sto-price" placeholder="0" value="${data.price || ''}">
             <input type="number" class="form-input sto-original" placeholder="0" value="${data.originalPrice || ''}">
-            <button type="button" class="btn-danger" style="padding:0; height:38px; width:100%; border-radius:4px; cursor:pointer;" onclick="this.parentElement.remove()">X</button>
+            <button type="button" class="btn-danger" style="display:flex; align-items:center; justify-content:center; width:100%; height:100%;" onclick="this.parentElement.remove()">
+                🗑️
+            </button>
         `;
         container.appendChild(div);
     }
@@ -613,7 +615,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const container = document.getElementById('variantsContainer');
         const card = document.createElement('div');
         card.className = 'variant-card';
-        card.style.cssText = 'background:white; border:1px solid #ddd; padding:15px; border-radius:8px; position:relative;';
+        // Style handled by CSS .variant-card
 
         // Build color options
         let colorOptions = '<option value="">Seleccionar color...</option>';
@@ -635,36 +637,38 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         card.innerHTML = `
-            <button type="button" class="btn-danger" style="position:absolute; top:10px; right:10px; padding:2px 8px; font-size:12px; border-radius:4px; cursor:pointer;" onclick="this.parentElement.remove()">Eliminar</button>
-            <h4 style="margin:0 0 10px 0; color:#555; font-size: 0.9rem;">Detalles de Variante</h4>
+            <div class="variant-header">
+                <h4 style="margin:0; color: var(--primary-color); font-size: 1rem;">Detalles de Variante</h4>
+                <button type="button" class="btn-danger" style="padding:4px 8px; font-size:12px;" onclick="this.closest('.variant-card').remove()">Eliminar</button>
+            </div>
             
-            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-bottom:10px;">
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px; margin-bottom:15px;">
                 <!-- Color Selection -->
                 <div>
-                    <label class="form-label" style="font-size:0.75rem;">Color</label>
+                    <label class="form-label" style="font-size:0.8rem;">Color</label>
                     <select class="form-select var-color-select" onchange="handleRefinedColorChange(this)">
                         ${colorOptions}
                     </select>
-                    <input type="text" class="form-input var-color-custom" placeholder="Nombre del color" value="${isCustom ? (data.color || '') : ''}" style="display:${isCustom ? 'block' : 'none'}; margin-top:5px;">
-                    <div class="var-color-preview" style="height:4px; margin-top:5px; background:${data.hex || '#eee'}; border-radius:2px;"></div>
+                    <input type="text" class="form-input var-color-custom" placeholder="Nombre del color" value="${isCustom ? (data.color || '') : ''}" style="display:${isCustom ? 'block' : 'none'}; margin-top:8px;">
+                    <div class="var-color-preview" style="height:6px; margin-top:8px; background:${data.hex || '#f0f0f0'}; border-radius:4px; width:100%;"></div>
                     <input type="hidden" class="var-hex" value="${data.hex || ''}">
                 </div>
 
                 <!-- SKU -->
                 <div>
-                    <label class="form-label" style="font-size:0.75rem;">SKU</label>
-                    <input type="text" class="form-input var-sku" placeholder="SM-S92..." value="${data.sku || ''}">
+                    <label class="form-label" style="font-size:0.8rem;">SKU</label>
+                    <input type="text" class="form-input var-sku" placeholder="Ej: SM-S928B..." value="${data.sku || ''}">
                 </div>
             </div>
 
-            <div style="margin-bottom:10px;">
-                <label class="form-label" style="font-size:0.75rem;">Link Específico (Opcional)</label>
-                <input type="url" class="form-input var-link" placeholder="https://shop.samsung..." value="${data.link || ''}">
+            <div style="margin-bottom:15px;">
+                <label class="form-label" style="font-size:0.8rem;">Link Específico (Opcional)</label>
+                <input type="url" class="form-input var-link" placeholder="https://shop.samsung.com/..." value="${data.link || ''}">
             </div>
 
             <div style="margin-bottom:0;">
-                <label class="form-label" style="font-size:0.75rem;">Imágenes (Una URL por línea)</label>
-                <textarea class="form-input var-images" rows="3" placeholder="https://img1.jpg\nhttps://img2.jpg" style="resize:vertical; min-height:60px;">${imagesStr}</textarea>
+                <label class="form-label" style="font-size:0.8rem;">Imágenes (Una URL por línea)</label>
+                <textarea class="form-input var-images" rows="3" placeholder="https://images.samsung.com/is/image/samsung/..." style="resize:vertical; min-height:80px;">${imagesStr}</textarea>
             </div>
         `;
         container.appendChild(card);

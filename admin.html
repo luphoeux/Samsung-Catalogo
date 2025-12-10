@@ -5,450 +5,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Creador de Catálogo Samsung</title>
+    <!-- Fonts -->
     <link rel="stylesheet" href="style.css">
-    <style>
-        /* Admin Specific Styles */
-        body {
-            background-color: #f4f7f6;
-            display: flex;
-            min-height: 100vh;
-        }
-
-        .sidebar {
-            width: 250px;
-            background-color: #fff;
-            border-right: 1px solid var(--border-color);
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            position: fixed;
-            height: 100vh;
-            left: 0;
-            top: 0;
-            z-index: 100;
-        }
-
-        .sidebar-logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 3rem;
-            color: var(--samsung-black);
-            font-family: 'SamsungSharpSans', sans-serif;
-        }
-
-        .nav-item {
-            padding: 1rem;
-            color: #666;
-            cursor: pointer;
-            border-radius: 8px;
-            transition: all 0.2s;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .nav-item:hover,
-        .nav-item.active {
-            background-color: var(--samsung-gray);
-            color: var(--samsung-blue);
-        }
-
-        .main-content {
-            margin-left: 250px;
-            flex: 1;
-            padding: 2rem;
-            width: calc(100% - 250px);
-        }
-
-        .view-section {
-            display: none;
-        }
-
-        .view-section.active {
-            display: block;
-        }
-
-        .header-actions {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-
-        .page-title {
-            font-size: 2rem;
-            font-weight: 700;
-        }
-
-        .btn-primary {
-            background-color: var(--samsung-blue);
-            color: white;
-            border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 2rem;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: background-color 0.2s;
-        }
-
-        .btn-primary:hover {
-            background-color: #0d1b6e;
-        }
-
-        .btn-secondary {
-            background-color: white;
-            color: var(--samsung-black);
-            border: 1px solid var(--border-color);
-            padding: 0.8rem 1.5rem;
-            border-radius: 2rem;
-            font-weight: 600;
-            cursor: pointer;
-            margin-right: 10px;
-        }
-
-        .products-table-container {
-            background: white;
-            border-radius: 1rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            overflow: hidden;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th,
-        td {
-            padding: 1rem;
-            text-align: left;
-            border-bottom: 1px solid #eee;
-        }
-
-        th {
-            background-color: #f9f9f9;
-            font-weight: 600;
-            color: #444;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-        }
-
-        td {
-            vertical-align: middle;
-        }
-
-        .product-mini-img {
-            width: 50px;
-            height: 50px;
-            object-fit: contain;
-            border-radius: 4px;
-            border: 1px solid #eee;
-            background: white;
-        }
-
-        .action-icon {
-            cursor: pointer;
-            color: #888;
-            margin: 0 5px;
-            font-size: 1.2rem;
-        }
-
-        .action-icon:hover {
-            color: var(--samsung-blue);
-        }
-
-        input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            accent-color: var(--samsung-blue);
-            cursor: pointer;
-        }
-
-        /* Filter bar in admin */
-        .admin-filters {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .search-admin {
-            flex: 1;
-            padding: 0.8rem 1rem;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-family: inherit;
-        }
-
-        .select-filter {
-            padding: 0.8rem 1rem;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background: white;
-            min-width: 150px;
-        }
-
-        /* Catalogs Grid */
-        .catalogs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .catalog-card {
-            background: white;
-            border-radius: 1rem;
-            padding: 1.5rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            transition: transform 0.2s;
-            cursor: pointer;
-        }
-
-        .catalog-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .catalog-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-
-        .catalog-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--samsung-black);
-        }
-
-        .catalog-count {
-            background: var(--samsung-gray);
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        .catalog-actions {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        .catalog-btn {
-            padding: 0.6rem;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 0.85rem;
-            transition: transform 0.2s;
-        }
-
-        .catalog-btn:hover {
-            transform: translateY(-2px);
-        }
-
-        .catalog-btn.preview {
-            background: #e3f2fd;
-            color: #1976d2;
-        }
-
-        .catalog-btn.view {
-            background: #fff3e0;
-            color: #f57c00;
-        }
-
-        .catalog-btn.export {
-            background: #e8f5e9;
-            color: #388e3c;
-            grid-column: span 2;
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 1rem;
-            width: 90%;
-            max-width: 800px;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-
-        .modal-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-
-        .close-modal {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #666;
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
-        .form-group.full-width {
-            grid-column: span 2;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            font-size: 0.9rem;
-            color: #444;
-        }
-
-        .form-input,
-        .form-select,
-        .form-textarea {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-family: inherit;
-        }
-
-        .form-textarea {
-            resize: vertical;
-            min-height: 80px;
-        }
-
-        .variants-section {
-            grid-column: span 2;
-            background: #f9f9f9;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-top: 1rem;
-        }
-
-        .variant-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr auto;
-            gap: 10px;
-            margin-bottom: 10px;
-            align-items: end;
-        }
-
-        .btn-sm {
-            padding: 5px 10px;
-            font-size: 0.8rem;
-        }
-
-        .btn-danger {
-            background-color: #ffdddd;
-            color: #d93025;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .btn-add {
-            background-color: #e6f4ea;
-            color: #1e8e3e;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 600;
-            display: inline-block;
-            margin-top: 10px;
-        }
-    </style>
+    <!-- Admin Styles -->
+    <link rel="stylesheet" href="admin.css">
 </head>
 
 <body>
+    <!-- SIDEBAR -->
     <div class="sidebar">
-        <div class="sidebar-logo">Catalog Admin</div>
-        <div class="nav-item" data-view="products">
-            <span>📦</span> Base de Datos
+        <div class="sidebar-logo">
+            <span>🔹</span> Catalog Admin
         </div>
+
         <div class="nav-item active" data-view="catalogs">
             <span>📚</span> Catálogos
+        </div>
+        <div class="nav-item" data-view="products">
+            <span>📦</span> Base de Datos
         </div>
         <div class="nav-item" data-view="config">
             <span>⚙️</span> Variables
         </div>
 
-        <div style="margin-top: auto;">
+        <div class="sidebar-footer">
             <!-- Save Status -->
-            <div style="padding: 1rem; background: #f5f5f5; border-radius: 8px; margin-bottom: 1rem;">
-                <div style="font-size: 0.75rem; color: #666; margin-bottom: 0.5rem;">Estado</div>
+            <div style="padding: 1rem; background: #f8f9fa; border-radius: 8px; margin-bottom: 1rem; border: 1px solid #eee;">
+                <div style="font-size: 0.75rem; color: #666; margin-bottom: 0.5rem; font-weight: 600;">ESTADO</div>
                 <div id="lastSaveTime" style="font-size: 0.8rem; color: #999;">Sin cambios</div>
             </div>
 
-            <!-- Export Buttons -->
-            <button onclick="window.exportDataJS()"
-                style="width: 100%; padding: 0.8rem; background: #1976d2; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; margin-bottom: 0.5rem;">
-                📥 Exportar data.js
-            </button>
-            <button onclick="window.exportColorVariables()"
-                style="width: 100%; padding: 0.8rem; background: #7b1fa2; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; margin-bottom: 0.5rem;">
-                🎨 Exportar colores
-            </button>
-            <button onclick="window.resetData()"
-                style="width: 100%; padding: 0.8rem; background: #d32f2f; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; margin-bottom: 1rem;">
-                🔄 Resetear datos
+            <button onclick="window.exportDataJS()" class="btn-primary" style="width: 100%; justify-content: center; font-size: 0.9rem; margin-bottom: 0.5rem;">
+                📥 Exportar Data
             </button>
 
-            <div style="font-size: 0.8rem; color: #999; text-align: center;">
-                Samsung Catalog v2.3
-            </div>
+            <button onclick="window.resetData()" style="width: 100%; padding: 0.8rem; background: none; color: #d32f2f; border: 1px solid transparent; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 0.85rem; transition: all 0.2s;" onmouseover="this.style.background='#ffebee'" onmouseout="this.style.background='none'">
+                🔄 Resetear
+            </button>
         </div>
     </div>
 
+    <!-- MAIN CONTENT -->
     <div class="main-content">
+
         <!-- CATALOGS VIEW -->
         <div id="catalogsView" class="view-section active">
             <div class="header-actions">
                 <div>
                     <h1 class="page-title">Catálogos</h1>
-                    <p style="color: #666; margin-top: 5px;">Gestiona tus catálogos por categoría</p>
+                    <p class="page-subtitle">Gestiona y exporta tus catálogos por categoría</p>
                 </div>
             </div>
 
@@ -460,33 +65,33 @@
         <!-- CATALOG DETAIL VIEW -->
         <div id="catalogDetailView" class="view-section">
             <div class="header-actions">
-                <div>
-                    <button class="btn-secondary" onclick="window.backToCatalogs()" style="padding: 0.5rem 1rem;">
-                        ← Volver
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <button class="btn-secondary" onclick="window.backToCatalogs()" style="padding: 0.5rem 1rem; border-radius: 50%; width: 40px; height: 40px; justify-content: center;">
+                        ←
                     </button>
-                </div>
-                <div style="flex: 1; text-align: center;">
-                    <h1 class="page-title" id="catalogDetailTitle">Catálogo</h1>
-                    <p style="color: #666; margin-top: 5px;" id="catalogDetailSubtitle">Gestiona los productos</p>
+                    <div>
+                        <h1 class="page-title" id="catalogDetailTitle">Catálogo</h1>
+                        <p class="page-subtitle" id="catalogDetailSubtitle">Gestiona los productos</p>
+                    </div>
                 </div>
                 <div>
-                    <button class="btn-secondary" id="addToCatalogBtn"
-                        style="color: var(--samsung-blue); border-color: var(--samsung-blue);">
+                    <button class="btn-primary" id="addToCatalogBtn">
                         <span>+</span> Agregar Productos
                     </button>
                 </div>
             </div>
 
             <div class="admin-filters">
-                <input type="text" class="search-admin" placeholder="Buscar en este catálogo..." id="catalogSearch">
+                <span style="display: flex; align-items: center; padding: 0 10px; color: #666;">🔍</span>
+                <input type="text" class="search-admin" placeholder="Buscar en este catálogo..." id="catalogSearch" style="border: none; padding-left: 0;">
             </div>
 
             <div class="products-table-container">
                 <table id="catalogProductsTable">
                     <thead>
                         <tr>
-                            <th width="60">Img</th>
-                            <th>Nombre</th>
+                            <th width="80">Imagen</th>
+                            <th>Producto</th>
                             <th>SKU</th>
                             <th>Precio (Bs)</th>
                             <th width="100">Acciones</th>
@@ -503,29 +108,29 @@
         <div id="productsView" class="view-section">
             <div class="header-actions">
                 <div>
-                    <h1 class="page-title">Base de Datos de Productos</h1>
-                    <p style="color: #666; margin-top: 5px;">Gestiona todos tus productos</p>
+                    <h1 class="page-title">Base de Datos</h1>
+                    <p class="page-subtitle">Inventario global de todos los productos</p>
                 </div>
                 <div>
-                    <button class="btn-secondary" id="addProductBtn"
-                        style="color: var(--samsung-blue); border-color: var(--samsung-blue);">
+                    <button class="btn-primary" id="addProductBtn">
                         <span>+</span> Nuevo Producto
                     </button>
                 </div>
             </div>
 
             <div class="admin-filters">
-                <input type="text" class="search-admin" placeholder="Buscar productos por nombre o SKU..."
-                    id="adminSearch">
+                <div style="flex: 1; position: relative;">
+                    <input type="text" class="search-admin" placeholder="Buscar por nombre o SKU..." id="adminSearch">
+                </div>
                 <select class="select-filter" id="categoryFilter">
                     <option value="all">Todas las categorías</option>
                     <option value="smartphones">Smartphones</option>
                     <option value="tablets">Tablets</option>
                     <option value="smartwatches">Smartwatches</option>
-                    <option value="buds">Buds</option>
+                    <option value="buds">Galaxy Buds</option>
                     <option value="laptops">Laptops</option>
-                    <option value="televisions">TVs</option>
                     <option value="monitors">Monitores</option>
+                    <option value="televisions">Televisores</option>
                     <option value="washing_machines">Lavadoras</option>
                     <option value="refrigerators">Refrigeradores</option>
                     <option value="kitchen_cleaning">Línea Blanca</option>
@@ -534,7 +139,7 @@
             </div>
 
             <div class="products-table-container" style="overflow-x: auto;">
-                <table id="productsTable" style="font-size: 0.85rem;">
+                <table id="productsTable" style="min-width: 1200px;">
                     <thead>
                         <tr>
                             <th width="40">ID</th>
@@ -544,18 +149,9 @@
                             <th width="80">Precio</th>
                             <th width="80">P. Orig</th>
                             <th width="80">Badge</th>
-                            <th width="120">Storage</th>
-                            <th width="100">SKU1</th>
-                            <th width="100">Color1</th>
-                            <th width="100">SKU2</th>
-                            <th width="100">Color2</th>
-                            <th width="100">SKU3</th>
-                            <th width="100">Color3</th>
-                            <th width="100">SKU4</th>
-                            <th width="100">Color4</th>
-                            <th width="100">SKU5</th>
-                            <th width="100">Color5</th>
-                            <th width="100">Acciones</th>
+                            <th width="120">Almacenamiento</th>
+                            <th width="250">Variantes</th>
+                            <th width="80">Acciones</th>
                         </tr>
                     </thead>
                     <tbody id="tableBody">
@@ -570,35 +166,31 @@
             <div class="header-actions">
                 <div>
                     <h1 class="page-title">Variables Globales</h1>
-                    <p style="color: #666; margin-top: 5px;">Gestiona colores y otras variables del sistema</p>
+                    <p class="page-subtitle">Gestiona colores y configuraciones del sistema</p>
                 </div>
                 <div>
-                    <button class="btn-secondary" id="addColorBtn"
-                        style="color: var(--samsung-blue); border-color: var(--samsung-blue);">
+                    <button class="btn-secondary" id="addColorBtn">
                         <span>+</span> Nuevo Color
                     </button>
                     <button class="btn-primary" id="saveVariablesBtn">
-                        💾 Guardar Variables
+                        💾 Guardar
                     </button>
                 </div>
             </div>
 
-            <div
-                style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
-                <h3 style="margin-bottom: 1.5rem; font-size: 1.2rem;">🎨 Colores</h3>
-
-                <div class="admin-filters" style="margin-bottom: 1rem;">
-                    <input type="text" class="search-admin" placeholder="Buscar color..." id="colorSearch">
+            <div style="background: white; padding: 2rem; border-radius: 16px; box-shadow: var(--shadow-sm); border: 1px solid var(--border-color);">
+                <div class="admin-filters" style="margin-bottom: 1.5rem; box-shadow: none; border: 1px solid #eee; padding: 0.5rem;">
+                    <input type="text" class="search-admin" placeholder="Buscar color..." id="colorSearch" style="border: none;">
                 </div>
 
                 <div style="overflow-x: auto;">
-                    <table style="font-size: 0.9rem;">
+                    <table style="font-size: 0.95rem;">
                         <thead>
                             <tr>
                                 <th width="200">Nombre del Color</th>
-                                <th width="120">Código Hex</th>
+                                <th width="150">Código Hex</th>
                                 <th width="100">Preview</th>
-                                <th width="120">Usado en</th>
+                                <th width="150">Uso</th>
                                 <th width="100">Acciones</th>
                             </tr>
                         </thead>
@@ -611,70 +203,30 @@
         </div>
     </div>
 
-    <!-- Color Edit Modal -->
-    <div id="colorModal" class="modal">
-        <div class="modal-content" style="max-width: 500px;">
-            <div class="modal-header">
-                <h2 class="modal-title" id="colorModalTitle">Editar Color</h2>
-                <button class="close-modal" id="closeColorModal">&times;</button>
-            </div>
-            <form id="colorForm">
-                <input type="hidden" id="editColorOldName">
-                <div class="form-group">
-                    <label class="form-label">Nombre del Color</label>
-                    <input type="text" class="form-input" id="colorName" required placeholder="Ej: Azul Metálico">
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">Código Hex</label>
-                    <div style="display: flex; gap: 10px; align-items: center;">
-                        <input type="text" class="form-input" id="colorHex" required placeholder="#3c5b8a"
-                            pattern="^#[0-9A-Fa-f]{6}$" style="flex: 1;">
-                        <input type="color" id="colorPicker"
-                            style="width: 50px; height: 42px; border: 1px solid #ddd; border-radius: 8px; cursor: pointer;">
-                    </div>
-                    <small style="color: #666; font-size: 0.85rem;">Formato: #RRGGBB</small>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">Preview</label>
-                    <div id="colorPreview"
-                        style="width: 100%; height: 60px; border-radius: 8px; border: 2px solid #ddd;"></div>
-                </div>
-
-                <div style="margin-top: 2rem; text-align: right;">
-                    <button type="button" class="btn-secondary" id="cancelColorBtn">Cancelar</button>
-                    <button type="submit" class="btn-primary" style="display: inline-flex;">Guardar Color</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Product Modal -->
-    <!-- Advanced Product Modal (Hierarchical Structure) -->
+    <!-- PRODUCT MODAL -->
     <div id="productModal" class="modal">
-        <div class="modal-content" style="max-width: 900px; max-height: 90vh; display: flex; flex-direction: column;">
+        <div class="modal-content">
             <div class="modal-header">
-                <h2 class="modal-title" id="modalTitle">Nuevo Producto</h2>
+                <div>
+                    <h2 class="modal-title" id="modalTitle">Nuevo Producto</h2>
+                    <p style="color: #666; font-size: 0.9rem; margin-top: 4px;">Completa la información del producto</p>
+                </div>
                 <button class="close-modal" id="closeModal">&times;</button>
             </div>
 
-            <div class="modal-body" style="overflow-y: auto; flex: 1; padding-right: 10px;">
+            <div class="modal-body">
                 <form id="productForm">
                     <input type="hidden" id="editProductId">
 
                     <!-- SECCIÓN 1: DATOS GENERALES -->
-                    <div class="form-section"
-                        style="background:#f8f9fa; padding:1.5rem; border-radius:8px; margin-bottom:1.5rem;">
-                        <h3
-                            style="margin-top:0; margin-bottom:1rem; color:#1428a0; font-size:1.1rem; border-bottom:2px solid #ddd; padding-bottom:0.5rem;">
-                            1. Información General</h3>
-
-                        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 1rem;">
-                            <div class="form-group">
+                    <div class="form-section">
+                        <div class="form-section-title">
+                            <span>📝</span> Información Básica
+                        </div>
+                        <div class="form-grid">
+                            <div class="form-group full-width">
                                 <label class="form-label">Nombre del Producto</label>
-                                <input type="text" class="form-input" id="prodName" required
-                                    placeholder="Ej: Galaxy S24 Ultra">
+                                <input type="text" class="form-input" id="prodName" required placeholder="Ej: Galaxy S24 Ultra 5G" style="font-size: 1.1rem; font-weight: 600;">
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Categoría</label>
@@ -685,76 +237,116 @@
                                     <option value="buds">Galaxy Buds</option>
                                     <option value="laptops">Laptops</option>
                                     <option value="monitors">Monitores</option>
-                                    <option value="tv">Televisores</option>
-                                    <option value="home">Línea Blanca</option>
+                                    <option value="televisions">Televisores</option>
+                                    <option value="washing_machines">Lavadoras</option>
+                                    <option value="refrigerators">Refrigeradores</option>
+                                    <option value="kitchen_cleaning">Línea Blanca</option>
                                     <option value="accessories">Accesorios</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label class="form-label">Badge (Etiqueta)</label>
-                                <input type="text" class="form-input" id="prodBadge" placeholder="Ej: Nuevo, Oferta">
+                                <label class="form-label">Badge / Etiqueta (Opcional)</label>
+                                <input type="text" class="form-input" id="prodBadge" placeholder="Ej: Nuevo, Oferta, Best Seller">
                             </div>
                         </div>
                     </div>
 
                     <!-- SECCIÓN 2: ALMACENAMIENTO Y PRECIOS -->
-                    <div class="form-section"
-                        style="background:#f8f9fa; padding:1.5rem; border-radius:8px; margin-bottom:1.5rem;">
-                        <div
-                            style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; border-bottom:2px solid #ddd; padding-bottom:0.5rem;">
-                            <h3 style="margin:0; color:#1428a0; font-size:1.1rem;">2. Almacenamiento y Precios</h3>
-                            <button type="button" class="btn-secondary" onclick="addStorageRow()"
-                                style="padding:4px 10px; font-size:0.8rem;">+ Agregar Opción</button>
+                    <div class="form-section">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; border-bottom: 2px solid #f0f0f0; padding-bottom: 0.8rem;">
+                            <div class="form-section-title" style="margin-bottom: 0; border: none; padding: 0;">
+                                <span>🏷️</span> Precios y Variantes de Almacenamiento
+                            </div>
+                            <button type="button" class="btn-secondary" onclick="addStorageRow()" style="padding: 0.4rem 1rem; font-size: 0.85rem;">
+                                + Agregar Opción
+                            </button>
                         </div>
 
-                        <div style="background:white; padding:10px; border-radius:4px; border:1px solid #ddd;">
-                            <div
-                                style="display:grid; grid-template-columns: 1fr 1fr 1fr 40px; gap:10px; margin-bottom:10px; font-weight:bold; font-size:0.85rem; color:#666;">
-                                <div>Capacidad / RAM</div>
+                        <div style="background: #f8f9fa; border-radius: 8px; padding: 1px;">
+                            <div style="display:grid; grid-template-columns: 2fr 1.5fr 1.5fr 40px; gap:15px; padding: 10px 15px; font-weight:600; font-size:0.8rem; color:#666; text-transform:uppercase;">
+                                <div>Capacidad / Modelo</div>
                                 <div>Precio Oferta (Bs)</div>
-                                <div>Precio Real (Bs)</div>
+                                <div>Precio Original (Bs)</div>
                                 <div></div>
                             </div>
-                            <div id="storageContainer">
+                            <div id="storageContainer" style="padding: 0 10px 10px 10px;">
                                 <!-- Rows inserted by JS -->
                             </div>
                         </div>
-                        <small style="color:#666; display:block; margin-top:5px;">Define el precio según la capacidad.
-                            Ejemplo: 256GB = 1000Bs, 512GB = 1200Bs.</small>
+                        <p style="color:#666; font-size: 0.85rem; margin-top: 10px; display: flex; align-items: center; gap: 5px;">
+                            ℹ️ Si el producto no tiene almacenamiento, deja el campo "Capacidad" vacío y solo pon el precio.
+                        </p>
                     </div>
 
                     <!-- SECCIÓN 3: VARIANTES Y FOTOS -->
-                    <div class="form-section" style="background:#f8f9fa; padding:1.5rem; border-radius:8px;">
-                        <div
-                            style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; border-bottom:2px solid #ddd; padding-bottom:0.5rem;">
-                            <h3 style="margin:0; color:#1428a0; font-size:1.1rem;">3. Variantes Visuales y Multimedia
-                            </h3>
-                            <button type="button" class="btn-secondary" onclick="addRefinedVariantRow()"
-                                style="padding:4px 10px; font-size:0.8rem;">+ Agregar Variante</button>
+                    <div class="form-section">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; border-bottom: 2px solid #f0f0f0; padding-bottom: 0.8rem;">
+                            <div class="form-section-title" style="margin-bottom: 0; border: none; padding: 0;">
+                                <span>🎨</span> Variantes Visuales (Colores)
+                            </div>
+                            <button type="button" class="btn-secondary" onclick="addRefinedVariantRow()" style="padding: 0.4rem 1rem; font-size: 0.85rem;">
+                                + Agregar Variante
+                            </button>
                         </div>
 
-                        <div id="variantsContainer" style="display:flex; flex-direction:column; gap:1rem;">
+                        <div id="variantsContainer">
                             <!-- Variant cards inserted by JS -->
                         </div>
                     </div>
-
-                    <!-- Footer Actions -->
-                    <div style="margin-top: 2rem; text-align: right; padding-top: 1rem; border-top: 1px solid #ddd;">
-                        <button type="button" class="btn-secondary" id="cancelBtn">Cancelar</button>
-                        <button type="submit" class="btn-primary">Guardar Producto</button>
-                    </div>
                 </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn-secondary" id="cancelBtn">Cancelar</button>
+                <button type="button" class="btn-primary" onclick="document.getElementById('productForm').dispatchEvent(new Event('submit'))">
+                    Guardar Producto
+                </button>
             </div>
         </div>
     </div>
 
-    <!-- Load Color Variables -->
+    <!-- COLOR EDIT MODAL -->
+    <div id="colorModal" class="modal">
+        <div class="modal-content" style="max-width: 450px;">
+            <div class="modal-header">
+                <h2 class="modal-title" id="colorModalTitle">Editar Color</h2>
+                <button class="close-modal" id="closeColorModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="colorForm">
+                    <input type="hidden" id="editColorOldName">
+                    <div class="form-group">
+                        <label class="form-label">Nombre del Color</label>
+                        <input type="text" class="form-input" id="colorName" required placeholder="Ej: Azul Metálico">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Código Hex</label>
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <input type="text" class="form-input" id="colorHex" required placeholder="#3c5b8a" pattern="^#[0-9A-Fa-f]{6}$" style="font-family: monospace;">
+                            <input type="color" id="colorPicker" style="width: 50px; height: 42px; padding: 0; border: none; background: none; cursor: pointer;">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Vista Previa</label>
+                        <div id="colorPreview" style="width: 100%; height: 80px; border-radius: 12px; border: 1px solid #eee; box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);"></div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-secondary" id="cancelColorBtn">Cancelar</button>
+                <button type="button" class="btn-primary" onclick="document.getElementById('colorForm').dispatchEvent(new Event('submit'))">
+                    Guardar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
     <script src="color-variables.js"></script>
-    <!-- Load Data -->
     <script src="data.js"></script>
-    <!-- SheetJS for Excel Export -->
     <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
-    <!-- Admin Logic -->
     <script src="admin.js"></script>
 </body>
 
