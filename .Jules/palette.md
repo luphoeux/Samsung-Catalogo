@@ -1,0 +1,3 @@
+## 2024-05-22 - Accessibility Improvements for Search and Navigation
+**Learning:** The application was missing basic accessibility features like input labels and proper language definition, which significantly degrades the experience for screen reader users. Visual design patterns (like placeholders as labels) were prioritized over semantic HTML.
+**Action:** When working on "clean" interfaces, always ensure form inputs have associated labels (visually hidden if necessary) and decorative icons are properly hidden from assistive technology. Checking the `lang` attribute matches the content is a quick win.
