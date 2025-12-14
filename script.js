@@ -235,10 +235,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Search Functionality
-    searchInput.addEventListener('input', (e) => {
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+
+    searchInput.addEventListener('input', debounce((e) => {
         const activeCategory = document.querySelector('.filter-btn.active').getAttribute('data-category');
         filterProducts(activeCategory, e.target.value);
-    });
+    }, 300));
 
     function filterProducts(category, searchTerm) {
         const term = searchTerm.toLowerCase();
@@ -416,10 +428,14 @@ function loadMoreProducts() {
 
     if (nextBatch.length === 0) return;
 
+    const fragment = document.createDocumentFragment();
+
     nextBatch.forEach(product => {
         const card = createProductCard(product);
-        productGrid.appendChild(card);
+        fragment.appendChild(card);
     });
+
+    productGrid.appendChild(fragment);
 
     displayedCount += nextBatch.length;
 }
@@ -502,7 +518,7 @@ function createProductCard(product) {
     card.innerHTML = `
         <div class="product-image-container">
             ${badgeHtml}
-            <img src="${product.image}" alt="${product.name}" class="product-image" id="img-${card.id}">
+            <img src="${product.image}" alt="${product.name}" class="product-image" id="img-${card.id}" loading="lazy">
         </div>
         <div class="product-info">
             <p class="product-sku">${product.sku || ''}</p>
