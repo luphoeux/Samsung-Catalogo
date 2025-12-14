@@ -749,9 +749,9 @@
 
     // Modal & CRUD Operations
     // Modal & CRUD Operations (Updated)
-    window.openModal = function (productId = null) {
-        modal.classList.add('active');
 
+    // Helper: Reset Product Modal
+    window.resetProductModal = function () {
         // Clear new containers
         const colorsContainer = document.getElementById('colorsContainer');
         const priceVariantsContainer = document.getElementById('priceVariantsContainer');
@@ -761,89 +761,252 @@
         // Populate category dropdown dynamically
         const categorySelect = document.getElementById('prodCategory');
         if (categorySelect) {
-            const currentValue = categorySelect.value; // Save current selection if editing
             categorySelect.innerHTML = ''; // Clear existing options
 
             // Add categories from the categories object
-            Object.keys(categories).forEach(catKey => {
-                const catInfo = categories[catKey];
-                const option = document.createElement('option');
-                option.value = catKey;
-                option.textContent = catInfo.name;
-                categorySelect.appendChild(option);
+            if (typeof categories !== 'undefined') {
+                Object.keys(categories).forEach(catKey => {
+                    const catInfo = categories[catKey];
+                    const option = document.createElement('option');
+                    option.value = catKey;
+                    option.textContent = catInfo.name;
+                    categorySelect.appendChild(option);
+                });
+            }
+        }
+
+        modalTitle.textContent = 'Nuevo Producto';
+        document.getElementById('editProductId').value = '';
+        if (productForm) productForm.reset();
+
+        // Clear base pricing
+        document.getElementById('prodBasePrice').value = '';
+        document.getElementById('prodBasePromo').value = '';
+        document.getElementById('prodBaseLink').value = '';
+
+        // Add initial empty rows
+        addColorRow();
+        addPriceVariantRow();
+    }
+
+    // Helper: Populate Product Modal
+    window.populateProductModal = function (product) {
+        modalTitle.textContent = 'Editar Producto';
+        document.getElementById('editProductId').value = product.id;
+        document.getElementById('prodName').value = product.name;
+        document.getElementById('prodCategory').value = product.category;
+        document.getElementById('prodBadge').value = product.badge || '';
+
+        // Load base pricing
+        document.getElementById('prodBasePrice').value = product.basePrice || 0;
+        document.getElementById('prodBasePromo').value = product.basePromo || 0;
+        document.getElementById('prodBaseLink').value = product.baseLink || '';
+
+        // Clear rows added by reset (we want to fill with product data)
+        const colorsContainer = document.getElementById('colorsContainer');
+        const priceVariantsContainer = document.getElementById('priceVariantsContainer');
+        if (colorsContainer) colorsContainer.innerHTML = '';
+        if (priceVariantsContainer) priceVariantsContainer.innerHTML = '';
+
+        // Load colors from new structure
+        if (product.colors && Array.isArray(product.colors) && product.colors.length > 0) {
+            product.colors.forEach(colorData => {
+                addColorRow(colorData);
+            });
+        } else if (product.variants && Array.isArray(product.variants) && product.variants.length > 0) {
+            // Migration: Convert old variant structure to new color structure
+            const colorMap = new Map();
+            product.variants.forEach(v => {
+                if (v.color && !colorMap.has(v.color)) {
+                    colorMap.set(v.color, {
+                        colorId: v.colorId,
+                        sku: v.sku,
+                        images: v.images || (v.image ? [v.image] : [])
+                    });
+                }
+            });
+            colorMap.forEach(colorData => addColorRow(colorData));
+        }
+
+        // Load price variants from new structure
+        if (product.priceVariants && Array.isArray(product.priceVariants) && product.priceVariants.length > 0) {
+            product.priceVariants.forEach(variantData => {
+                addPriceVariantRow(variantData);
+            });
+        } else if (product.variants && Array.isArray(product.variants) && product.variants.length > 0) {
+            // Migration: Convert old variant structure to new price variant structure
+            const priceMap = new Map();
+            product.variants.forEach(v => {
+                if (v.variableText && !priceMap.has(v.variableText)) {
+                    priceMap.set(v.variableText, {
+                        variableId: v.variableId,
+                        price: v.price,
+                        promoPrice: v.promoPrice,
+                        link: v.link,
+                        active: v.active !== false
+                    });
+                }
+            });
+            priceMap.forEach(variantData => addPriceVariantRow(variantData));
+        }
+    }
+
+    // Helper: Get Product Data From Form
+    window.getProductDataFromForm = function () {
+        const idStr = document.getElementById('editProductId').value;
+        const name = document.getElementById('prodName').value;
+        const category = document.getElementById('prodCategory').value;
+        const badge = document.getElementById('prodBadge').value;
+        const basePriceInput = document.getElementById('prodBasePrice').value;
+        const basePromoInput = document.getElementById('prodBasePromo').value;
+        const baseLinkInput = document.getElementById('prodBaseLink').value;
+
+        // 1. Gather Colors (From Section 2)
+        const colors = [];
+        document.querySelectorAll('#colorsContainer .variant-card').forEach((card, index) => {
+            const select = card.querySelector('.color-select');
+            if (!select || !select.value) return;
+
+            const colorId = select.value;
+            const sku = card.querySelector('.color-sku') ? card.querySelector('.color-sku').value.trim() : '';
+
+            // Get Images
+            const images = [];
+            card.querySelectorAll('.color-image-input').forEach(input => {
+                if (input.value.trim()) images.push(input.value.trim());
+            });
+
+            // Resolve Name/Hex
+            let colorName = '';
+            let hex = '';
+            if (window.colorVariables) {
+                for (const [cName, cData] of Object.entries(window.colorVariables)) {
+                    if (cData.id === colorId) {
+                        colorName = cName;
+                        hex = cData.hex;
+                        break;
+                    }
+                }
+            }
+
+            colors.push({
+                id: colorId,
+                colorId: colorId,
+                name: colorName,
+                hex: hex,
+                sku: sku,
+                images: images,
+                image: images[0] || ''
+            });
+        });
+
+        // 2. Gather Price Variants (From Section 3)
+        const priceVariants = [];
+        document.querySelectorAll('#priceVariantsContainer .variant-card').forEach(card => {
+            const select = card.querySelector('.price-variable-select');
+            const variableId = select ? select.value : '';
+            const variableText = (select && select.selectedIndex >= 0) ? select.options[select.selectedIndex].text : '';
+
+            const price = Number(card.querySelector('.price-price').value) || 0;
+            const promoPrice = Number(card.querySelector('.price-promo').value) || 0;
+            const active = card.querySelector('.price-active') ? card.querySelector('.price-active').checked : true;
+
+            priceVariants.push({
+                variableId: variableId,
+                variableText: variableText,
+                price: price,
+                promoPrice: promoPrice,
+                active: active
+            });
+        });
+
+        // 3. Generate Unified Variants (Cartesian Product for compatibility)
+        let variants = [];
+        if (colors.length > 0 && priceVariants.length > 0) {
+            colors.forEach(c => {
+                priceVariants.forEach(p => {
+                    variants.push({
+                        id: `${c.id}_${p.variableId}`,
+                        color: c.name,
+                        colorId: c.id,
+                        hex: c.hex,
+                        images: c.images,
+                        image: c.image,
+                        sku: c.sku,
+                        price: p.price,
+                        promoPrice: p.promoPrice,
+                        active: p.active,
+                        variableId: p.variableId,
+                        variableText: p.variableText,
+                        type: 'combination'
+                    });
+                });
+            });
+        } else if (colors.length > 0) {
+            colors.forEach(c => {
+                variants.push({
+                    color: c.name,
+                    colorId: c.id,
+                    hex: c.hex,
+                    images: c.images,
+                    image: c.image,
+                    sku: c.sku,
+                    price: Number(basePriceInput) || 0,
+                    promoPrice: Number(basePromoInput) || 0,
+                    link: baseLinkInput,
+                    active: true
+                });
+            });
+        } else if (priceVariants.length > 0) {
+            priceVariants.forEach(p => {
+                variants.push({
+                    price: p.price,
+                    promoPrice: p.promoPrice,
+                    link: p.link,
+                    active: p.active,
+                    variableId: p.variableId,
+                    variableText: p.variableText,
+                    color: '',
+                    images: [],
+                    image: ''
+                });
+            });
+        } else {
+            variants.push({
+                sku: '',
+                price: Number(basePriceInput) || 0,
+                promoPrice: Number(basePromoInput) || 0,
+                link: baseLinkInput,
+                active: true
             });
         }
+
+        return {
+            id: idStr ? Number(idStr) : null, // Let caller handle ID generation if null
+            name: name,
+            category: category,
+            badge: badge,
+            colors: colors,
+            priceVariants: priceVariants,
+            variants: variants,
+            basePrice: Number(basePriceInput) || 0,
+            basePromo: Number(basePromoInput) || 0,
+            baseLink: baseLinkInput,
+            price: (priceVariants.length > 0) ? priceVariants[0].price : (Number(basePriceInput) || 0),
+            image: (colors.length > 0) ? colors[0].image : ''
+        };
+    }
+
+    window.openModal = function (productId = null) {
+        modal.classList.add('active');
+
+        // Reset modal to default state
+        resetProductModal();
 
         if (productId) {
             const product = products.find(p => p.id == productId);
             if (!product) return;
-
-            modalTitle.textContent = 'Editar Producto';
-            document.getElementById('editProductId').value = product.id;
-            document.getElementById('prodName').value = product.name;
-            document.getElementById('prodCategory').value = product.category;
-            document.getElementById('prodBadge').value = product.badge || '';
-
-            // Load base pricing
-            document.getElementById('prodBasePrice').value = product.basePrice || 0;
-            document.getElementById('prodBasePromo').value = product.basePromo || 0;
-            document.getElementById('prodBaseLink').value = product.baseLink || '';
-
-            // Load colors from new structure
-            if (product.colors && Array.isArray(product.colors) && product.colors.length > 0) {
-                product.colors.forEach(colorData => {
-                    addColorRow(colorData);
-                });
-            } else if (product.variants && Array.isArray(product.variants) && product.variants.length > 0) {
-                // Migration: Convert old variant structure to new color structure
-                const colorMap = new Map();
-                product.variants.forEach(v => {
-                    if (v.color && !colorMap.has(v.color)) {
-                        colorMap.set(v.color, {
-                            colorId: v.colorId,
-                            sku: v.sku,
-                            images: v.images || (v.image ? [v.image] : [])
-                        });
-                    }
-                });
-                colorMap.forEach(colorData => addColorRow(colorData));
-            }
-
-            // Load price variants from new structure
-            if (product.priceVariants && Array.isArray(product.priceVariants) && product.priceVariants.length > 0) {
-                product.priceVariants.forEach(variantData => {
-                    addPriceVariantRow(variantData);
-                });
-            } else if (product.variants && Array.isArray(product.variants) && product.variants.length > 0) {
-                // Migration: Convert old variant structure to new price variant structure
-                const priceMap = new Map();
-                product.variants.forEach(v => {
-                    if (v.variableText && !priceMap.has(v.variableText)) {
-                        priceMap.set(v.variableText, {
-                            variableId: v.variableId,
-                            price: v.price,
-                            promoPrice: v.promoPrice,
-                            link: v.link,
-                            active: v.active !== false
-                        });
-                    }
-                });
-                priceMap.forEach(variantData => addPriceVariantRow(variantData));
-            }
-        } else {
-            // NEW PRODUCT
-            modalTitle.textContent = 'Nuevo Producto';
-            document.getElementById('editProductId').value = '';
-            productForm.reset();
-
-            // Clear base pricing
-            document.getElementById('prodBasePrice').value = '';
-            document.getElementById('prodBasePromo').value = '';
-            document.getElementById('prodBaseLink').value = '';
-
-            // Add initial empty rows
-            addColorRow();
-            addPriceVariantRow();
+            populateProductModal(product);
         }
     }
 

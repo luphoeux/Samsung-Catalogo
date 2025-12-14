@@ -115,7 +115,7 @@ var products = [
                 "type": "combination"
             }
         ],
-        "basePrice": 0,
+        "basePrice": 9999,
         "basePromo": 0,
         "baseLink": "",
         "price": 123,

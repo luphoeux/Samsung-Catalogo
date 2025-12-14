@@ -434,67 +434,129 @@ window.editCatalogProduct = function (productId) {
     const product = currentCatalogProducts.find(p => String(p.id || p.ID) === String(productId));
     if (!product) { alert('Producto no encontrado'); return; }
 
-    // Open Global Modal
-    if (typeof openProductModal === 'function') {
-        openProductModal(); // This clears form
+    // Use admin.js helper to open and reset modal
+    if (typeof window.openModal === 'function') {
+        window.openModal(); // Opens and clears form
     } else {
+        // Fallback
         document.getElementById('productModal').classList.add('active');
+        if (typeof window.resetProductModal === 'function') window.resetProductModal();
     }
 
-    // Populate Form (Reuse admin.js logic or manual)
-    // We populate manually to be safe
-    document.getElementById('productName').value = product.name || product.Nombre || '';
-    document.getElementById('productCategory').value = product.category || product.Categoría || '';
-    document.getElementById('productSKU').value = product.sku || product.SKU || '';
-    document.getElementById('productPrice').value = product.basePrice || product['Precio Base'] || 0;
+    // Populate Form using admin.js helper
+    if (typeof window.populateProductModal === 'function') {
+        window.populateProductModal(product);
+    } else {
+        // Fallback manual population
+        document.getElementById('productName').value = product.name || product.Nombre || '';
+        document.getElementById('productCategory').value = product.category || product.Categoría || '';
+        document.getElementById('prodBasePrice').value = product.basePrice || product['Precio Base'] || 0;
+    }
 
-    // Change Save Button
-    const saveBtn = document.getElementById('saveProductBtn');
-    const originalText = saveBtn.innerHTML;
-    const originalOnclick = saveBtn.onclick;
+    // Change Save Button to override default admin save
+    // The button is in the modal footer, likely outside the form but linked via form attribute,
+    // or just a button in .modal-footer
+    const modalFooter = document.querySelector('#productModal .modal-footer');
+    const saveBtn = modalFooter ? modalFooter.querySelector('button.btn-primary') : null;
 
-    saveBtn.innerHTML = 'Guardar en Catálogo';
-    saveBtn.onclick = function () {
-        saveCatalogProduct(product, originalOnclick, originalText);
-    };
+    if (saveBtn) {
+        // Store original state
+        if (!saveBtn.dataset.originalText) saveBtn.dataset.originalText = saveBtn.textContent;
+        // const originalOnclick is not easily accessible if attached via addEventListener
+        // But we can clone the button to remove listeners, or use a flag.
 
-    // Handle Close to reset button
-    const closeBtn = document.querySelector('#productModal .btn-secondary');
-    if (closeBtn) {
-        const oldClose = closeBtn.onclick;
-        closeBtn.onclick = function () {
-            saveBtn.innerHTML = originalText;
-            saveBtn.onclick = originalOnclick;
-            if (oldClose) oldClose();
-            document.getElementById('productModal').classList.remove('active');
+        // Better approach: Change what the submit handler calls.
+        // admin.js form listener calls saveProduct().
+        // We can override saveProduct locally or intercept.
+
+        // Let's replace the button logic temporarily.
+        // Since admin.js adds a submit listener to the form, we can't easily remove it.
+        // But we can change the form's onsubmit or add a capturing listener.
+
+        // Instead of hacking listeners, let's use a global flag or override window.saveProduct temporarily?
+        // No, that's risky.
+
+        // Let's Clone the button to strip listeners!
+        const newBtn = saveBtn.cloneNode(true);
+        saveBtn.parentNode.replaceChild(newBtn, saveBtn);
+
+        newBtn.textContent = 'Guardar en Catálogo';
+        newBtn.onclick = function(e) {
+            e.preventDefault();
+            saveCatalogProduct(product, newBtn);
         };
+
+        // Handle Close to reset button (restore original button by reloading page? or just re-cloning from template?)
+        // Since this is a SPA-like, we should restore it.
+        const restoreButton = () => {
+             // We need to restore the original button behavior which was triggering saveProduct() via form submit.
+             // The original button had a listener attached in admin.js.
+             // Since we cloned it, we lost that listener.
+             // We can re-create the button and re-attach the listener?
+             // Or better: We simply reload the page or tell the user to refresh? No.
+
+             // Let's just create a new button that calls window.saveProduct() on click.
+             const restoredBtn = newBtn.cloneNode(true);
+             restoredBtn.textContent = newBtn.dataset.originalText || 'Guardar Producto';
+             restoredBtn.onclick = null; // Clear our handler
+             // Re-attach to form submit? admin.js attached to form 'submit'.
+             // If we make this button type='submit', it will trigger form submit.
+             // And we need to make sure form submit calls window.saveProduct().
+             // admin.js: productForm.addEventListener('submit', ...)
+
+             // Wait, if we replaced the button, the form listener is still on the FORM.
+             // So clicking a type="submit" button will trigger the form listener.
+             restoredBtn.type = 'submit';
+             newBtn.parentNode.replaceChild(restoredBtn, newBtn);
+        };
+
+        const closeModalBtns = document.querySelectorAll('#productModal .close-modal, #productModal .btn-secondary');
+        closeModalBtns.forEach(btn => {
+            const oldClick = btn.onclick;
+            btn.onclick = function(e) {
+                if(oldClick) oldClick(e);
+                restoreButton();
+                document.getElementById('productModal').classList.remove('active');
+                // Remove this temporary listener to avoid stacking
+                btn.onclick = oldClick;
+            };
+        });
     }
 };
 
-async function saveCatalogProduct(originalProduct, originalOnclick, originalText) {
-    // Construct updated product
-    const updatedProduct = {
-        ...originalProduct,
-        name: document.getElementById('productName').value,
-        category: document.getElementById('productCategory').value,
-        sku: document.getElementById('productSKU').value,
-        basePrice: document.getElementById('productPrice').value
+async function saveCatalogProduct(originalProduct, saveBtnElement) {
+    if (saveBtnElement) saveBtnElement.disabled = true;
+
+    // Get Data using admin.js helper
+    let updatedData = {};
+    if (typeof window.getProductDataFromForm === 'function') {
+        updatedData = window.getProductDataFromForm();
+    } else {
+        alert('Error: Función getProductDataFromForm no encontrada.');
+        if (saveBtnElement) saveBtnElement.disabled = false;
+        return;
+    }
+
+    // Merge with original ID
+    const productToSave = {
+        ...updatedData,
+        id: originalProduct.id // Keep original Catalog Product ID
     };
 
     try {
         const response = await fetch(`/api/catalogs/${currentCatalogId}/update-product`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ product: updatedProduct })
+            body: JSON.stringify({ product: productToSave })
         });
         const res = await response.json();
         if (res.success) {
             alert('Producto actualizado en el catálogo');
             document.getElementById('productModal').classList.remove('active');
-            // Restore button
-            const saveBtn = document.getElementById('saveProductBtn');
-            saveBtn.innerHTML = originalText;
-            saveBtn.onclick = originalOnclick;
+
+            // Restore button if needed (though closeModal usually handles it if logic is correct)
+            // But since we cloned the button, we rely on the closeModal handler we attached earlier to restore it.
+            // We can also trigger a reload of the catalog view
 
             manageCatalog(currentCatalogId); // Reload
         } else {
