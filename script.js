@@ -429,7 +429,7 @@ function createProductCard(product) {
                           data-color="${color}"
                           data-image="${imageSrc}"
                           data-sku="${variantSku}"
-                          onclick="changeProductColor(this, 'product-${product.id}')">
+                          onclick="changeProductColor(this)">
                     </span>
                     `;
         }).join('')}
@@ -483,7 +483,7 @@ function createProductCard(product) {
                 if (card.dataset.rotationPaused) return;
 
                 // Trigger the color change
-                changeProductColor(currentDots[nextIndex], card.id, true);
+                changeProductColor(currentDots[nextIndex], true);
             }, 5000); // Rotates every 5 seconds
 
             card.dataset.rotationInterval = intervalId;
@@ -500,9 +500,9 @@ function createProductCard(product) {
     return card;
 }
 
-function changeProductColor(dot, cardId, isAuto = false) {
+function changeProductColor(dot, isAuto = false) {
     // Update active dot
-    const card = document.getElementById(cardId);
+    const card = dot.closest('.product-card');
     if (!card) return;
 
     // Handle manual interaction pause logic
