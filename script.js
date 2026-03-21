@@ -1,14 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
     const productGrid = document.getElementById('product-grid');
     const searchInput = document.getElementById('search-input');
-    const filterButtons = document.querySelectorAll('.filter-btn');
 
     // Google Sheets CSV URL
     const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTuLe28pznqPjc7LrqZiDee4yxlO2w1KMhjuxP6-nd-FVM6_V6RrTCOHtnowZsjiOKE9H6YeZ4ycUOH/pub?gid=0&single=true&output=csv';
 
     // Initial Render - Show static data first if valid, otherwise skeleton
-    if (typeof products !== 'undefined' && products.length > 0 && products[0].image && products[0].image !== "") {
-        renderProducts(products);
+    if (typeof products !== 'undefined' && products.length > 0) {
+        generateFilterButtons(products);
+        if (products[0].image && products[0].image !== "") {
+            renderProducts(products);
+        } else {
+            renderSkeleton();
+        }
     } else {
         renderSkeleton();
     }
@@ -38,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     } else {
                         window.products = parsedProducts;
                     }
+                    generateFilterButtons(parsedProducts);
                     renderProducts(parsedProducts);
                 } else {
                     console.warn('Fetched data was empty or invalid');
@@ -160,22 +165,54 @@ document.addEventListener('DOMContentLoaded', () => {
         return values;
     }
 
-    // Filter Functionality
-    filterButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // Remove active class from all buttons
-            filterButtons.forEach(b => b.classList.remove('active'));
-            // Add active class to clicked button
-            btn.classList.add('active');
-
-            const category = btn.getAttribute('data-category');
-            filterProducts(category, searchInput.value);
+    function generateFilterButtons(items) {
+        const filterContainer = document.getElementById('filter-buttons-container');
+        if (!filterContainer) return;
+        
+        const categories = new Set();
+        items.forEach(product => {
+            if (product.category && product.category.trim() !== '') {
+                categories.add(product.category.trim());
+            }
         });
-    });
+        
+        // Orden de aparición original (Set mantiene el orden de inserción)
+        const sortedCategories = Array.from(categories);
+        
+        const currentActiveBtn = filterContainer.querySelector('.filter-btn.active');
+        const activeCategory = currentActiveBtn ? currentActiveBtn.getAttribute('data-category') : 'all';
+        
+        filterContainer.innerHTML = '';
+        
+        const allBtn = document.createElement('button');
+        allBtn.className = `filter-btn ${activeCategory === 'all' ? 'active' : ''}`;
+        allBtn.setAttribute('data-category', 'all');
+        allBtn.textContent = 'Todos';
+        filterContainer.appendChild(allBtn);
+        
+        sortedCategories.forEach(cat => {
+            const btn = document.createElement('button');
+            btn.className = `filter-btn ${activeCategory === cat ? 'active' : ''}`;
+            btn.setAttribute('data-category', cat);
+            btn.textContent = cat; // Usa el texto literal del excel
+            filterContainer.appendChild(btn);
+        });
+        
+        const newFilterButtons = filterContainer.querySelectorAll('.filter-btn');
+        newFilterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                newFilterButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const category = btn.getAttribute('data-category');
+                filterProducts(category, searchInput.value);
+            });
+        });
+    }
 
     // Search Functionality
     searchInput.addEventListener('input', (e) => {
-        const activeCategory = document.querySelector('.filter-btn.active').getAttribute('data-category');
+        const activeBtn = document.querySelector('.filter-btn.active');
+        const activeCategory = activeBtn ? activeBtn.getAttribute('data-category') : 'all';
         filterProducts(activeCategory, e.target.value);
     });
 
